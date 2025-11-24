@@ -27,6 +27,10 @@ ConnectionManager="*res://Addons/Networking/ConnectionManager.gd"
 ServerManager="*res://Addons/Networking/Server/ServerManager.gd"
 ClientManager="*res://Addons/Networking/Client/ClientManager.gd"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/example_plugin/plugin.cfg")
+
 [input]
 
 move_forward={
