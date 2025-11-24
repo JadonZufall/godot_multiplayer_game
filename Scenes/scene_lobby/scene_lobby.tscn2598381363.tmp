@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://1jksajf357bh"]
+
+[ext_resource type="Script" uid="uid://d1fob3mhw14gh" path="res://Scenes/scene_lobby/multiplayer_spawner.gd" id="1_3rl8h"]
+[ext_resource type="Material" uid="uid://5voyev4wrurl" path="res://Materials/Shaders/material_debug_grid/material_debug_grid.tres" id="3_xgy1p"]
+[ext_resource type="PackedScene" uid="uid://dxefxdp2heyf1" path="res://Blueprints/bp_camera/bp_camera.tscn" id="4_mqeuo"]
+[ext_resource type="PackedScene" uid="uid://cflbpvmg2o550" path="res://Blueprints/bp_prop/bp_prop.tscn" id="5_egost"]
+[ext_resource type="PackedScene" uid="uid://bp4nu3w7csdxj" path="res://Blueprints/bp_entity/bp_entity.tscn" id="5_lgycb"]
+[ext_resource type="PackedScene" uid="uid://rlavvta0cosq" path="res://Blueprints/bp_entity/prefabs/bp_entity_ik/bp_entity_ik.tscn" id="6_egost"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mqeuo"]
+size = Vector2(10, 10)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_lgycb"]
+
+[node name="scene_lobby" type="Node3D"]
+
+[node name="multiplayer_spawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://bp4nu3w7csdxj")
+spawn_path = NodePath("..")
+script = ExtResource("1_3rl8h")
+network_player = ExtResource("5_lgycb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+material_override = ExtResource("3_xgy1p")
+mesh = SubResource("PlaneMesh_mqeuo")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_lgycb")
+
+[node name="bp_camera" parent="." instance=ExtResource("4_mqeuo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="bp_entity" parent="." instance=ExtResource("5_lgycb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+_auto_set_authority = false
+
+[node name="bp_prop" parent="." instance=ExtResource("5_egost")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2.75316)
+
+[node name="bp_entity_ik" parent="." instance=ExtResource("6_egost")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.84655, 0.00561795, -3.0529)

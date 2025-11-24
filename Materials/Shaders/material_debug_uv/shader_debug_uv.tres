@@ -1,0 +1,26 @@
+[gd_resource type="VisualShader" load_steps=2 format=3 uid="uid://bybl5nt2y0gpn"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_vxd7s"]
+input_name = "uv"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+
+
+
+void fragment() {
+// Input:2
+	vec2 n_out2p0 = UV;
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0, 0.0);
+
+
+}
+"
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_vxd7s")
+nodes/fragment/2/position = Vector2(-171, 302)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0)

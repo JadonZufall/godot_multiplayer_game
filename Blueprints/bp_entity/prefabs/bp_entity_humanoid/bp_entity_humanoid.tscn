@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://rlavvta0cosq"]
+
+[ext_resource type="PackedScene" uid="uid://bp4nu3w7csdxj" path="res://Blueprints/bp_entity/bp_entity.tscn" id="1_57spv"]
+[ext_resource type="PackedScene" uid="uid://fjlh73i7fwa4" path="res://Blueprints/bp_entity/prefabs/bp_entity_humanoid/models/humanoid_male_export.tscn" id="2_85vjo"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_hnh45"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_85vjo"]
+
+[node name="bp_entity_humanoid" instance=ExtResource("1_57spv")]
+
+[node name="debug_ball" parent="." index="6"]
+mesh = SubResource("SphereMesh_hnh45")
+
+[node name="action_rotate" parent="." index="9" node_paths=PackedStringArray("model", "collider")]
+model = NodePath("../humanoid_male")
+collider = NodePath("../collider")
+
+[node name="humanoid_male" parent="." index="13" instance=ExtResource("2_85vjo")]
+
+[node name="ik_target" parent="humanoid_male/Skeleton3D/bp_ik_humanoid_leg_l" index="4"]
+transform = Transform3D(1, 2.96847e-07, -3.90804e-08, 3.90804e-08, -0.258818, -0.965926, -2.96847e-07, 0.965926, -0.258818, 0.179656, 0, -0.070835)
+
+[node name="ik_target" parent="humanoid_male/Skeleton3D/bp_ik_humanoid_leg_r" index="4"]
+transform = Transform3D(1, 2.96847e-07, -3.90804e-08, 3.90804e-08, -0.258818, -0.965926, -2.96847e-07, 0.965926, -0.258818, -0.179656, 0, -0.070835)
+
+[node name="MeshInstance3D" parent="camera_pivot" index="1"]
+visible = false
+
+[node name="collider" parent="." index="15"]
+shape = SubResource("CapsuleShape3D_85vjo")
+
+[node name="model" parent="." index="16"]
+visible = false
+
+[editable path="humanoid_male"]
+[editable path="humanoid_male/Skeleton3D/bp_ik_humanoid_leg_l"]
+[editable path="humanoid_male/Skeleton3D/bp_ik_humanoid_leg_r"]

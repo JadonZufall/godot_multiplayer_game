@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://4fl214qvx84s"]
+
+[ext_resource type="PackedScene" uid="uid://bcg01k6sbcvin" path="res://Blueprints/bp_debug_label/bp_debug_label.tscn" id="1_c0ga8"]
+[ext_resource type="Script" uid="uid://ccmtn2uftim8" path="res://Blueprints/bp_debug_label/prefabs/bp_debug_speed_label/bp_debug_speed_label.gd" id="2_jgiem"]
+
+[node name="bp_debug_speed_label" instance=ExtResource("1_c0ga8")]
+text = "Speed: 0m/s"
+script = ExtResource("2_jgiem")

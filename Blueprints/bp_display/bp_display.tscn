@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://8u214ubs62dc"]
+
+[ext_resource type="Shader" uid="uid://gdff4ncbfhh7" path="res://Blueprints/bp_display/shaders/display_shader.tres" id="1_0h244"]
+[ext_resource type="Shader" uid="uid://sd8ldp4ecsh" path="res://Blueprints/bp_display/shaders/background_shader.tres" id="2_j5lko"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0h244"]
+viewport_path = NodePath("mesh_viewport/viewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_st1qd"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_0h244")
+shader_parameter/frag_curve_strength = 0.1
+shader_parameter/curve_strength = 0.1
+shader_parameter/viewport = SubResource("ViewportTexture_0h244")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_au0uo"]
+render_priority = 0
+shader = ExtResource("2_j5lko")
+shader_parameter/frag_curve_strength = 0.1
+shader_parameter/curve_strength = 0.1
+
+[sub_resource type="QuadMesh" id="QuadMesh_0h244"]
+subdivide_width = 8
+subdivide_depth = 8
+
+[sub_resource type="SphereMesh" id="SphereMesh_au0uo"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_j5lko"]
+
+[node name="bp_display" type="Node3D"]
+
+[node name="mesh_viewport" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_st1qd")
+material_overlay = SubResource("ShaderMaterial_au0uo")
+mesh = SubResource("QuadMesh_0h244")
+
+[node name="viewport" type="SubViewport" parent="mesh_viewport"]
+own_world_3d = true
+transparent_bg = true
+gui_disable_input = true
+
+[node name="Lighting" type="DirectionalLight3D" parent="mesh_viewport/viewport"]
+transform = Transform3D(1, 0, 0, 0, 0.99701, -0.0772759, 0, 0.0772759, 0.99701, 0, 0, 0)
+sky_mode = 1
+
+[node name="contents" type="Node3D" parent="mesh_viewport/viewport"]
+
+[node name="camera" type="Camera3D" parent="mesh_viewport/viewport/contents"]
+projection = 2
+current = true
+near = 0.5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="mesh_viewport/viewport/contents"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.73366, 0.0520072, -0.845346)
+mesh = SubResource("SphereMesh_au0uo")
+skeleton = NodePath("../..")
+
+[node name="Label3D" type="Label3D" parent="mesh_viewport/viewport/contents"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0466624, -0.062205, -0.643938)
+text = "test"
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="mesh_viewport/viewport/contents"]
+transform = Transform3D(0.499683, -0.394449, -0.771186, 0, 0.8903, -0.455374, 0.866209, 0.227542, 0.444868, 0, 0, -2.69762)
+mesh = SubResource("BoxMesh_j5lko")

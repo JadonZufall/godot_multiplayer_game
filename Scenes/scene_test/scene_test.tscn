@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcxhij0tbkufd"]
+
+[ext_resource type="PackedScene" uid="uid://rlavvta0cosq" path="res://Blueprints/bp_entity/prefabs/bp_entity_humanoid/bp_entity_humanoid.tscn" id="1_a55rg"]
+[ext_resource type="PackedScene" uid="uid://dxefxdp2heyf1" path="res://Blueprints/bp_camera/bp_camera.tscn" id="2_1ga6t"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dkjh0"]
+size = Vector2(20, 20)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0qb8t"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a55rg"]
+
+[sub_resource type="Sky" id="Sky_1ga6t"]
+sky_material = SubResource("ProceduralSkyMaterial_a55rg")
+
+[sub_resource type="Environment" id="Environment_13s8g"]
+background_mode = 2
+sky = SubResource("Sky_1ga6t")
+
+[node name="scene_test" type="Node3D"]
+
+[node name="test_physics" type="Node3D" parent="."]
+
+[node name="floor" type="StaticBody3D" parent="test_physics"]
+
+[node name="mesh" type="MeshInstance3D" parent="test_physics/floor"]
+mesh = SubResource("PlaneMesh_dkjh0")
+skeleton = NodePath("../..")
+
+[node name="collider" type="CollisionShape3D" parent="test_physics/floor"]
+shape = SubResource("WorldBoundaryShape3D_0qb8t")
+
+[node name="test_player" type="Node3D" parent="."]
+
+[node name="bp_entity_humanoid" parent="test_player" instance=ExtResource("1_a55rg")]
+_init_possessed = true
+_auto_set_authority = false
+
+[node name="bp_camera" parent="test_player" instance=ExtResource("2_1ga6t")]
+
+[node name="test_env" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="test_env"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="test_env"]
+environment = SubResource("Environment_13s8g")

@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1pb06sdraskq"]
+
+[sub_resource type="Environment" id="Environment_gero7"]
+ambient_light_source = 3
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.038
+
+[node name="scene_void" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5, 0)
+size = Vector3(5, 15, 15)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gero7")
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17.5, 0)
+size = Vector3(5000, 27, 5000)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 41.7099, -1.8232e-06)
+light_color = Color(1, 1, 0, 1)
+light_specular = 0.0
+shadow_enabled = true
+spot_range = 117.371
+spot_angle = 28.6105
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5)

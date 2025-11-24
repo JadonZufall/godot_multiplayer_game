@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cflbpvmg2o550"]
+
+[ext_resource type="Script" uid="uid://bo4frmit5bspk" path="res://Blueprints/bp_prop/bp_prop.gd" id="1_bhkxy"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_mqeuo"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:scale")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_lgycb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_egost"]
+
+[node name="bp_prop" type="RigidBody3D"]
+script = ExtResource("1_bhkxy")
+
+[node name="synchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_mqeuo")
+
+[node name="authority_timer" type="Timer" parent="synchronizer"]
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_lgycb")
+
+[node name="collider" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_egost")

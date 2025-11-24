@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnq8hw8ju1peb"]
+
+[ext_resource type="PackedScene" uid="uid://dio4vvvoxcr51" path="res://Scenes/scene_start/scene_start.tscn" id="1_jcc4n"]
+[ext_resource type="Script" uid="uid://b86qwa5ilqq4e" path="res://Scenes/scene_loader/scene_loader.gd" id="1_v0a6k"]
+[ext_resource type="PackedScene" uid="uid://cabgkxklq6er2" path="res://Scenes/scene_network_information/scene_network_information.tscn" id="3_k5ff0"]
+[ext_resource type="PackedScene" uid="uid://bh0mf03ugchsv" path="res://Blueprints/bp_debug_ui/bp_debug_ui.tscn" id="4_wwk4x"]
+
+[sub_resource type="Environment" id="Environment_ft5o6"]
+
+[node name="SceneLoader" type="Node"]
+script = ExtResource("1_v0a6k")
+autoload_ui = Array[PackedScene]([ExtResource("1_jcc4n")])
+
+[node name="NetworkInformation" parent="." instance=ExtResource("3_k5ff0")]
+unique_name_in_owner = true
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bp_debug_ui" parent="UI" instance=ExtResource("4_wwk4x")]
+layout_mode = 1
+
+[node name="2D World" type="Node2D" parent="."]
+
+[node name="3D World" type="Node3D" parent="."]
+
+[node name="3D Environment" type="WorldEnvironment" parent="3D World"]
+environment = SubResource("Environment_ft5o6")
+
+[node name="Lighting" type="DirectionalLight3D" parent="3D World/3D Environment"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cabgkxklq6er2"]
+
+[ext_resource type="Script" uid="uid://lykdstetgapb" path="res://Scenes/scene_network_information/multiplayer_spawner.gd" id="1_yrway"]
+[ext_resource type="PackedScene" uid="uid://chvtbcu2ldt7q" path="res://Scenes/scene_network_information/bp_player_information/bp_player_information.tscn" id="2_rq65e"]
+
+[node name="NetworkInformation" type="Node"]
+
+[node name="Players" type="Node" parent="."]
+
+[node name="multiplayer_spawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://chvtbcu2ldt7q")
+spawn_path = NodePath("../Players")
+script = ExtResource("1_yrway")
+player_information_scene = ExtResource("2_rq65e")

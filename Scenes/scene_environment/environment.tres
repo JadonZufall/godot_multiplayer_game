@@ -1,0 +1,16 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://cyi38yg7k4uoq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tyro0"]
+sky_top_color = Color(0.4232, 0.6302, 0.92, 1)
+sky_horizon_color = Color(0.759996, 0.767388, 0.779062, 1)
+ground_horizon_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Sky" id="Sky_87mlu"]
+sky_material = SubResource("ProceduralSkyMaterial_tyro0")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_87mlu")
+reflected_light_source = 2
+ssao_sharpness = 0.92
+volumetric_fog_sky_affect = 0.0

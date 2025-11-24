@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://cnq8hw8ju1peb"]
+
+[ext_resource type="PackedScene" uid="uid://dio4vvvoxcr51" path="res://Scenes/scene_start/scene_start.tscn" id="1_jcc4n"]
+[ext_resource type="PackedScene" uid="uid://bp4nu3w7csdxj" path="res://Blueprints/bp_entity/bp_entity.tscn" id="3_wwk4x"]
+[ext_resource type="Material" uid="uid://5voyev4wrurl" path="res://Materials/Shaders/material_debug_grid/material_debug_grid.tres" id="4_cw3xv"]
+[ext_resource type="PackedScene" uid="uid://dxefxdp2heyf1" path="res://Blueprints/bp_camera/bp_camera.tscn" id="4_v0a6k"]
+
+[sub_resource type="Environment" id="Environment_ft5o6"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_6ucuc"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6ucuc"]
+size = Vector2(20, 20)
+
+[node name="SceneLoader" type="Node"]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="scene_start" parent="UI" instance=ExtResource("1_jcc4n")]
+layout_mode = 1
+
+[node name="2D World" type="Node2D" parent="."]
+
+[node name="3D World" type="Node3D" parent="."]
+
+[node name="3D Environment" type="WorldEnvironment" parent="3D World"]
+environment = SubResource("Environment_ft5o6")
+
+[node name="Lighting" type="DirectionalLight3D" parent="3D World/3D Environment"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
+
+[node name="tmp_boundry" type="StaticBody3D" parent="3D World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="collider" type="CollisionShape3D" parent="3D World/tmp_boundry"]
+shape = SubResource("WorldBoundaryShape3D_6ucuc")
+
+[node name="mesh" type="MeshInstance3D" parent="3D World/tmp_boundry"]
+material_override = ExtResource("4_cw3xv")
+mesh = SubResource("PlaneMesh_6ucuc")
+
+[node name="bp_entity" parent="3D World" instance=ExtResource("3_wwk4x")]
+_init_possessed = true
+
+[node name="bp_camera" parent="3D World" instance=ExtResource("4_v0a6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)

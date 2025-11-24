@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtqdeq2r1kws8"]
+
+[ext_resource type="Script" uid="uid://bw355y686ou15" path="res://Scenes/scene_party/bp_party_label/bp_party_member.gd" id="1_sbal8"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_70aql"]
+properties/0/path = NodePath("MarginContainer/Background/HBoxContainer2/VBoxContainer/Label:text")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_70aql"]
+size = Vector2(64, 64)
+
+[node name="bp_party_member" type="Control" node_paths=PackedStringArray("label_username")]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 226.0
+offset_bottom = 75.0
+size_flags_horizontal = 0
+script = ExtResource("1_sbal8")
+label_username = NodePath("MarginContainer/Background/HBoxContainer2/VBoxContainer/label_username")
+
+[node name="multiplayer_synchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_70aql")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 221.0
+offset_bottom = 74.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Background" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Background"]
+layout_mode = 2
+offset_right = 211.0
+offset_bottom = 64.0
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/Background/HBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Background/HBoxContainer2/AspectRatioContainer"]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_70aql")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Background/HBoxContainer2"]
+layout_mode = 2
+
+[node name="label_username" type="Label" parent="MarginContainer/Background/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "{USERNAME}"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Background/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="MarginContainer/Background/HBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "+Friend"

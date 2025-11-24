@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b338l11g2orkm"]
+
+[sub_resource type="Gradient" id="Gradient_boufm"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fja5t"]
+gradient = SubResource("Gradient_boufm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_boufm"]
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture1D_fja5t")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_boufm"]
+flip_faces = true
+top_radius = 2.0
+bottom_radius = 2.0
+height = 0.25
+cap_top = false
+cap_bottom = false
+
+[node name="bp_compass" type="Node3D"]
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_boufm")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_boufm")

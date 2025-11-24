@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxefxdp2heyf1"]
+
+[ext_resource type="Script" uid="uid://bbxufn80o6ce1" path="res://Blueprints/bp_camera/bp_camera.gd" id="1_w3vc6"]
+[ext_resource type="Script" uid="uid://c0o5q4aqb552n" path="res://Scripts/StateMachine/StateMachine.gd" id="2_ylewu"]
+[ext_resource type="Script" uid="uid://j5i5grxt3ltg" path="res://Scripts/StateMachine/State.gd" id="3_w3vlv"]
+[ext_resource type="Script" uid="uid://d3ypxvmpgjd15" path="res://Blueprints/bp_camera/third_person_mode.gd" id="4_d6q1t"]
+[ext_resource type="Script" uid="uid://c4uh0h6xfxaq5" path="res://Blueprints/bp_camera/free_camera_mode.gd" id="4_ksy1s"]
+
+[node name="bp_camera" type="Camera3D"]
+cull_mask = 524287
+current = true
+script = ExtResource("1_w3vc6")
+set_current_camera = true
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+current = true
+
+[node name="camera_mode" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_ylewu")
+initial_state = NodePath("third_person_mode")
+metadata/_custom_type_script = "uid://c0o5q4aqb552n"
+
+[node name="locked_camera_mode" type="Node" parent="camera_mode"]
+script = ExtResource("3_w3vlv")
+metadata/_custom_type_script = "uid://j5i5grxt3ltg"
+
+[node name="free_camera_mode" type="Node" parent="camera_mode"]
+script = ExtResource("4_ksy1s")
+metadata/_custom_type_script = "uid://j5i5grxt3ltg"
+
+[node name="third_person_mode" type="Node" parent="camera_mode"]
+script = ExtResource("4_d6q1t")
+metadata/_custom_type_script = "uid://j5i5grxt3ltg"
+
+[node name="first_person_mode" type="Node" parent="camera_mode"]
+script = ExtResource("3_w3vlv")
+metadata/_custom_type_script = "uid://j5i5grxt3ltg"
