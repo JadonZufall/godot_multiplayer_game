@@ -1,0 +1,110 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmqw3vut8fjqe"]
+
+[ext_resource type="Script" uid="uid://cjn7dreyhtqaf" path="res://Scenes/scene_inverse_kinematics/destination.gd" id="1_r1p5u"]
+[ext_resource type="Script" uid="uid://bqcutvw53o5p7" path="res://Scenes/scene_inverse_kinematics/ik_intermediary.gd" id="2_tbq2a"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_5prku"]
+radius = 0.05
+height = 0.1
+
+[node name="scene_ik" type="Node3D"]
+
+[node name="initial" type="Node3D" parent="."]
+
+[node name="hip" type="Marker3D" parent="initial"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Label3D" type="Label3D" parent="initial/hip"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.354287, 0, 0)
+billboard = 2
+text = "hip"
+font_size = 12
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="initial/hip"]
+mesh = SubResource("SphereMesh_5prku")
+
+[node name="knee" type="Marker3D" parent="initial/hip"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Label3D" type="Label3D" parent="initial/hip/knee"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37707, 0, 0)
+billboard = 2
+text = "knee"
+font_size = 12
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="initial/hip/knee"]
+mesh = SubResource("SphereMesh_5prku")
+
+[node name="foot" type="Marker3D" parent="initial/hip/knee"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Label3D" type="Label3D" parent="initial/hip/knee/foot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.387941, 0, 0)
+billboard = 2
+text = "foot"
+font_size = 12
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="initial/hip/knee/foot"]
+mesh = SubResource("SphereMesh_5prku")
+
+[node name="destination" type="Node3D" parent="."]
+script = ExtResource("1_r1p5u")
+
+[node name="hip" type="Marker3D" parent="destination"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Label3D" type="Label3D" parent="destination/hip"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.354287, 0, 0)
+billboard = 2
+text = "hip"
+font_size = 12
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="destination/hip"]
+mesh = SubResource("SphereMesh_5prku")
+
+[node name="knee" type="Marker3D" parent="destination/hip"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Label3D" type="Label3D" parent="destination/hip/knee"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37707, 0, 0)
+billboard = 2
+text = "knee"
+font_size = 12
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="destination/hip/knee"]
+mesh = SubResource("SphereMesh_5prku")
+
+[node name="foot" type="Marker3D" parent="destination/hip/knee"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Label3D" type="Label3D" parent="destination/hip/knee/foot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.387941, 0, 0)
+billboard = 2
+text = "foot"
+font_size = 12
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="destination/hip/knee/foot"]
+mesh = SubResource("SphereMesh_5prku")
+
+[node name="ik_destination" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.02666)
+
+[node name="Label3D" type="Label3D" parent="ik_destination"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+billboard = 2
+text = "ik_destination"
+font_size = 12
+
+[node name="ik_intermediary" type="Marker3D" parent="." node_paths=PackedStringArray("ik_destination", "initial_hip", "initial_knee", "initial_foot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44505, 0.513331)
+script = ExtResource("2_tbq2a")
+ik_destination = NodePath("../ik_destination")
+initial_hip = NodePath("../initial/hip")
+initial_knee = NodePath("../initial/hip/knee")
+initial_foot = NodePath("../initial/hip/knee/foot")
+
+[node name="Label3D" type="Label3D" parent="ik_intermediary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+billboard = 2
+text = "ik_intermediary"
+font_size = 12
