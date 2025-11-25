@@ -1,0 +1,1 @@
+class_name ImprovedCamera3DTarget extends Node3D

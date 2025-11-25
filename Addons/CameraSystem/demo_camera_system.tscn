@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://0npf4772ybxq"]
+
+[ext_resource type="Script" uid="uid://b5hwp1flbqrqt" path="res://Addons/CameraSystem/ImprovedCamera3D.gd" id="1_ljgyk"]
+[ext_resource type="Script" uid="uid://4741in25n6p3" path="res://Addons/CameraSystem/ImprovedCamera3DTarget.gd" id="2_f3ca1"]
+
+[node name="demo_camera_system" type="Node3D"]
+
+[node name="ImprovedCamera3D" type="Camera3D" parent="."]
+script = ExtResource("1_ljgyk")
+metadata/_custom_type_script = "uid://b5hwp1flbqrqt"
+
+[node name="ImprovedCamera3DTarget" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+script = ExtResource("2_f3ca1")
+metadata/_custom_type_script = "uid://4741in25n6p3"

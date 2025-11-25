@@ -1,3 +1,4 @@
+@icon("res://Editor/Icons/PackedScene.svg")
 extends Node
 @onready var world_ui: Control = $UI
 @onready var world_2d: Node2D = $"2D World"
