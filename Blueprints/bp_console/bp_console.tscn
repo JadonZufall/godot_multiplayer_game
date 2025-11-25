@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://rhp76bd5g5k2"]
+
+[ext_resource type="Script" uid="uid://djxdovecjmhk6" path="res://Blueprints/bp_console/bp_console.gd" id="1_rpdvf"]
+[ext_resource type="Script" uid="uid://duwc8y8qeyatt" path="res://Blueprints/bp_console/ConsoleStreamOut.gd" id="2_6iqq8"]
+
+[node name="bp_console" type="Window"]
+title = "Console"
+initial_position = 1
+size = Vector2i(400, 225)
+always_on_top = true
+script = ExtResource("1_rpdvf")
+
+[node name="vbox" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="stream_out" type="RichTextLabel" parent="vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+scroll_following = true
+vertical_alignment = 2
+script = ExtResource("2_6iqq8")
+
+[node name="hbox" type="HBoxContainer" parent="vbox"]
+layout_mode = 2
+
+[node name="stream_in" type="LineEdit" parent="vbox/hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="btn_submit" type="Button" parent="vbox/hbox"]
+layout_mode = 2
+text = "Submit"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="text_submitted" from="vbox/hbox/stream_in" to="." method="_on_stream_in_text_submitted"]
+[connection signal="pressed" from="vbox/hbox/btn_submit" to="." method="_on_btn_submit_pressed"]

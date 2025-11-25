@@ -1,8 +1,8 @@
 @icon("res://Editor/Icons/PackedScene.svg")
 extends Node
-@onready var world_ui: Control = $UI
-@onready var world_2d: Node2D = $"2D World"
-@onready var world_3d: Node3D = $"3D World"
+@onready var world_ui: SceneTreeUI = $UI
+@onready var world_2d: SceneTree2D = $"2D World"
+@onready var world_3d: SceneTree3D = $"3D World"
 
 @export var autoload_ui: Array[PackedScene] = []
 @export var autoload_2d: Array[PackedScene] = []
