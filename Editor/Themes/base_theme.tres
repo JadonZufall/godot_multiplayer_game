@@ -1,0 +1,100 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://d35scnhi5wl44"]
+
+[ext_resource type="FontFile" uid="uid://bf3xfd7lfwm1e" path="res://Editor/Fonts/Ubuntu/UbuntuMono-B.ttf" id="1_ig6ma"]
+[ext_resource type="FontFile" uid="uid://bm3ikwuhynyy2" path="res://Editor/Fonts/Ubuntu/UbuntuMono-BI.ttf" id="2_6dluv"]
+[ext_resource type="FontFile" uid="uid://cjm7acmjpyky5" path="res://Editor/Fonts/Ubuntu/UbuntuMono-RI.ttf" id="3_smmmb"]
+[ext_resource type="FontFile" uid="uid://dpm05pg6mxj7l" path="res://Editor/Fonts/Ubuntu/UbuntuMono-R.ttf" id="4_yh6sw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dluv"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smmmb"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 0.6)
+border_blend = true
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yh6sw"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.3)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ig6ma"]
+bg_color = Color(0.176419, 0.176419, 0.176419, 1)
+border_width_left = 3
+border_width_top = 19
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.160784, 0.160784, 0.160784, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 3.0
+expand_margin_top = 19.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3msu7"]
+bg_color = Color(0.176419, 0.176419, 0.176419, 1)
+border_width_left = 3
+border_width_top = 19
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.160784, 0.160784, 0.160784, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 3.0
+expand_margin_top = 19.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+shadow_offset = Vector2(4, 4)
+
+[resource]
+LineEdit/font_sizes/font_size = 16
+LineEdit/fonts/font = ExtResource("4_yh6sw")
+LineEdit/styles/focus = SubResource("StyleBoxFlat_6dluv")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_smmmb")
+LineEdit/styles/read_only = SubResource("StyleBoxFlat_yh6sw")
+RichTextLabel/fonts/bold_font = ExtResource("1_ig6ma")
+RichTextLabel/fonts/bold_italics_font = ExtResource("2_6dluv")
+RichTextLabel/fonts/italics_font = ExtResource("3_smmmb")
+RichTextLabel/fonts/mono_font = ExtResource("4_yh6sw")
+RichTextLabel/fonts/normal_font = ExtResource("4_yh6sw")
+Window/constants/close_v_offset = 17
+Window/constants/resize_margin = 4
+Window/constants/title_height = 20
+Window/constants/title_outline_size = 0
+Window/font_sizes/title_font_size = 17
+Window/fonts/title_font = ExtResource("4_yh6sw")
+Window/styles/embedded_border = SubResource("StyleBoxFlat_ig6ma")
+Window/styles/embedded_unfocused_border = SubResource("StyleBoxFlat_3msu7")

@@ -26,6 +26,7 @@ PartyHandler="*res://Scripts/Globals/Networking/PartyHandler.gd"
 ConnectionManager="*res://Addons/Networking/ConnectionManager.gd"
 ServerManager="*res://Addons/Networking/Server/ServerManager.gd"
 ClientManager="*res://Addons/Networking/Client/ClientManager.gd"
+DebugConsole="*res://Scripts/Globals/DebugConsole.gd"
 
 [editor_plugins]
 

@@ -3,7 +3,8 @@ extends Node
 const DEBUG_LAYER: int = 20
 
 func toggle_debug_layer() -> void:
-	CameraHandler.current_camera.cull_mask ^= 1 << (DEBUG_LAYER - 1)
+	if CameraHandler.current_camera:
+		CameraHandler.current_camera.cull_mask ^= 1 << (DEBUG_LAYER - 1)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("debug_quit"):

@@ -197,6 +197,9 @@ func bbformat(
 	
 	return result
 
+func write(data: String) -> void:
+	append_text(data)
+
 func write_line(line: String) -> void:
 	append_text("%s\n" % line)
 
@@ -215,7 +218,16 @@ func bb_font_flags(message: String, bold: bool, italics: bool, underline: bool, 
 func bb_color(message: String, color: String) -> String:
 	return BB_COLOR % [color, message]
 
+func bb_bgcolor(message, color: String) -> String:
+	return BB_BGCOLOR % [color, message]
+
 const ERROR_COLOR: String = "red"
+
+func format_input(message: String) -> String:
+	return bb_bgcolor(message, "#9A9C99")
+
+func format_output(message: String) -> String:
+	return bb_bgcolor(message, "#5D5E60")
 
 func format_error(error_type: String, message: String) -> String:
 	return bb_color("%s %s" % [

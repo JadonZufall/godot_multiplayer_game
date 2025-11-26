@@ -12,8 +12,8 @@ func _process(delta: float) -> void:
 	pass
 
 func parse(command: String) -> void:
-	stream_out.write_line(command)
-	stream_out.write_line(stream_out.format_error("SyntaxError", "Did not reconize command %s" % command))
+	stream_out.write_line(stream_out.format_input(command))
+	stream_out.write_line(stream_out.format_output(stream_out.format_error("SyntaxError", "Did not reconize command %s" % command)))
 	stream_in.call_deferred("set_editable", true)
 	stream_in.call_deferred("edit")
 
