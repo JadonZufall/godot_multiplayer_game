@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c676gqcvk3sr"]
+
+[ext_resource type="Shader" uid="uid://p2jl8403tn7v" path="res://Addons/greybox_editor/materials/face_shader.tres" id="1_2w5v0"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_2w5v0")

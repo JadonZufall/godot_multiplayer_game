@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duagb5xrh4bw7"
-path="res://.godot/imported/screenshot.png-024a21af5d37bf0f0dd0e2bccdd149d0.ctex"
+uid="uid://c8uppx35yiry2"
+path="res://.godot/imported/screenshot.png-c5e333f919ee10e384a930e61a904964.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://screenshot.png"
-dest_files=["res://.godot/imported/screenshot.png-024a21af5d37bf0f0dd0e2bccdd149d0.ctex"]
+source_file="res://Addons/greybox_editor/screenshots/screenshot.png"
+dest_files=["res://.godot/imported/screenshot.png-c5e333f919ee10e384a930e61a904964.ctex"]
 
 [params]
 

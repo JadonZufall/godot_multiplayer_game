@@ -15,8 +15,8 @@ func _process(delta: float) -> void:
 
 func _on_pressed() -> void:
 	print("Screenshot")
-	var screen_shot_w: int = 256
-	var screen_shot_h: int = 256
+	var screen_shot_w: int = 512
+	var screen_shot_h: int = 512
 	var image: Image = sub_viewport.get_texture().get_image()
 	print(image.get_size())
 	var p1: Vector2 = Vector2(
@@ -28,4 +28,6 @@ func _on_pressed() -> void:
 		image.get_height() / 2 + screen_shot_h / 2
 	)
 	image = image.get_region(Rect2(p1, p2 - p1))
-	image.save_png("res://screenshot.png")
+	image.resize(256, 256)
+	image.save_png("res://Addons/greybox_editor/screenshots/screenshot.png")
+	EditorInterface.get_resource_filesystem().scan()

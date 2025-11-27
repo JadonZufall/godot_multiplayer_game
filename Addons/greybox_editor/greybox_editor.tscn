@@ -1,14 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcsvtase42uv8"]
+[gd_scene load_steps=16 format=3 uid="uid://dcsvtase42uv8"]
 
-[ext_resource type="Script" uid="uid://cdfosevk65en0" path="res://Addons/greybox_editor/editor_window.gd" id="1_o8cy2"]
+[ext_resource type="Script" uid="uid://cdfosevk65en0" path="res://Addons/greybox_editor/scripts/editor_window.gd" id="1_o8cy2"]
 [ext_resource type="Texture2D" uid="uid://cmbxnw5v3h8sg" path="res://Addons/greybox_editor/icons/CreateNewSceneFrom.svg" id="2_aurca"]
-[ext_resource type="Script" uid="uid://bqq4ndu4sg28" path="res://Addons/greybox_editor/editor_viewport.gd" id="3_1lxdh"]
+[ext_resource type="Script" uid="uid://bqq4ndu4sg28" path="res://Addons/greybox_editor/scripts/editor_viewport.gd" id="3_1lxdh"]
 [ext_resource type="World3D" uid="uid://bh3as61oru72a" path="res://Addons/greybox_editor/editor_world_3d.tres" id="3_5x8fy"]
-[ext_resource type="Script" uid="uid://cxien6l7tp4kb" path="res://Addons/greybox_editor/screenshot.gd" id="3_i7gp4"]
-[ext_resource type="Texture2D" uid="uid://l06enftpg4d0" path="res://Addons/greybox_editor/screenshot.png" id="4_awf1p"]
-[ext_resource type="Material" uid="uid://cfkfwnqetd6ed" path="res://Addons/greybox_editor/grid_shader_material.tres" id="5_cmh26"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_5x8fy"]
+[ext_resource type="Script" uid="uid://cxien6l7tp4kb" path="res://Addons/greybox_editor/scripts/screenshot.gd" id="3_i7gp4"]
+[ext_resource type="Texture2D" uid="uid://c8uppx35yiry2" path="res://Addons/greybox_editor/screenshots/screenshot.png" id="4_tkfus"]
+[ext_resource type="Material" uid="uid://cfkfwnqetd6ed" path="res://Addons/greybox_editor/materials/grid_shader_material.tres" id="5_cmh26"]
+[ext_resource type="Texture2D" uid="uid://bdpsi00yn8wan" path="res://Addons/greybox_editor/icons/RotateLeft.svg" id="5_p5tuu"]
+[ext_resource type="Script" uid="uid://dyjqhw23fdheb" path="res://Addons/greybox_editor/scripts/btn_rotate_left.gd" id="6_4itja"]
+[ext_resource type="Texture2D" uid="uid://xxd4sgmwvnfs" path="res://Addons/greybox_editor/icons/RotateRight.svg" id="7_p1kxn"]
+[ext_resource type="Script" uid="uid://bcai2jr2uj6mh" path="res://Addons/greybox_editor/scripts/btn_rotate_right.gd" id="8_p5tuu"]
+[ext_resource type="Texture2D" uid="uid://sq283ippgobl" path="res://Addons/greybox_editor/icons/GridToggle.svg" id="9_n0d46"]
+[ext_resource type="Script" uid="uid://cglve1fe7xp7a" path="res://Addons/greybox_editor/scripts/btn_toggle_grid.gd" id="10_ihcui"]
+[ext_resource type="Material" uid="uid://c676gqcvk3sr" path="res://Addons/greybox_editor/materials/face_shader_material.tres" id="12_4itja"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i7gp4"]
 material = ExtResource("5_cmh26")
@@ -28,38 +33,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MenuBar" type="MenuBar" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="File" type="PopupMenu" parent="VBoxContainer/MenuBar"]
-item_count = 1
-item_0/text = "Export"
-item_0/icon = ExtResource("2_aurca")
-item_0/id = 0
-
 [node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 drag_area_highlight_in_editor = true
 
-[node name="Panel" type="Panel" parent="VBoxContainer/HSplitContainer"]
+[node name="left" type="Panel" parent="VBoxContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer/HSplitContainer/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/left"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MenuBar" type="MenuBar" parent="VBoxContainer/HSplitContainer/left/VBoxContainer"]
+layout_mode = 2
+
+[node name="File" type="PopupMenu" parent="VBoxContainer/HSplitContainer/left/VBoxContainer/MenuBar"]
+item_count = 1
+item_0/text = "Export"
+item_0/icon = ExtResource("2_aurca")
+item_0/id = 0
+
+[node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer/HSplitContainer/left/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 drag_area_highlight_in_editor = true
 
-[node name="Panel" type="Panel" parent="VBoxContainer/HSplitContainer/Panel/VSplitContainer"]
+[node name="Panel" type="Panel" parent="VBoxContainer/HSplitContainer/left/VBoxContainer/VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/HSplitContainer/Panel/VSplitContainer/Panel"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/HSplitContainer/left/VBoxContainer/VSplitContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,21 +76,45 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="screenshot" type="Button" parent="VBoxContainer/HSplitContainer/Panel/VSplitContainer/Panel/GridContainer" node_paths=PackedStringArray("sub_viewport")]
+[node name="screenshot" type="Button" parent="VBoxContainer/HSplitContainer/left/VBoxContainer/VSplitContainer/Panel/GridContainer" node_paths=PackedStringArray("sub_viewport")]
 layout_mode = 2
 text = "screenshot"
 script = ExtResource("3_i7gp4")
-sub_viewport = NodePath("../../../../../viewport/sub_viewport")
+sub_viewport = NodePath("../../../../../../right/VBoxContainer/viewport/sub_viewport")
 
-[node name="CheckButton" type="CheckButton" parent="VBoxContainer/HSplitContainer/Panel/VSplitContainer/Panel/GridContainer"]
-layout_mode = 2
-text = "iso"
-
-[node name="Panel2" type="Panel" parent="VBoxContainer/HSplitContainer/Panel/VSplitContainer"]
+[node name="Panel2" type="Panel" parent="VBoxContainer/HSplitContainer/left/VBoxContainer/VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/HSplitContainer/Panel/VSplitContainer/Panel2"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/HSplitContainer/left/VBoxContainer/VSplitContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/left/VBoxContainer/VSplitContainer/Panel2/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HSplitContainer/left/VBoxContainer/VSplitContainer/Panel2/GridContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("4_tkfus")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer/left/VBoxContainer/VSplitContainer/Panel2/GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "prefab_name"
+horizontal_alignment = 1
+
+[node name="right" type="Panel" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/right"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -89,40 +122,67 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HSplitContainer/Panel/VSplitContainer/Panel2/GridContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HSplitContainer/right/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("4_awf1p")
 
-[node name="viewport" type="SubViewportContainer" parent="VBoxContainer/HSplitContainer"]
+[node name="btn_rotate_left" type="Button" parent="VBoxContainer/HSplitContainer/right/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("camera", "pivot")]
+layout_mode = 2
+icon = ExtResource("5_p5tuu")
+icon_alignment = 1
+script = ExtResource("6_4itja")
+camera = NodePath("../../viewport/sub_viewport/pivot/camera")
+pivot = NodePath("../../viewport/sub_viewport/pivot")
+
+[node name="btn_rotate_right" type="Button" parent="VBoxContainer/HSplitContainer/right/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("camera", "pivot")]
+layout_mode = 2
+icon = ExtResource("7_p1kxn")
+icon_alignment = 1
+script = ExtResource("8_p5tuu")
+camera = NodePath("../../viewport/sub_viewport/pivot/camera")
+pivot = NodePath("../../viewport/sub_viewport/pivot")
+
+[node name="btn_toggle_grid" type="CheckButton" parent="VBoxContainer/HSplitContainer/right/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("grid")]
+layout_mode = 2
+size_flags_horizontal = 10
+button_pressed = true
+icon = ExtResource("9_n0d46")
+script = ExtResource("10_ihcui")
+grid = NodePath("../../viewport/sub_viewport/grid")
+
+[node name="viewport" type="SubViewportContainer" parent="VBoxContainer/HSplitContainer/right/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 stretch = true
 script = ExtResource("3_1lxdh")
 
-[node name="sub_viewport" type="SubViewport" parent="VBoxContainer/HSplitContainer/viewport"]
+[node name="sub_viewport" type="SubViewport" parent="VBoxContainer/HSplitContainer/right/VBoxContainer/viewport"]
 own_world_3d = true
 world_3d = ExtResource("3_5x8fy")
 handle_input_locally = false
-size = Vector2i(634, 685)
+size = Vector2i(634, 692)
 render_target_update_mode = 4
 
-[node name="camera" type="Camera3D" parent="VBoxContainer/HSplitContainer/viewport/sub_viewport"]
+[node name="pivot" type="Node3D" parent="VBoxContainer/HSplitContainer/right/VBoxContainer/viewport/sub_viewport"]
+
+[node name="camera" type="Camera3D" parent="VBoxContainer/HSplitContainer/right/VBoxContainer/viewport/sub_viewport/pivot"]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 2, 3, 2)
 projection = 1
 current = true
 size = 5.0
 
-[node name="light" type="DirectionalLight3D" parent="VBoxContainer/HSplitContainer/viewport/sub_viewport"]
+[node name="light" type="DirectionalLight3D" parent="VBoxContainer/HSplitContainer/right/VBoxContainer/viewport/sub_viewport"]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VBoxContainer/HSplitContainer/viewport/sub_viewport"]
-mesh = SubResource("BoxMesh_5x8fy")
-skeleton = NodePath("../../../../..")
-
-[node name="grid" type="MeshInstance3D" parent="VBoxContainer/HSplitContainer/viewport/sub_viewport"]
+[node name="grid" type="MeshInstance3D" parent="VBoxContainer/HSplitContainer/right/VBoxContainer/viewport/sub_viewport"]
 mesh = SubResource("PlaneMesh_i7gp4")
 
-[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer/viewport"]
+[node name="data" type="Node3D" parent="VBoxContainer/HSplitContainer/right/VBoxContainer/viewport/sub_viewport"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="VBoxContainer/HSplitContainer/right/VBoxContainer/viewport/sub_viewport/data"]
+material_override = ExtResource("12_4itja")
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer/right/VBoxContainer/viewport"]
 layout_mode = 2
 text = "test"
 
@@ -130,5 +190,8 @@ text = "test"
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="window_input" from="." to="." method="_on_window_input"]
-[connection signal="pressed" from="VBoxContainer/HSplitContainer/Panel/VSplitContainer/Panel/GridContainer/screenshot" to="VBoxContainer/HSplitContainer/Panel/VSplitContainer/Panel/GridContainer/screenshot" method="_on_pressed"]
-[connection signal="gui_input" from="VBoxContainer/HSplitContainer/viewport" to="VBoxContainer/HSplitContainer/viewport" method="_on_gui_input"]
+[connection signal="pressed" from="VBoxContainer/HSplitContainer/left/VBoxContainer/VSplitContainer/Panel/GridContainer/screenshot" to="VBoxContainer/HSplitContainer/left/VBoxContainer/VSplitContainer/Panel/GridContainer/screenshot" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/HSplitContainer/right/VBoxContainer/HBoxContainer/btn_rotate_left" to="VBoxContainer/HSplitContainer/right/VBoxContainer/HBoxContainer/btn_rotate_left" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/HSplitContainer/right/VBoxContainer/HBoxContainer/btn_rotate_right" to="VBoxContainer/HSplitContainer/right/VBoxContainer/HBoxContainer/btn_rotate_right" method="_on_pressed"]
+[connection signal="toggled" from="VBoxContainer/HSplitContainer/right/VBoxContainer/HBoxContainer/btn_toggle_grid" to="VBoxContainer/HSplitContainer/right/VBoxContainer/HBoxContainer/btn_toggle_grid" method="_on_toggled"]
+[connection signal="gui_input" from="VBoxContainer/HSplitContainer/right/VBoxContainer/viewport" to="VBoxContainer/HSplitContainer/right/VBoxContainer/viewport" method="_on_gui_input"]

@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cfkfwnqetd6ed"]
 
-[ext_resource type="Shader" uid="uid://dfdipjydhktt1" path="res://Addons/greybox_editor/grid_shader.tres" id="1_83qc6"]
+[ext_resource type="Shader" uid="uid://dfdipjydhktt1" path="res://Addons/greybox_editor/materials/grid_shader.tres" id="1_83qc6"]
 
 [resource]
 render_priority = 0
