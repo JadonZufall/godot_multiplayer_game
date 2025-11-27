@@ -41,3 +41,5 @@ _auto_set_authority = false
 
 [node name="bp_prop" parent="." instance=ExtResource("5_egost")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2.75316)
+
+[node name="level_data" type="Node3D" parent="."]

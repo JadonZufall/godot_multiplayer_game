@@ -28,9 +28,14 @@ ServerManager="*res://Addons/Networking/Server/ServerManager.gd"
 ClientManager="*res://Addons/Networking/Client/ClientManager.gd"
 DebugConsole="*res://Scripts/Globals/DebugConsole.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/example_plugin/plugin.cfg")
+enabled=PackedStringArray("res://addons/example_plugin/plugin.cfg", "res://addons/greybox_editor/plugin.cfg")
 
 [input]
 

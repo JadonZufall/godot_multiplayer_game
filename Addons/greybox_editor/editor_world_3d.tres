@@ -1,0 +1,6 @@
+[gd_resource type="World3D" load_steps=2 format=3 uid="uid://bh3as61oru72a"]
+
+[ext_resource type="Environment" uid="uid://dwan1ibgw03he" path="res://Addons/greybox_editor/editor_environment.tres" id="1_wpyf7"]
+
+[resource]
+environment = ExtResource("1_wpyf7")

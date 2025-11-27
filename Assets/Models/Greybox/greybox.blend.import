@@ -42,54 +42,6 @@ _subresources={
 "save_to_file/enabled": true,
 "save_to_file/path": "res://Assets/Models/Greybox/export/greybox_Cube_002.res"
 },
-"greybox_Cube_003": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "res://Assets/Models/Greybox/export/greybox_Cube_003.res"
-},
-"greybox_Cube_004": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "res://Assets/Models/Greybox/export/greybox_Cube_004.res"
-},
-"greybox_Cube_005": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "res://Assets/Models/Greybox/export/greybox_Cube_005.res"
-},
-"greybox_Mesh": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "res://Assets/Models/Greybox/export/greybox_Mesh.res"
-},
-"greybox_Plane": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "res://Assets/Models/Greybox/export/greybox_Plane.res"
-},
-"greybox_Plane_001": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "res://Assets/Models/Greybox/export/greybox_Plane_001.res"
-},
 "greybox_Plane_002": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
@@ -153,35 +105,11 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
 "save_to_file/path": "res://Assets/Models/Greybox/export/greybox_Plane_009.res"
-},
-"greybox_mesh_drop_pod_dome": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "res://Assets/Models/Greybox/export/greybox_mesh_drop_pod_dome.res"
-},
-"greybox_mesh_drop_pod_nose": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "res://Assets/Models/Greybox/export/greybox_mesh_drop_pod_nose.res"
-},
-"greybox_mesh_drop_pod_tip": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "res://Assets/Models/Greybox/export/greybox_mesh_drop_pod_tip.res"
 }
 }
 }
 blender/nodes/visible=0
-blender/nodes/active_collection_only=false
+blender/nodes/active_collection_only=true
 blender/nodes/punctual_lights=true
 blender/nodes/cameras=true
 blender/nodes/custom_properties=true

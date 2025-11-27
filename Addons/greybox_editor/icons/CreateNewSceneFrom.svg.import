@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ci6nh1eroufsw"
-path="res://.godot/imported/CreateNewSceneFrom.svg-fef6e311208ae440f5ffdbd5be674fe0.ctex"
+uid="uid://cmbxnw5v3h8sg"
+path="res://.godot/imported/CreateNewSceneFrom.svg-49478120ac8b6a593e49c4bcc4189be6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Editor/Icons/CreateNewSceneFrom.svg"
-dest_files=["res://.godot/imported/CreateNewSceneFrom.svg-fef6e311208ae440f5ffdbd5be674fe0.ctex"]
+source_file="res://Addons/greybox_editor/icons/CreateNewSceneFrom.svg"
+dest_files=["res://.godot/imported/CreateNewSceneFrom.svg-49478120ac8b6a593e49c4bcc4189be6.ctex"]
 
 [params]
 
