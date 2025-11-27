@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://tbw16ksejk8i"
-path.s3tc="res://.godot/imported/terrain_wall_0 Base Color.png-477023231f88ca98cd5a2fa9b9aeea68.s3tc.ctex"
+path.s3tc="res://.godot/imported/terrain_wall_0 Base Color.png-00d5e8445363b597ff40ec1755a19919.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Models/textures/terrain_wall_0 Base Color.png"
-dest_files=["res://.godot/imported/terrain_wall_0 Base Color.png-477023231f88ca98cd5a2fa9b9aeea68.s3tc.ctex"]
+source_file="res://Assets/Models/temp/textures/terrain_wall_0 Base Color.png"
+dest_files=["res://.godot/imported/terrain_wall_0 Base Color.png-00d5e8445363b597ff40ec1755a19919.s3tc.ctex"]
 
 [params]
 

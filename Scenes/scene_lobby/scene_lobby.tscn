@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://1jksajf357bh"]
+[gd_scene load_steps=9 format=3 uid="uid://1jksajf357bh"]
 
 [ext_resource type="Script" uid="uid://d1fob3mhw14gh" path="res://Scenes/scene_lobby/multiplayer_spawner.gd" id="1_3rl8h"]
 [ext_resource type="Material" uid="uid://5voyev4wrurl" path="res://Materials/Shaders/material_debug_grid/material_debug_grid.tres" id="3_xgy1p"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cflbpvmg2o550" path="res://Blueprints/bp_prop/bp_prop.tscn" id="5_egost"]
 [ext_resource type="PackedScene" uid="uid://bp4nu3w7csdxj" path="res://Blueprints/bp_entity/bp_entity.tscn" id="5_lgycb"]
 [ext_resource type="PackedScene" uid="uid://rlavvta0cosq" path="res://Blueprints/bp_entity/prefabs/bp_entity_humanoid/bp_entity_humanoid.tscn" id="6_egost"]
-[ext_resource type="Script" uid="uid://b5hwp1flbqrqt" path="res://Addons/CameraSystem/ImprovedCamera3D.gd" id="7_70o7b"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mqeuo"]
 size = Vector2(20, 20)
@@ -42,8 +41,3 @@ _auto_set_authority = false
 
 [node name="bp_prop" parent="." instance=ExtResource("5_egost")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2.75316)
-
-[node name="ImprovedCamera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-script = ExtResource("7_70o7b")
-metadata/_custom_type_script = "uid://b5hwp1flbqrqt"

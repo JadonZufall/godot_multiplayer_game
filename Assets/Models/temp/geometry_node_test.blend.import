@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dmxn0rbwfq3gu"
-path="res://.godot/imported/soda_can.blend-0cc03bbec60078b6a0c5236bc9be219a.scn"
+uid="uid://cwyl27t1mxdoa"
+path="res://.godot/imported/geometry_node_test.blend-7a830014a58387876e3c7ac87eea3a3b.scn"
 
 [deps]
 
-source_file="res://Assets/Models/soda_can.blend"
-dest_files=["res://.godot/imported/soda_can.blend-0cc03bbec60078b6a0c5236bc9be219a.scn"]
+source_file="res://Assets/Models/temp/geometry_node_test.blend"
+dest_files=["res://.godot/imported/geometry_node_test.blend-7a830014a58387876e3c7ac87eea3a3b.scn"]
 
 [params]
 

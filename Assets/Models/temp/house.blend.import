@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dnycv81mcjp7h"
-path="res://.godot/imported/BlobMonster.blend-bcbdd4a693ba8956ebd98f5883150cc8.scn"
+uid="uid://dbd4xddrvtyxg"
+path="res://.godot/imported/house.blend-c36efd6f34b4b3361c8670158015d96a.scn"
 
 [deps]
 
-source_file="res://Assets/Models/BlobMonster.blend"
-dest_files=["res://.godot/imported/BlobMonster.blend-bcbdd4a693ba8956ebd98f5883150cc8.scn"]
+source_file="res://Assets/Models/temp/house.blend"
+dest_files=["res://.godot/imported/house.blend-c36efd6f34b4b3361c8670158015d96a.scn"]
 
 [params]
 
@@ -32,18 +32,7 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"meshes": {
-"BlobMonster_Plane": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "res://Blueprints/bp_entity_monster/mesh_blob_monster.res"
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
