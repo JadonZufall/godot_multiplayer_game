@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://rhp76bd5g5k2"]
+[gd_scene load_steps=10 format=3 uid="uid://rhp76bd5g5k2"]
 
 [ext_resource type="Theme" uid="uid://d35scnhi5wl44" path="res://Editor/Themes/base_theme.tres" id="1_ne0y8"]
 [ext_resource type="Script" uid="uid://djxdovecjmhk6" path="res://Blueprints/bp_console/bp_console.gd" id="1_rpdvf"]
@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://ear6o7rph2io" path="res://Editor/Icons/NextFrame.svg" id="3_4dosb"]
 [ext_resource type="Texture2D" uid="uid://dsk02ab3bjt78" path="res://Editor/Icons/Remove.svg" id="4_lsf60"]
 [ext_resource type="Script" uid="uid://8c73ayxxjyx6" path="res://Blueprints/bp_console/autocomplete.gd" id="5_lsf60"]
+[ext_resource type="StyleBox" uid="uid://dicn5hkbx74o4" path="res://Blueprints/bp_console/theme/suggestion_panel.tres" id="6_6m41t"]
+[ext_resource type="LabelSettings" uid="uid://dm27nmchm27uu" path="res://Blueprints/bp_console/theme/suggestion_label.tres" id="7_0cd2r"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lsf60"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kprqi"]
 
 [node name="bp_console" type="Window"]
 title = "Console"
@@ -49,51 +51,103 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="autocomplete" type="PanelContainer" parent="vbox/footer/offset" node_paths=PackedStringArray("stream_in", "suggestions")]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -200.0
-offset_top = -158.0
-offset_right = 200.0
+offset_top = -107.0
+offset_right = 190.0
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_lsf60")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kprqi")
 script = ExtResource("5_lsf60")
 stream_in = NodePath("../../hbox/stream_in")
-suggestions = [NodePath("vbox/suggestion0"), NodePath("vbox/suggestion1"), NodePath("vbox/suggestion2"), NodePath("vbox/suggestion3"), NodePath("vbox/suggestion4"), NodePath("vbox/suggestion5")]
+suggestions = [NodePath("vbox/Panel/suggestion0"), NodePath("vbox/Panel2/suggestion1"), NodePath("vbox/Panel3/suggestion2"), NodePath("vbox/Panel4/suggestion3"), NodePath("vbox/Panel5/suggestion4"), null]
 
 [node name="vbox" type="VBoxContainer" parent="vbox/footer/offset/autocomplete"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="suggestion5" type="Label" parent="vbox/footer/offset/autocomplete/vbox"]
-visible = false
+[node name="Panel" type="Panel" parent="vbox/footer/offset/autocomplete/vbox"]
 layout_mode = 2
-text = "test"
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("6_6m41t")
 
-[node name="suggestion4" type="Label" parent="vbox/footer/offset/autocomplete/vbox"]
-visible = false
-layout_mode = 2
+[node name="suggestion0" type="Label" parent="vbox/footer/offset/autocomplete/vbox/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "test"
+label_settings = ExtResource("7_0cd2r")
+vertical_alignment = 1
 
-[node name="suggestion3" type="Label" parent="vbox/footer/offset/autocomplete/vbox"]
-visible = false
+[node name="Panel2" type="Panel" parent="vbox/footer/offset/autocomplete/vbox"]
 layout_mode = 2
-text = "test"
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("6_6m41t")
 
-[node name="suggestion2" type="Label" parent="vbox/footer/offset/autocomplete/vbox"]
-visible = false
-layout_mode = 2
+[node name="suggestion1" type="Label" parent="vbox/footer/offset/autocomplete/vbox/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "test"
+label_settings = ExtResource("7_0cd2r")
+vertical_alignment = 1
 
-[node name="suggestion1" type="Label" parent="vbox/footer/offset/autocomplete/vbox"]
-visible = false
+[node name="Panel3" type="Panel" parent="vbox/footer/offset/autocomplete/vbox"]
 layout_mode = 2
-text = "test"
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("6_6m41t")
 
-[node name="suggestion0" type="Label" parent="vbox/footer/offset/autocomplete/vbox"]
-visible = false
-layout_mode = 2
+[node name="suggestion2" type="Label" parent="vbox/footer/offset/autocomplete/vbox/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "test"
+label_settings = ExtResource("7_0cd2r")
+vertical_alignment = 1
+
+[node name="Panel4" type="Panel" parent="vbox/footer/offset/autocomplete/vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("6_6m41t")
+
+[node name="suggestion3" type="Label" parent="vbox/footer/offset/autocomplete/vbox/Panel4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "test"
+label_settings = ExtResource("7_0cd2r")
+vertical_alignment = 1
+
+[node name="Panel5" type="Panel" parent="vbox/footer/offset/autocomplete/vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("6_6m41t")
+
+[node name="suggestion4" type="Label" parent="vbox/footer/offset/autocomplete/vbox/Panel5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "test"
+label_settings = ExtResource("7_0cd2r")
+vertical_alignment = 1
 
 [node name="hbox" type="HBoxContainer" parent="vbox/footer"]
 layout_mode = 2
