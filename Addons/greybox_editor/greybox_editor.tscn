@@ -160,7 +160,7 @@ script = ExtResource("3_1lxdh")
 own_world_3d = true
 world_3d = ExtResource("3_5x8fy")
 handle_input_locally = false
-size = Vector2i(634, 692)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="pivot" type="Node3D" parent="VBoxContainer/HSplitContainer/right/VBoxContainer/viewport/sub_viewport"]

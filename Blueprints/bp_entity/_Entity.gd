@@ -1,6 +1,7 @@
 class_name Entity extends CharacterBody3D
 
 
+
 @export var camera_pivot: Node3D
 @export var camera_spring: SpringArm3D
 @export var camera_transform: Node3D

@@ -29,6 +29,7 @@ script = ExtResource("6_isywg")
 metadata/_custom_type_script = "uid://dux1bal0bjydf"
 
 [node name="bp_console" parent="UI" instance=ExtResource("6_cw3xv")]
+visible = false
 
 [node name="bp_debug_ui" parent="UI" instance=ExtResource("4_wwk4x")]
 layout_mode = 1

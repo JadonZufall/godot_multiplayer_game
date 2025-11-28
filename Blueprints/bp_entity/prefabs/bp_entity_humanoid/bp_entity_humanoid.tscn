@@ -20,12 +20,6 @@ collider = NodePath("../collider")
 
 [node name="humanoid_male" parent="." index="13" instance=ExtResource("2_85vjo")]
 
-[node name="ik_target" parent="humanoid_male/Skeleton3D/bp_ik_humanoid_leg_l" index="4"]
-transform = Transform3D(1, 2.96847e-07, -3.90804e-08, 3.90804e-08, -0.258818, -0.965926, -2.96847e-07, 0.965926, -0.258818, 0.179656, 0, -0.070835)
-
-[node name="ik_target" parent="humanoid_male/Skeleton3D/bp_ik_humanoid_leg_r" index="4"]
-transform = Transform3D(1, 2.96847e-07, -3.90804e-08, 3.90804e-08, -0.258818, -0.965926, -2.96847e-07, 0.965926, -0.258818, -0.179656, 0, -0.070835)
-
 [node name="MeshInstance3D" parent="camera_pivot" index="1"]
 visible = false
 
@@ -36,5 +30,3 @@ shape = SubResource("CapsuleShape3D_85vjo")
 visible = false
 
 [editable path="humanoid_male"]
-[editable path="humanoid_male/Skeleton3D/bp_ik_humanoid_leg_l"]
-[editable path="humanoid_male/Skeleton3D/bp_ik_humanoid_leg_r"]

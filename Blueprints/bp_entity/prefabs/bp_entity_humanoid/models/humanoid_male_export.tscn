@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://fjlh73i7fwa4"]
+[gd_scene load_steps=11 format=3 uid="uid://fjlh73i7fwa4"]
 
 [ext_resource type="PackedScene" uid="uid://bmae35k3vhysx" path="res://Blueprints/bp_entity/prefabs/bp_entity_humanoid/models/humanoid_male.blend" id="1_02ors"]
 [ext_resource type="Script" uid="uid://bhap4yabfh721" path="res://Blueprints/bp_entity/prefabs/bp_entity_humanoid/models/humanoid_male_export.gd" id="2_wws44"]
@@ -8,6 +8,15 @@
 [ext_resource type="Script" uid="uid://beufyq3tmljcs" path="res://Blueprints/bp_entity/prefabs/bp_entity_humanoid/ik_controller/ik_control.gd" id="7_w530f"]
 [ext_resource type="AnimationLibrary" uid="uid://cqh46d5ra4ema" path="res://Blueprints/bp_entity/prefabs/bp_entity_humanoid/models/animations/humanoid_animations.tres" id="7_wuwha"]
 [ext_resource type="PackedScene" uid="uid://clxt8h66803oy" path="res://Blueprints/bp_entity/prefabs/bp_entity_humanoid/ik_bodyparts/prefabs/bp_ik_humanoid_leg_l.tscn" id="7_wws44"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wuwha"]
+animation = &"humanoid_animations/Walk"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wuwha"]
+states/Start/position = Vector2(185, 100)
+states/humanoid_animations_Walk/node = SubResource("AnimationNodeAnimation_wuwha")
+states/humanoid_animations_Walk/position = Vector2(498, 195)
+graph_offset = Vector2(-200, -99)
 
 [node name="humanoid_male_export" instance=ExtResource("1_02ors")]
 script = ExtResource("2_wws44")
@@ -19,20 +28,11 @@ do_position = true
 do_rotation = true
 metadata/_custom_type_script = "uid://b3lk735nihbv4"
 
-[node name="Skeleton3D" parent="." index="1"]
-bones/1/position = Vector3(0, 1.0099, -0.0551992)
-bones/1/rotation = Quaternion(0.125819, 0, 0, 0.992053)
-bones/1/scale = Vector3(1, 1, 0.999999)
-
-[node name="eye_,r" parent="Skeleton3D" index="0"]
+[node name="eye_,r" parent="GeneralSkeleton" index="0"]
 transform = Transform3D(0.861651, 0, 0, 0, 0, -0.861651, 0, 0.861651, 0, -0.0329247, 1.57371, 0.121822)
 
-[node name="eye_l" parent="Skeleton3D" index="1"]
+[node name="eye_l" parent="GeneralSkeleton" index="1"]
 transform = Transform3D(0.861651, 0, 0, 0, 0, -0.861651, 0, 0.861651, 0, 0.0328815, 1.57371, 0.121823)
-
-[node name="bp_ik_humanoid_leg_l" parent="Skeleton3D" index="3" instance=ExtResource("7_wws44")]
-
-[node name="bp_ik_humanoid_leg_r" parent="Skeleton3D" index="4" instance=ExtResource("5_fjj1f")]
 
 [node name="ik_controller" type="Node3D" parent="." index="2"]
 script = ExtResource("6_wuwha")
@@ -44,12 +44,11 @@ do_position = true
 do_rotation = true
 metadata/_custom_type_script = "uid://b3lk735nihbv4"
 
-[node name="ik_control_leg_l" type="Marker3D" parent="ik_controller" index="1" node_paths=PackedStringArray("ik_skeleton")]
+[node name="ik_control_leg_l" type="Marker3D" parent="ik_controller" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 1)
 gizmo_extents = 0.1
 script = ExtResource("7_w530f")
 is_active = true
-ik_skeleton = NodePath("../../Skeleton3D/bp_ik_humanoid_leg_l")
 metadata/_edit_group_ = true
 
 [node name="node_label" type="Label3D" parent="ik_controller/ik_control_leg_l" index="0"]
@@ -58,12 +57,11 @@ billboard = 1
 text = "ik_control_leg_l"
 font_size = 12
 
-[node name="ik_control_leg_r" type="Marker3D" parent="ik_controller" index="2" node_paths=PackedStringArray("ik_skeleton")]
+[node name="ik_control_leg_r" type="Marker3D" parent="ik_controller" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 1)
 gizmo_extents = 0.1
 script = ExtResource("7_w530f")
 is_active = true
-ik_skeleton = NodePath("../../Skeleton3D/bp_ik_humanoid_leg_r")
 metadata/_edit_group_ = true
 
 [node name="node_label" type="Label3D" parent="ik_controller/ik_control_leg_r" index="0"]
@@ -87,7 +85,6 @@ font_size = 12
 [node name="ik_override_spine" type="BoneAttachment3D" parent="ik_controller/ik_control_cog" index="1"]
 transform = Transform3D(0.825375, 0, 0, 0, 0.799243, -0.206046, 0, 0.206046, 0.799242, 0, -0.132975, -1.04556)
 bone_name = "spine"
-bone_idx = 1
 override_pose = true
 use_external_skeleton = true
 external_skeleton = NodePath("../../../Skeleton3D")
@@ -96,3 +93,11 @@ external_skeleton = NodePath("../../../Skeleton3D")
 libraries = {
 &"humanoid_animations": ExtResource("7_wuwha")
 }
+
+[node name="animation_tree" type="AnimationTree" parent="." index="4"]
+tree_root = SubResource("AnimationNodeStateMachine_wuwha")
+anim_player = NodePath("../animation_player")
+
+[node name="bp_ik_humanoid_leg_l" parent="." index="5" instance=ExtResource("7_wws44")]
+
+[node name="bp_ik_humanoid_leg_r" parent="." index="6" instance=ExtResource("5_fjj1f")]
