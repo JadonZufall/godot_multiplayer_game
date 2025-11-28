@@ -1,0 +1,83 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=16 format=3 uid="uid://dfofisce5gjy4"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m630f"]
+animation = &"humanoid_animations/Idle"
+use_custom_timeline = true
+timeline_length = 1.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7qdbt"]
+animation = &"humanoid_animations/Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6ddd4"]
+animation = &"humanoid_animations/Jump_Land"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ojmtj"]
+animation = &"humanoid_animations/Jump_Start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eax35"]
+animation = &"humanoid_animations/Punch_Jab"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tmcms"]
+animation = &"humanoid_animations/Roll"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wuwha"]
+animation = &"humanoid_animations/Walk"
+use_custom_timeline = true
+timeline_length = 1.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_78pt4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vxvg4"]
+advance_mode = 2
+advance_condition = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rpl5g"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_760mf"]
+advance_mode = 2
+advance_condition = &"roll"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mr3c7"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q1lmv"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ba3n8"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u6qqm"]
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+states/End/position = Vector2(1510, 56)
+states/Start/position = Vector2(168, 39)
+states/humanoid_animations_Idle/node = SubResource("AnimationNodeAnimation_m630f")
+states/humanoid_animations_Idle/position = Vector2(439, 39)
+states/humanoid_animations_Jump/node = SubResource("AnimationNodeAnimation_7qdbt")
+states/humanoid_animations_Jump/position = Vector2(1007, -120)
+states/humanoid_animations_Jump_Land/node = SubResource("AnimationNodeAnimation_6ddd4")
+states/humanoid_animations_Jump_Land/position = Vector2(1318, -120)
+states/humanoid_animations_Jump_Start/node = SubResource("AnimationNodeAnimation_ojmtj")
+states/humanoid_animations_Jump_Start/position = Vector2(707, -120)
+states/humanoid_animations_Punch_Jab/node = SubResource("AnimationNodeAnimation_eax35")
+states/humanoid_animations_Punch_Jab/position = Vector2(741, 47)
+states/humanoid_animations_Roll/node = SubResource("AnimationNodeAnimation_tmcms")
+states/humanoid_animations_Roll/position = Vector2(439, -84)
+states/humanoid_animations_Walk/node = SubResource("AnimationNodeAnimation_wuwha")
+states/humanoid_animations_Walk/position = Vector2(439, 200)
+transitions = ["Start", "humanoid_animations_Idle", SubResource("AnimationNodeStateMachineTransition_78pt4"), "humanoid_animations_Idle", "humanoid_animations_Walk", SubResource("AnimationNodeStateMachineTransition_vxvg4"), "humanoid_animations_Walk", "humanoid_animations_Idle", SubResource("AnimationNodeStateMachineTransition_rpl5g"), "humanoid_animations_Idle", "humanoid_animations_Roll", SubResource("AnimationNodeStateMachineTransition_760mf"), "humanoid_animations_Roll", "humanoid_animations_Idle", SubResource("AnimationNodeStateMachineTransition_mr3c7"), "humanoid_animations_Idle", "humanoid_animations_Jump_Start", SubResource("AnimationNodeStateMachineTransition_q1lmv"), "humanoid_animations_Jump_Start", "humanoid_animations_Jump", SubResource("AnimationNodeStateMachineTransition_ba3n8"), "humanoid_animations_Jump", "humanoid_animations_Jump_Land", SubResource("AnimationNodeStateMachineTransition_u6qqm")]
+graph_offset = Vector2(-176, -227)

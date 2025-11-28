@@ -1,22 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://fjlh73i7fwa4"]
+[gd_scene load_steps=6 format=3 uid="uid://fjlh73i7fwa4"]
 
 [ext_resource type="PackedScene" uid="uid://bmae35k3vhysx" path="res://Blueprints/bp_entity/prefabs/bp_entity_humanoid/models/humanoid_male.blend" id="1_02ors"]
 [ext_resource type="Script" uid="uid://bhap4yabfh721" path="res://Blueprints/bp_entity/prefabs/bp_entity_humanoid/models/humanoid_male_export.gd" id="2_wws44"]
 [ext_resource type="Script" uid="uid://b3lk735nihbv4" path="res://Scripts/Utilities/transformation_lock.gd" id="3_wuwha"]
-[ext_resource type="PackedScene" uid="uid://xtrpuo00bflp" path="res://Blueprints/bp_entity/prefabs/bp_entity_humanoid/ik_bodyparts/prefabs/bp_ik_humanoid_leg_r.tscn" id="5_fjj1f"]
-[ext_resource type="Script" uid="uid://cx24bg4gjwr2s" path="res://Blueprints/bp_entity/prefabs/bp_entity_humanoid/ik_controller/ik_controller.gd" id="6_wuwha"]
-[ext_resource type="Script" uid="uid://beufyq3tmljcs" path="res://Blueprints/bp_entity/prefabs/bp_entity_humanoid/ik_controller/ik_control.gd" id="7_w530f"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://dfofisce5gjy4" path="res://Blueprints/bp_entity/prefabs/bp_entity_humanoid/models/animations/humanoid_animation_tree.tres" id="7_cd4mu"]
 [ext_resource type="AnimationLibrary" uid="uid://cqh46d5ra4ema" path="res://Blueprints/bp_entity/prefabs/bp_entity_humanoid/models/animations/humanoid_animations.tres" id="7_wuwha"]
-[ext_resource type="PackedScene" uid="uid://clxt8h66803oy" path="res://Blueprints/bp_entity/prefabs/bp_entity_humanoid/ik_bodyparts/prefabs/bp_ik_humanoid_leg_l.tscn" id="7_wws44"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wuwha"]
-animation = &"humanoid_animations/Walk"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wuwha"]
-states/Start/position = Vector2(185, 100)
-states/humanoid_animations_Walk/node = SubResource("AnimationNodeAnimation_wuwha")
-states/humanoid_animations_Walk/position = Vector2(498, 195)
-graph_offset = Vector2(-200, -99)
 
 [node name="humanoid_male_export" instance=ExtResource("1_02ors")]
 script = ExtResource("2_wws44")
@@ -28,76 +16,72 @@ do_position = true
 do_rotation = true
 metadata/_custom_type_script = "uid://b3lk735nihbv4"
 
+[node name="GeneralSkeleton" parent="." index="1"]
+bones/1/position = Vector3(0.0163337, 0.750259, -0.0200286)
+bones/1/rotation = Quaternion(-0.220148, -0.110446, -0.0114022, 0.969127)
+bones/3/rotation = Quaternion(0.144834, 0.000630033, 0.00981347, 0.989407)
+bones/4/rotation = Quaternion(0.251364, 0.00364385, 0.0290291, 0.96745)
+bones/6/rotation = Quaternion(-0.0470285, -0.00507415, -0.018899, 0.998702)
+bones/8/rotation = Quaternion(0.10617, 0.086254, 0.0100487, 0.990549)
+bones/100/rotation = Quaternion(0.404022, 0.599931, 0.526601, -0.446699)
+bones/101/rotation = Quaternion(0.464581, 0.837438, -0.287817, 0.00492987)
+bones/102/rotation = Quaternion(0.245842, -0.503808, 0.810336, 0.170571)
+bones/103/rotation = Quaternion(0.120993, 0.711549, 0.0347994, 0.691266)
+bones/104/rotation = Quaternion(-0.123819, 0.719523, 0.201836, 0.652853)
+bones/105/rotation = Quaternion(0.623342, -5.62519e-07, -4.41074e-06, 0.781949)
+bones/106/rotation = Quaternion(0.623342, -9.68575e-08, -4.61936e-06, 0.78195)
+bones/108/rotation = Quaternion(0.181808, 0.110125, 0.0600627, 0.975301)
+bones/109/rotation = Quaternion(0.59943, 0.273965, 0.194633, 0.726461)
+bones/111/rotation = Quaternion(0.628894, -0.0297349, -4.32134e-06, 0.776922)
+bones/112/rotation = Quaternion(0.622733, -0.0275546, -4.61936e-06, 0.781949)
+bones/113/rotation = Quaternion(0.622669, -0.0289615, -4.20213e-06, 0.781949)
+bones/115/rotation = Quaternion(0.629198, -0.022414, -4.26173e-06, 0.776922)
+bones/116/rotation = Quaternion(0.622947, -0.0221763, -4.52995e-06, 0.781949)
+bones/117/rotation = Quaternion(0.622899, -0.0235053, -4.41074e-06, 0.781949)
+bones/119/rotation = Quaternion(0.663, -0.0445298, 0.073694, 0.743651)
+bones/120/rotation = Quaternion(0.620367, -0.0622941, 0.0155734, 0.781679)
+bones/121/rotation = Quaternion(0.621922, -0.0420519, -4.76837e-06, 0.78195)
+bones/123/rotation = Quaternion(0.53134, -0.476313, -0.473006, -0.516787)
+bones/124/rotation = Quaternion(-0.410479, 0.832757, -0.37146, -0.0063625)
+bones/125/rotation = Quaternion(0.4383, 0.41401, -0.759398, 0.244549)
+bones/126/rotation = Quaternion(0.12025, -0.699031, -0.0568901, 0.702609)
+bones/127/rotation = Quaternion(-0.12382, -0.719523, -0.201835, 0.652853)
+bones/128/rotation = Quaternion(0.623342, 4.47035e-07, 4.38094e-06, 0.78195)
+bones/129/rotation = Quaternion(0.623341, -1.08033e-07, 4.76837e-06, 0.78195)
+bones/131/rotation = Quaternion(0.181807, -0.110124, -0.0600637, 0.975301)
+bones/132/rotation = Quaternion(0.59943, -0.273966, -0.194632, 0.726461)
+bones/134/rotation = Quaternion(0.628894, 0.0297346, 4.20213e-06, 0.776922)
+bones/135/rotation = Quaternion(0.622733, 0.0275547, 4.50015e-06, 0.781949)
+bones/136/rotation = Quaternion(0.622668, 0.0289611, 4.58956e-06, 0.78195)
+bones/138/rotation = Quaternion(0.629198, 0.0224138, 4.20213e-06, 0.776922)
+bones/139/rotation = Quaternion(0.622947, 0.0221763, 4.26173e-06, 0.78195)
+bones/140/rotation = Quaternion(0.622899, 0.0235057, 4.20213e-06, 0.781949)
+bones/142/rotation = Quaternion(0.663001, 0.0445297, -0.0736941, 0.74365)
+bones/143/rotation = Quaternion(0.620366, 0.0622939, -0.0155731, 0.78168)
+bones/144/rotation = Quaternion(0.621922, 0.0420517, 4.44055e-06, 0.78195)
+bones/150/rotation = Quaternion(-0.000760294, 0.0166845, 0.993935, -0.108697)
+bones/151/rotation = Quaternion(0.0332882, 0.938412, -0.330081, 0.0965472)
+bones/152/rotation = Quaternion(-0.0979313, 0.643088, -0.759249, -0.0196762)
+bones/153/rotation = Quaternion(4.66538e-08, 1, 5.96046e-08, 2.23082e-08)
+bones/155/rotation = Quaternion(0.00139398, -0.260758, 0.944608, 0.199296)
+bones/156/rotation = Quaternion(-0.0668253, 0.923274, -0.198512, -0.322012)
+bones/157/rotation = Quaternion(0.206902, 0.584577, -0.784467, -0.00854316)
+bones/158/rotation = Quaternion(-1.48584e-08, 1, 2.98023e-08, 1.61549e-08)
+
 [node name="eye_,r" parent="GeneralSkeleton" index="0"]
 transform = Transform3D(0.861651, 0, 0, 0, 0, -0.861651, 0, 0.861651, 0, -0.0329247, 1.57371, 0.121822)
 
 [node name="eye_l" parent="GeneralSkeleton" index="1"]
 transform = Transform3D(0.861651, 0, 0, 0, 0, -0.861651, 0, 0.861651, 0, 0.0328815, 1.57371, 0.121823)
 
-[node name="ik_controller" type="Node3D" parent="." index="2"]
-script = ExtResource("6_wuwha")
-
-[node name="transformation_lock" type="Node" parent="ik_controller" index="0"]
-script = ExtResource("3_wuwha")
-is_enabled = true
-do_position = true
-do_rotation = true
-metadata/_custom_type_script = "uid://b3lk735nihbv4"
-
-[node name="ik_control_leg_l" type="Marker3D" parent="ik_controller" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 1)
-gizmo_extents = 0.1
-script = ExtResource("7_w530f")
-is_active = true
-metadata/_edit_group_ = true
-
-[node name="node_label" type="Label3D" parent="ik_controller/ik_control_leg_l" index="0"]
-layers = 524288
-billboard = 1
-text = "ik_control_leg_l"
-font_size = 12
-
-[node name="ik_control_leg_r" type="Marker3D" parent="ik_controller" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 1)
-gizmo_extents = 0.1
-script = ExtResource("7_w530f")
-is_active = true
-metadata/_edit_group_ = true
-
-[node name="node_label" type="Label3D" parent="ik_controller/ik_control_leg_r" index="0"]
-layers = 524288
-billboard = 1
-text = "ik_control_leg_r
-"
-font_size = 12
-
-[node name="ik_control_cog" type="Marker3D" parent="ik_controller" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.966521, 1)
-metadata/_edit_group_ = true
-
-[node name="node_label" type="Label3D" parent="ik_controller/ik_control_cog" index="0"]
-layers = 524288
-billboard = 1
-text = "ik_control_cog
-"
-font_size = 12
-
-[node name="ik_override_spine" type="BoneAttachment3D" parent="ik_controller/ik_control_cog" index="1"]
-transform = Transform3D(0.825375, 0, 0, 0, 0.799243, -0.206046, 0, 0.206046, 0.799242, 0, -0.132975, -1.04556)
-bone_name = "spine"
-override_pose = true
-use_external_skeleton = true
-external_skeleton = NodePath("../../../Skeleton3D")
-
-[node name="animation_player" type="AnimationPlayer" parent="." index="3"]
+[node name="animation_player" type="AnimationPlayer" parent="." index="2"]
 libraries = {
 &"humanoid_animations": ExtResource("7_wuwha")
 }
 
-[node name="animation_tree" type="AnimationTree" parent="." index="4"]
-tree_root = SubResource("AnimationNodeStateMachine_wuwha")
+[node name="animation_tree" type="AnimationTree" parent="." index="3"]
+tree_root = ExtResource("7_cd4mu")
 anim_player = NodePath("../animation_player")
-
-[node name="bp_ik_humanoid_leg_l" parent="." index="5" instance=ExtResource("7_wws44")]
-
-[node name="bp_ik_humanoid_leg_r" parent="." index="6" instance=ExtResource("5_fjj1f")]
+parameters/conditions/idle = true
+parameters/conditions/roll = true
+parameters/conditions/walk = false

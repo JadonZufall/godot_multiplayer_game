@@ -16,7 +16,7 @@ func perform(delta: float) -> void:
 	var final_rot: float = cur_direction.angle_to(dst_direction)
 	var delta_rot: float = lerp_angle(0.0, final_rot, rotation_speed * delta)
 	
-	print(cur_direction.angle_to(dst_direction))
+	#print(cur_direction.angle_to(dst_direction))
 	
 	# Prevents rotation jitter.
 	if abs(final_rot) <= abs(delta_rot):
@@ -26,10 +26,10 @@ func perform(delta: float) -> void:
 	model.rotate(Vector3.UP, delta_rot)
 	collider.rotate(Vector3.UP, delta_rot)
 	
-	print("____")
-	print(model.rotation)
-	print(dst_direction)
-	print(cur_direction)
+	#print("____")
+	#print(model.rotation)
+	#print(dst_direction)
+	#print(cur_direction)
 	
 	
 	#print("final_rot=%f (%f)  |   delta_rot=%f (%f)" % [final_rot, rad_to_deg(final_rot), delta_rot, rad_to_deg(delta_rot)])

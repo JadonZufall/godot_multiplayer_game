@@ -28,5 +28,3 @@ shape = SubResource("CapsuleShape3D_85vjo")
 
 [node name="model" parent="." index="16"]
 visible = false
-
-[editable path="humanoid_male"]
