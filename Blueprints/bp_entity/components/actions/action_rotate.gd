@@ -9,12 +9,16 @@ func perform(delta: float) -> void:
 		return
 	var forward: Vector3 = -model.global_transform.basis.z                                          # Godot convention is that the local negative z-axis represents the forward direction
 	var velocity: Vector3 = entity.get_real_velocity()
+	if velocity.length() == 0:
+		return
 	
 	var cur_direction = Vector2(forward.x, forward.z).normalized()
 	var dst_direction = Vector2(velocity.x, velocity.z).normalized()
 	
 	var final_rot: float = cur_direction.angle_to(dst_direction)
-	var delta_rot: float = lerp_angle(0.0, final_rot, rotation_speed * delta)
+	if final_rot == 0:
+		return
+	var delta_rot: float = lerp_angle(0, final_rot, rotation_speed * delta)
 	
 	#print(cur_direction.angle_to(dst_direction))
 	
