@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnq8hw8ju1peb"]
+[gd_scene load_steps=9 format=3 uid="uid://cnq8hw8ju1peb"]
 
 [ext_resource type="PackedScene" uid="uid://dio4vvvoxcr51" path="res://Scenes/scene_start/scene_start.tscn" id="1_jcc4n"]
 [ext_resource type="Script" uid="uid://b86qwa5ilqq4e" path="res://Scenes/scene_loader/scene_loader.gd" id="1_v0a6k"]
-[ext_resource type="PackedScene" uid="uid://cabgkxklq6er2" path="res://Scenes/scene_network_information/scene_network_information.tscn" id="3_k5ff0"]
 [ext_resource type="PackedScene" uid="uid://bh0mf03ugchsv" path="res://Blueprints/bp_debug_ui/bp_debug_ui.tscn" id="4_wwk4x"]
 [ext_resource type="Script" uid="uid://clqamxfpyg5tx" path="res://Scenes/scene_loader/world_2d.gd" id="5_hre3c"]
 [ext_resource type="PackedScene" uid="uid://rhp76bd5g5k2" path="res://Blueprints/bp_console/bp_console.tscn" id="6_cw3xv"]
@@ -14,9 +13,6 @@
 [node name="SceneLoader" type="Node"]
 script = ExtResource("1_v0a6k")
 autoload_ui = Array[PackedScene]([ExtResource("1_jcc4n")])
-
-[node name="NetworkInformation" parent="." instance=ExtResource("3_k5ff0")]
-unique_name_in_owner = true
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

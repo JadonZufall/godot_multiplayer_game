@@ -1,0 +1,338 @@
+[gd_scene load_steps=2 format=3 uid="uid://mdp1pg3k21o3"]
+
+[ext_resource type="StyleBox" uid="uid://uh3wrw0c5j4" path="res://Libraries/UIFramework/panels/ui_framework_outline.tres" id="1_1yn0s"]
+
+[node name="ui_framework_preview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Group1" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Group1" type="MarginContainer" parent="MarginContainer/HBoxContainer/Group1"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Group1" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Group1/Group1"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Buttons" type="PanelContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_1yn0s")
+
+[node name="Buttons" type="MarginContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/Buttons"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/Buttons/Buttons"]
+layout_mode = 2
+
+[node name="Title" type="PanelContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/Buttons/Buttons/Buttons"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_1yn0s")
+
+[node name="SectionTitle" type="Label" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/Buttons/Buttons/Buttons/Title"]
+layout_mode = 2
+text = "Button"
+horizontal_alignment = 1
+
+[node name="ButtonsDefault" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/Buttons/Buttons/Buttons"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/Buttons/Buttons/Buttons/ButtonsDefault"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Button"
+
+[node name="ButtonDisabled" type="Button" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/Buttons/Buttons/Buttons/ButtonsDefault"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "ButtonDisabled"
+
+[node name="ButtonsPressed" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/Buttons/Buttons/Buttons"]
+layout_mode = 2
+
+[node name="ButtonPressed" type="Button" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/Buttons/Buttons/Buttons/ButtonsPressed"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_pressed = true
+keep_pressed_outside = true
+text = "ButtonPressed"
+
+[node name="ButtonPressedDisabled" type="Button" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/Buttons/Buttons/Buttons/ButtonsPressed"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+toggle_mode = true
+button_pressed = true
+keep_pressed_outside = true
+text = "ButtonPressedDisabled"
+
+[node name="CheckButtons" type="PanelContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_1yn0s")
+
+[node name="CheckButtons" type="MarginContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckButtons"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CheckButtons" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckButtons/CheckButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="PanelContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckButtons/CheckButtons/CheckButtons"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_1yn0s")
+
+[node name="SectionTitle" type="Label" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckButtons/CheckButtons/CheckButtons/Title"]
+layout_mode = 2
+text = "Check Button"
+horizontal_alignment = 1
+
+[node name="CheckButtonsDefault" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckButtons/CheckButtons/CheckButtons"]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckButtons/CheckButtons/CheckButtons/CheckButtonsDefault"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CheckButton"
+
+[node name="CheckButtonDisabled" type="CheckButton" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckButtons/CheckButtons/CheckButtons/CheckButtonsDefault"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "CheckButtonDisabled"
+
+[node name="CheckButtonsPressed" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckButtons/CheckButtons/CheckButtons"]
+layout_mode = 2
+
+[node name="CheckButtonPressed" type="CheckButton" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckButtons/CheckButtons/CheckButtons/CheckButtonsPressed"]
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+text = "CheckButtonPressed"
+
+[node name="CheckButtonDisabledPressed" type="CheckButton" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckButtons/CheckButtons/CheckButtons/CheckButtonsPressed"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+button_pressed = true
+text = "CheckButton"
+
+[node name="CheckBoxs" type="PanelContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_1yn0s")
+
+[node name="CheckButtons" type="MarginContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckBoxs"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CheckButtons" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckBoxs/CheckButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="PanelContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckBoxs/CheckButtons/CheckButtons"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_1yn0s")
+
+[node name="SectionTitle" type="Label" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckBoxs/CheckButtons/CheckButtons/Title"]
+layout_mode = 2
+text = "Check Box"
+horizontal_alignment = 1
+
+[node name="CheckButtonsDefault" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckBoxs/CheckButtons/CheckButtons"]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckBoxs/CheckButtons/CheckButtons/CheckButtonsDefault"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CheckBox"
+
+[node name="CheckBoxDisabled" type="CheckBox" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckBoxs/CheckButtons/CheckButtons/CheckButtonsDefault"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "CheckBoxDisabled"
+
+[node name="CheckButtonsPressed" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckBoxs/CheckButtons/CheckButtons"]
+layout_mode = 2
+
+[node name="CheckBoxPressed" type="CheckBox" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckBoxs/CheckButtons/CheckButtons/CheckButtonsPressed"]
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+text = "CheckBoxPressed
+"
+
+[node name="CheckBoxPressedDisabled" type="CheckBox" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/CheckBoxs/CheckButtons/CheckButtons/CheckButtonsPressed"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+button_pressed = true
+text = "CheckBoxPressedDisabled"
+
+[node name="LinkButtons" type="PanelContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_1yn0s")
+
+[node name="LinkButtons" type="MarginContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/LinkButtons"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="LinkButtons" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/LinkButtons/LinkButtons"]
+layout_mode = 2
+
+[node name="Title" type="PanelContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/LinkButtons/LinkButtons/LinkButtons"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_1yn0s")
+
+[node name="SectionTitle" type="Label" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/LinkButtons/LinkButtons/LinkButtons/Title"]
+layout_mode = 2
+text = "Link Button"
+horizontal_alignment = 1
+
+[node name="LinkButtonsDefault" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/LinkButtons/LinkButtons/LinkButtons"]
+layout_mode = 2
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/LinkButtons/LinkButtons/LinkButtons/LinkButtonsDefault"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LinkButton"
+
+[node name="LinkButtonDisabled" type="LinkButton" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/LinkButtons/LinkButtons/LinkButtons/LinkButtonsDefault"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "LinkButtonDisabled"
+
+[node name="LinkButtonsPressed" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/LinkButtons/LinkButtons/LinkButtons"]
+layout_mode = 2
+
+[node name="LinkButtonPressed" type="LinkButton" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/LinkButtons/LinkButtons/LinkButtons/LinkButtonsPressed"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_pressed = true
+keep_pressed_outside = true
+text = "LinkButton"
+
+[node name="LinkButtonPressedDisabled" type="LinkButton" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1/LinkButtons/LinkButtons/LinkButtons/LinkButtonsPressed"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+toggle_mode = true
+button_pressed = true
+text = "LinkButtonPressedDisabled"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1"]
+layout_mode = 2
+text = "ColorPickerButton"
+
+[node name="MenuButton" type="MenuButton" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1"]
+layout_mode = 2
+text = "MenuButton"
+item_count = 2
+popup/item_0/text = "Item1"
+popup/item_0/id = 0
+popup/item_1/text = "Item2"
+popup/item_1/id = 1
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "Item1"
+popup/item_0/id = 0
+popup/item_1/text = "Item2"
+popup/item_1/id = 1
+
+[node name="Group2" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Group2" type="MarginContainer" parent="MarginContainer/HBoxContainer/Group2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Group2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Group2/Group2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="LineEdit" type="PanelContainer" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_1yn0s")
+
+[node name="LineEdit" type="MarginContainer" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2/LineEdit"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="LineEdit" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2/LineEdit/LineEdit"]
+layout_mode = 2
+
+[node name="LineEditDefault" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2/LineEdit/LineEdit/LineEdit"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2/LineEdit/LineEdit/LineEdit/LineEditDefault"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LineEdit"
+
+[node name="LineEditPlaceholder" type="LineEdit" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2/LineEdit/LineEdit/LineEdit/LineEditDefault"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "LineEdit Placeholder"
+
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+text = "Text Edit"
+
+[node name="TextEditPlaceholder" type="TextEdit" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+placeholder_text = "TextEditPlaceholder"

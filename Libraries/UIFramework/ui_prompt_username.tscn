@@ -1,0 +1,138 @@
+[gd_scene load_steps=6 format=3 uid="uid://py4ekxyeuumj"]
+
+[ext_resource type="Theme" uid="uid://dpu2uk3xm64jc" path="res://Libraries/UIFramework/ui_framework_theme.tres" id="1_4lqru"]
+[ext_resource type="Script" uid="uid://bcvg4prqhncmh" path="res://Libraries/UIFramework/ui_prompt_username.gd" id="2_4q7a2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4h6ny"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mt6bl"]
+bg_color = Color(0.960784, 0.92549, 0.866667, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lqru"]
+bg_color = Color(0.027451, 0.0431373, 0.0862745, 1)
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="ui_prompt_username" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_4lqru")
+script = ExtResource("2_4q7a2")
+
+[node name="ui_aspect_ratio" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -57.0
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 4.6591
+stretch_mode = 0
+
+[node name="document_aspect_ratio" type="AspectRatioContainer" parent="ui_aspect_ratio"]
+layout_mode = 2
+ratio = 1.9416
+stretch_mode = 1
+
+[node name="document" type="PanelContainer" parent="ui_aspect_ratio/document_aspect_ratio"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4h6ny")
+
+[node name="order_v_document" type="VBoxContainer" parent="ui_aspect_ratio/document_aspect_ratio/document"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="body" type="PanelContainer" parent="ui_aspect_ratio/document_aspect_ratio/document/order_v_document"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mt6bl")
+
+[node name="margin_content" type="MarginContainer" parent="ui_aspect_ratio/document_aspect_ratio/document/order_v_document/body"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+
+[node name="order_v_content" type="VBoxContainer" parent="ui_aspect_ratio/document_aspect_ratio/document/order_v_document/body/margin_content"]
+layout_mode = 2
+
+[node name="label_input" type="Label" parent="ui_aspect_ratio/document_aspect_ratio/document/order_v_document/body/margin_content/order_v_content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Select your display name..."
+
+[node name="order_h_inputs" type="HBoxContainer" parent="ui_aspect_ratio/document_aspect_ratio/document/order_v_document/body/margin_content/order_v_content"]
+layout_mode = 2
+
+[node name="input_username" type="LineEdit" parent="ui_aspect_ratio/document_aspect_ratio/document/order_v_document/body/margin_content/order_v_content/order_h_inputs"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "TheLegend27"
+
+[node name="input_code" type="LineEdit" parent="ui_aspect_ratio/document_aspect_ratio/document/order_v_document/body/margin_content/order_v_content/order_h_inputs"]
+layout_mode = 2
+placeholder_text = "#69690"
+virtual_keyboard_type = 2
+
+[node name="order_v_warnings" type="VBoxContainer" parent="ui_aspect_ratio/document_aspect_ratio/document/order_v_document/body/margin_content/order_v_content"]
+layout_mode = 2
+
+[node name="label_warn_taken" type="Label" parent="ui_aspect_ratio/document_aspect_ratio/document/order_v_document/body/margin_content/order_v_content/order_v_warnings"]
+layout_mode = 2
+theme_type_variation = &"LabelWarn"
+text = "* Name is already taken"
+
+[node name="label_warn_forbidden" type="Label" parent="ui_aspect_ratio/document_aspect_ratio/document/order_v_document/body/margin_content/order_v_content/order_v_warnings"]
+layout_mode = 2
+theme_type_variation = &"LabelWarn"
+text = "* Name can only contain characters A-Z, 0-9 and _"
+
+[node name="footer" type="PanelContainer" parent="ui_aspect_ratio/document_aspect_ratio/document/order_v_document"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_4lqru")
+
+[node name="margin_order_buttons" type="MarginContainer" parent="ui_aspect_ratio/document_aspect_ratio/document/order_v_document/footer"]
+layout_mode = 2
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="order_h_buttons" type="HBoxContainer" parent="ui_aspect_ratio/document_aspect_ratio/document/order_v_document/footer/margin_order_buttons"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="margin_cancel" type="MarginContainer" parent="ui_aspect_ratio/document_aspect_ratio/document/order_v_document/footer/margin_order_buttons/order_h_buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_right = 12
+
+[node name="btn_cancel" type="Button" parent="ui_aspect_ratio/document_aspect_ratio/document/order_v_document/footer/margin_order_buttons/order_h_buttons/margin_cancel"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ButtonTerminate"
+text = "Cancel"
+
+[node name="margin_accept" type="MarginContainer" parent="ui_aspect_ratio/document_aspect_ratio/document/order_v_document/footer/margin_order_buttons/order_h_buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 25
+
+[node name="btn_accept" type="Button" parent="ui_aspect_ratio/document_aspect_ratio/document/order_v_document/footer/margin_order_buttons/order_h_buttons/margin_accept"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ButtonPrimary"
+text = "Accept"
