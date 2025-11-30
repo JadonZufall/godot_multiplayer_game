@@ -4,6 +4,7 @@ const PORT: int = 25565                                                         
 const MAX_CLIENTS: int = 32                                                                         # Any number up to 4095 may be used
 
 func host_server() -> void:
+	# Being hosting as the server.
 	var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
 	var result: Error = peer.create_server(PORT, MAX_CLIENTS)
 	if result == OK:
@@ -14,6 +15,7 @@ func host_server() -> void:
 		print("Failed to create server")
 
 func join_sever(ip_address: String) -> void:
+	# Join an exsisting server as the client.
 	var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
 	var result: Error = peer.create_client(ip_address, PORT)
 	if result == OK:

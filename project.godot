@@ -23,9 +23,9 @@ CameraHandler="*res://Scripts/Globals/CameraHandler.gd"
 PlayerHandler="*res://Scripts/Globals/PlayerHandler.gd"
 NetworkHandler="*res://Scripts/Globals/Networking/NetworkHandler.gd"
 PartyHandler="*res://Scripts/Globals/Networking/PartyHandler.gd"
-ConnectionManager="*res://Addons/Networking/ConnectionManager.gd"
-ServerManager="*res://Addons/Networking/Server/ServerManager.gd"
-ClientManager="*res://Addons/Networking/Client/ClientManager.gd"
+ConnectionManager="*res://Libraries/Networking/ConnectionManager.gd"
+ServerManager="*res://Libraries/Networking/Server/ServerManager.gd"
+ClientManager="*res://Libraries/Networking/Client/ClientManager.gd"
 DebugConsole="*res://Scripts/Globals/DebugConsole.gd"
 
 [display]
