@@ -395,6 +395,9 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "ColorPickerButton"
 
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/HBoxContainer/Group1/Group1/Group1"]
+layout_mode = 2
+
 [node name="Group2" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -443,6 +446,68 @@ placeholder_text = "LineEdit Placeholder"
 layout_mode = 2
 text = "Text Edit"
 
+[node name="CodeEdit" type="CodeEdit" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+
 [node name="TextEditPlaceholder" type="TextEdit" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
 layout_mode = 2
 placeholder_text = "TextEditPlaceholder"
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+
+[node name="MenuBar" type="MenuBar" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+
+[node name="Menu" type="PopupMenu" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2/MenuBar"]
+
+[node name="Menu2" type="PopupMenu" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2/MenuBar"]
+auto_translate_mode = 1
+
+[node name="Menu3" type="PopupMenu" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2/MenuBar"]
+auto_translate_mode = 1
+
+[node name="Menu4" type="PopupMenu" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2/MenuBar"]
+auto_translate_mode = 1
+
+[node name="Menu5" type="PopupMenu" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2/MenuBar"]
+auto_translate_mode = 1
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+
+[node name="VSlider" type="VSlider" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+
+[node name="Tree" type="Tree" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+
+[node name="TabBar" type="TabBar" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+
+[node name="VScrollBar" type="VScrollBar" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+
+[node name="HScrollBar" type="HScrollBar" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="MarginContainer/HBoxContainer/Group2/Group2/Group2"]
+layout_mode = 2
