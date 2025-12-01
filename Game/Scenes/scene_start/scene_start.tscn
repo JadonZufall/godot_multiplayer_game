@@ -1,0 +1,168 @@
+[gd_scene load_steps=8 format=3 uid="uid://dio4vvvoxcr51"]
+
+[ext_resource type="Texture2D" uid="uid://bgclwocf1rxmp" path="res://Game/Assets/Placeholders/Prompts/Keyboard/keyboard_escape.png" id="1_2uf5b"]
+[ext_resource type="Script" uid="uid://ciuyicejxbcgm" path="res://Game/Scenes/scene_start/scene_start.gd" id="1_rbiq7"]
+[ext_resource type="PackedScene" uid="uid://1jksajf357bh" path="res://Game/Scenes/scene_lobby/scene_lobby.tscn" id="2_2ycvo"]
+[ext_resource type="Script" uid="uid://d00b1o5t1ulhn" path="res://Game/Scenes/scene_start/connect_prompt.gd" id="2_bpybk"]
+[ext_resource type="PackedScene" uid="uid://cqtaa3bd4fhx5" path="res://Game/Scenes/scene_party/scene_party.tscn" id="4_20dpm"]
+[ext_resource type="Script" uid="uid://xif5srmur16p" path="res://Game/Scenes/scene_start/btn_start.gd" id="4_rbiq7"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rbiq7"]
+
+[node name="scene_start" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rbiq7")
+switch_to_scene_on_start = ExtResource("2_2ycvo")
+
+[node name="connect_prompt" type="Control" parent="." node_paths=PackedStringArray("btn_join", "btn_host", "btn_public", "input_addr", "input_port", "btn_start", "scene_party")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_bpybk")
+btn_join = NodePath("connect_container/connect_actions/btn_join")
+btn_host = NodePath("connect_container/connect_actions/btn_host")
+btn_public = NodePath("connect_container/connect_actions/btn_public")
+input_addr = NodePath("connect_container/connect_params/input_addr")
+input_port = NodePath("connect_container/connect_params/input_port")
+btn_start = NodePath("../btn_start")
+scene_party = NodePath("../scene_party")
+
+[node name="connect_container" type="VBoxContainer" parent="connect_prompt"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="connect_params" type="HBoxContainer" parent="connect_prompt/connect_container"]
+layout_mode = 2
+
+[node name="input_addr" type="LineEdit" parent="connect_prompt/connect_container/connect_params"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "localhost"
+placeholder_text = "address"
+
+[node name="input_port" type="LineEdit" parent="connect_prompt/connect_container/connect_params"]
+layout_mode = 2
+text = "25565"
+placeholder_text = "port"
+max_length = 5
+
+[node name="connect_actions" type="HBoxContainer" parent="connect_prompt/connect_container"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="btn_public" type="CheckButton" parent="connect_prompt/connect_container/connect_actions"]
+layout_mode = 2
+text = "public"
+
+[node name="btn_host" type="Button" parent="connect_prompt/connect_container/connect_actions"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Host"
+
+[node name="btn_join" type="Button" parent="connect_prompt/connect_container/connect_actions"]
+layout_mode = 2
+text = "Join"
+
+[node name="menus_container" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -165.0
+offset_top = -618.0
+offset_right = -25.0
+offset_bottom = -578.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="btn_friends" type="Button" parent="menus_container"]
+layout_mode = 2
+text = "Friends"
+
+[node name="btn_settings" type="Button" parent="menus_container"]
+layout_mode = 2
+text = "Options"
+
+[node name="scene_party" parent="." instance=ExtResource("4_20dpm")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="btn_start" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_top = -73.0
+offset_right = 28.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 0
+disabled = true
+text = "START"
+script = ExtResource("4_rbiq7")
+
+[node name="btn_quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = -24.0
+grow_vertical = 0
+text = "Quit"
+icon = ExtResource("1_2uf5b")
+expand_icon = true
+
+[node name="btn_disconnect" type="Button" parent="."]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 583.0
+offset_right = 273.0
+offset_bottom = 614.0
+text = "Disconnect"
+
+[node name="ReferenceRect" type="ReferenceRect" parent="btn_disconnect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="multiplayer_synchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_rbiq7")
+
+[connection signal="toggled" from="connect_prompt/connect_container/connect_actions/btn_public" to="connect_prompt" method="_on_btn_public_toggled"]
+[connection signal="pressed" from="connect_prompt/connect_container/connect_actions/btn_host" to="connect_prompt" method="_on_btn_host_pressed"]
+[connection signal="pressed" from="connect_prompt/connect_container/connect_actions/btn_join" to="connect_prompt" method="_on_btn_join_pressed"]
+[connection signal="pressed" from="btn_start" to="." method="_on_btn_start_pressed"]

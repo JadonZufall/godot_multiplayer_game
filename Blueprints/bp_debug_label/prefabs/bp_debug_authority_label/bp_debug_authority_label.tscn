@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjvujfmsslivi"]
-
-[ext_resource type="PackedScene" uid="uid://bcg01k6sbcvin" path="res://Blueprints/bp_debug_label/bp_debug_label.tscn" id="1_no8cn"]
-[ext_resource type="Script" uid="uid://g848d0d8gflm" path="res://Blueprints/bp_debug_label/prefabs/bp_debug_authority_label/bp_debug_authority_label.gd" id="2_mahhm"]
-
-[node name="bp_debug_authority_label" instance=ExtResource("1_no8cn")]
-text = "*"
-script = ExtResource("2_mahhm")

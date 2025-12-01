@@ -1,6 +1,16 @@
 # Project Overview
 
 
+# Project Structure
+res://Addons/
+res://Assets/
+res://Blueprints/
+res://Editor/
+res://Libraries/
+res://Materials/
+res://Scenes/
+res://Scripts/
+
 # Technical Decisions
 ## Model data format
 Currently I have weight the pros and cons of differnt formats for 3D models and essentially there are

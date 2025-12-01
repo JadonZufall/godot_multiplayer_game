@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmjcmkyrktptx"]
+
+[ext_resource type="PackedScene" uid="uid://bp4nu3w7csdxj" path="res://Game/Blueprints/bp_entity/bp_entity.tscn" id="1_qwicy"]
+[ext_resource type="PackedScene" path="res://Assets/Models/temp/BlobMonster.blend" id="2_ip8n4"]
+
+[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_r08tf"]
+
+[node name="bp_entity_monster" instance=ExtResource("1_qwicy")]
+_init_possessed = null
+
+[node name="bp_debug_entity_label" parent="." index="1"]
+text = "bp_entity_monster"
+
+[node name="model_blob_monster" parent="." index="8" instance=ExtResource("2_ip8n4")]
+
+[node name="SkeletonIK3D" type="SkeletonIK3D" parent="model_blob_monster/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.12237, 0)
+root_bone = &"Bone.008.r"
+tip_bone = &"Bone.009.r"
+target_node = NodePath("../target")
+
+[node name="target" type="Node3D" parent="model_blob_monster/Armature/Skeleton3D" index="2"]
+transform = Transform3D(0.928038, 0.262106, -0.264662, 0.372444, -0.642342, 0.669837, 0.00556477, -0.720206, -0.693738, 2.38147, -0.98093, 2.7316)
+
+[node name="component_gravity" parent="." index="10"]
+gravity_scale = null
+
+[node name="model" parent="." index="14"]
+mesh = SubResource("PlaceholderMesh_r08tf")
+
+[editable path="model_blob_monster"]

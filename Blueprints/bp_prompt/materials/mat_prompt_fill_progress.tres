@@ -1,6 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d1nap2gysso5c"]
-
-[ext_resource type="Shader" uid="uid://bhsx7v206tvsd" path="res://Blueprints/bp_prompt/materials/prompt_fill_progress.tres" id="1_tsi6j"]
-
-[resource]
-shader = ExtResource("1_tsi6j")
