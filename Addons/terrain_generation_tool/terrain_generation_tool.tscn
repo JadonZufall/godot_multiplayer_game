@@ -24,11 +24,13 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ksrko"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_3odgh"]
-noise_type = 3
+noise_type = 2
+seed = 10
+domain_warp_enabled = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_unrxn"]
-width = 128
-height = 128
+width = 100
+height = 100
 noise = SubResource("FastNoiseLite_3odgh")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kngew"]
@@ -47,7 +49,7 @@ script = ExtResource("1_3odgh")
 mesh = NodePath("HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/terrain_generator")
 camera = NodePath("HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/camera")
 viewport = NodePath("HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport")
-noise = NodePath("HSplitContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview/noise_preview")
+noise = NodePath("HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview/noise_preview")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
 anchors_preset = 15
@@ -57,72 +59,78 @@ grow_horizontal = 2
 grow_vertical = 2
 drag_area_highlight_in_editor = true
 
-[node name="TabContainer" type="TabContainer" parent="HSplitContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="HSplitContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="HSplitContainer/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-current_tab = 1
+size_flags_vertical = 3
+current_tab = 0
 
-[node name="Mesh" type="VBoxContainer" parent="HSplitContainer/TabContainer"]
-visible = false
+[node name="Mesh" type="VBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="content_mesh_size" type="PanelContainer" parent="HSplitContainer/TabContainer/Mesh" node_paths=PackedStringArray("input_mesh_size_x", "input_mesh_size_y")]
+[node name="content_mesh_size" type="PanelContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh" node_paths=PackedStringArray("input_mesh_size_x", "input_mesh_size_y")]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_xs8tf")
 script = ExtResource("2_m3ci2")
 input_mesh_size_x = NodePath("outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x/input_mesh_size_x")
 input_mesh_size_y = NodePath("outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y/input_mesh_size_y")
 
-[node name="outer_margin_container_mesh_size" type="MarginContainer" parent="HSplitContainer/TabContainer/Mesh/content_mesh_size"]
+[node name="outer_margin_container_mesh_size" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="outer_container_mesh_size" type="VBoxContainer" parent="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size"]
+[node name="outer_container_mesh_size" type="VBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="label_mesh_size" type="Label" parent="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size"]
+[node name="label_mesh_size" type="Label" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size"]
 layout_mode = 2
 text = "Size"
 
-[node name="inner_margin_container_mesh_size" type="MarginContainer" parent="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size"]
+[node name="inner_margin_container_mesh_size" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 5
 
-[node name="inner_container_mesh_size" type="VBoxContainer" parent="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size"]
+[node name="inner_container_mesh_size" type="VBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size"]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="container_mesh_size_x" type="HBoxContainer" parent="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size"]
+[node name="container_mesh_size_x" type="HBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="button_reset_mesh_size_x" type="Button" parent="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x"]
+[node name="button_reset_mesh_size_x" type="Button" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x"]
 layout_mode = 2
 disabled = true
 icon = ExtResource("3_ulaw8")
 flat = true
 
-[node name="background_label_mesh_size_x" type="PanelContainer" parent="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x"]
+[node name="background_label_mesh_size_x" type="PanelContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_6dkx5")
 
-[node name="margin_label_mesh_size_x" type="MarginContainer" parent="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x/background_label_mesh_size_x"]
+[node name="margin_label_mesh_size_x" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x/background_label_mesh_size_x"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 
-[node name="label_mesh_size_x" type="Label" parent="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x/background_label_mesh_size_x/margin_label_mesh_size_x"]
+[node name="label_mesh_size_x" type="Label" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x/background_label_mesh_size_x/margin_label_mesh_size_x"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "X"
 
-[node name="input_mesh_size_x" type="LineEdit" parent="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x"]
+[node name="input_mesh_size_x" type="LineEdit" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/focus = ExtResource("3_aafoj")
@@ -131,31 +139,31 @@ theme_override_styles/normal = ExtResource("5_ulaw8")
 text = "10"
 alignment = 2
 
-[node name="container_mesh_size_y" type="HBoxContainer" parent="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size"]
+[node name="container_mesh_size_y" type="HBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="button_reset_mesh_size_y" type="Button" parent="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y"]
+[node name="button_reset_mesh_size_y" type="Button" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y"]
 layout_mode = 2
 disabled = true
 icon = ExtResource("3_ulaw8")
 flat = true
 
-[node name="background_label_mesh_size_y" type="PanelContainer" parent="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y"]
+[node name="background_label_mesh_size_y" type="PanelContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_6dkx5")
 
-[node name="margin_label_mesh_size_y" type="MarginContainer" parent="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y/background_label_mesh_size_y"]
+[node name="margin_label_mesh_size_y" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y/background_label_mesh_size_y"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 
-[node name="label_mesh_size_y" type="Label" parent="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y/background_label_mesh_size_y/margin_label_mesh_size_y"]
+[node name="label_mesh_size_y" type="Label" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y/background_label_mesh_size_y/margin_label_mesh_size_y"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "Y"
 
-[node name="input_mesh_size_y" type="LineEdit" parent="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y"]
+[node name="input_mesh_size_y" type="LineEdit" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/focus = ExtResource("3_aafoj")
@@ -164,71 +172,92 @@ theme_override_styles/normal = ExtResource("5_ulaw8")
 text = "10"
 alignment = 2
 
-[node name="seperator_margin_0" type="MarginContainer" parent="HSplitContainer/TabContainer/Mesh"]
+[node name="seperator_margin_0" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 15
 
-[node name="seperator" type="HSeparator" parent="HSplitContainer/TabContainer/Mesh/seperator_margin_0"]
+[node name="seperator" type="HSeparator" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/seperator_margin_0"]
 layout_mode = 2
 
-[node name="content_terrain_height" type="PanelContainer" parent="HSplitContainer/TabContainer/Mesh"]
+[node name="content_terrain_height" type="PanelContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ulaw8")
 
-[node name="outer_margin_container_terrain_height" type="MarginContainer" parent="HSplitContainer/TabContainer/Mesh/content_terrain_height"]
+[node name="outer_margin_container_terrain_height" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_terrain_height"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="outer_container_terrain_height" type="VBoxContainer" parent="HSplitContainer/TabContainer/Mesh/content_terrain_height/outer_margin_container_terrain_height"]
+[node name="outer_container_terrain_height" type="VBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_terrain_height/outer_margin_container_terrain_height"]
 layout_mode = 2
 
-[node name="label_terrain_height" type="Label" parent="HSplitContainer/TabContainer/Mesh/content_terrain_height/outer_margin_container_terrain_height/outer_container_terrain_height"]
+[node name="label_terrain_height" type="Label" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_terrain_height/outer_margin_container_terrain_height/outer_container_terrain_height"]
 layout_mode = 2
 text = "Height"
 
-[node name="inner_container_terrain_height" type="HBoxContainer" parent="HSplitContainer/TabContainer/Mesh/content_terrain_height/outer_margin_container_terrain_height/outer_container_terrain_height"]
+[node name="inner_container_terrain_height" type="HBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_terrain_height/outer_margin_container_terrain_height/outer_container_terrain_height"]
 layout_mode = 2
 
-[node name="button_reset_terrain_height" type="Button" parent="HSplitContainer/TabContainer/Mesh/content_terrain_height/outer_margin_container_terrain_height/outer_container_terrain_height/inner_container_terrain_height"]
+[node name="button_reset_terrain_height" type="Button" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_terrain_height/outer_margin_container_terrain_height/outer_container_terrain_height/inner_container_terrain_height"]
 layout_mode = 2
 disabled = true
 icon = ExtResource("3_ulaw8")
 flat = true
 
-[node name="input_terrain_height" type="HSlider" parent="HSplitContainer/TabContainer/Mesh/content_terrain_height/outer_margin_container_terrain_height/outer_container_terrain_height/inner_container_terrain_height"]
+[node name="input_terrain_height" type="HSlider" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_terrain_height/outer_margin_container_terrain_height/outer_container_terrain_height/inner_container_terrain_height"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 value = 25.0
 allow_greater = true
 
-[node name="label_terrain_height_value" type="Label" parent="HSplitContainer/TabContainer/Mesh/content_terrain_height/outer_margin_container_terrain_height/outer_container_terrain_height/inner_container_terrain_height"]
+[node name="label_terrain_height_value" type="Label" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_terrain_height/outer_margin_container_terrain_height/outer_container_terrain_height/inner_container_terrain_height"]
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="seperator_margin_1" type="MarginContainer" parent="HSplitContainer/TabContainer/Mesh"]
+[node name="seperator_margin_1" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 15
 
-[node name="seperator" type="HSeparator" parent="HSplitContainer/TabContainer/Mesh/seperator_margin_1"]
+[node name="seperator" type="HSeparator" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/seperator_margin_1"]
 layout_mode = 2
 
-[node name="button_generate_terrain" type="Button" parent="HSplitContainer/TabContainer/Mesh"]
+[node name="content_face_generation" type="PanelContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh"]
 layout_mode = 2
-text = "Generate Terrain"
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ulaw8")
 
-[node name="Noise" type="VBoxContainer" parent="HSplitContainer/TabContainer"]
+[node name="outer_margin_container_face_generation" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_face_generation"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_face_generation/outer_margin_container_face_generation"]
+layout_mode = 2
+
+[node name="input_generate_face_top" type="CheckButton" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_face_generation/outer_margin_container_face_generation/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Generate Face (Top)"
+
+[node name="input_generate_face_bottom" type="CheckButton" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_face_generation/outer_margin_container_face_generation/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Generate Face (Bottom)"
+
+[node name="Noise" type="VBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="content_noise_preview" type="PanelContainer" parent="HSplitContainer/TabContainer/Noise" node_paths=PackedStringArray("opt_seed", "opt_offset", "opt_normalize", "opt_seemless", "opt_invert", "opt_frequency", "opt_type")]
+[node name="content_noise_preview" type="PanelContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise" node_paths=PackedStringArray("opt_seed", "opt_offset", "opt_normalize", "opt_seemless", "opt_invert", "opt_frequency", "opt_type", "noise_texture_rect")]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ksrko")
 script = ExtResource("8_kngew")
@@ -239,19 +268,20 @@ opt_seemless = NodePath("../margin_noise_options/tabs_noise_options/Basic/conten
 opt_invert = NodePath("../margin_noise_options/tabs_noise_options/Basic/content_noise_opt_invert")
 opt_frequency = NodePath("../margin_noise_options/tabs_noise_options/Basic/content_noise_opt_frequency")
 opt_type = NodePath("../margin_noise_options/tabs_noise_options/Basic/content_noise_opt_type")
+noise_texture_rect = NodePath("margin_noise_preview/noise_preview")
 
-[node name="margin_noise_preview" type="MarginContainer" parent="HSplitContainer/TabContainer/Noise/content_noise_preview"]
+[node name="margin_noise_preview" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/content_noise_preview"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="noise_preview" type="TextureRect" parent="HSplitContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview"]
+[node name="noise_preview" type="TextureRect" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview"]
 layout_mode = 2
 texture = SubResource("NoiseTexture2D_unrxn")
 
-[node name="content_noise_opt_seed" type="PanelContainer" parent="HSplitContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview/noise_preview" node_paths=PackedStringArray("spinbox", "reset_button")]
+[node name="content_noise_opt_seed" type="PanelContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview/noise_preview" node_paths=PackedStringArray("spinbox", "reset_button")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -266,20 +296,19 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_kngew")
 script = ExtResource("9_l6itf")
 spinbox = NodePath("container_noise_opt_seed/input_noise_opt_seed")
 reset_button = NodePath("container_noise_opt_seed/button_reset_noise_seed")
-default_value = null
 
-[node name="container_noise_opt_seed" type="HBoxContainer" parent="HSplitContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview/noise_preview/content_noise_opt_seed"]
+[node name="container_noise_opt_seed" type="HBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview/noise_preview/content_noise_opt_seed"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="button_reset_noise_seed" type="Button" parent="HSplitContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview/noise_preview/content_noise_opt_seed/container_noise_opt_seed"]
+[node name="button_reset_noise_seed" type="Button" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview/noise_preview/content_noise_opt_seed/container_noise_opt_seed"]
 layout_mode = 2
 disabled = true
 icon = ExtResource("3_ulaw8")
 flat = true
 
-[node name="input_noise_opt_seed" type="SpinBox" parent="HSplitContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview/noise_preview/content_noise_opt_seed/container_noise_opt_seed"]
+[node name="input_noise_opt_seed" type="SpinBox" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview/noise_preview/content_noise_opt_seed/container_noise_opt_seed"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -291,15 +320,15 @@ allow_lesser = true
 custom_arrow_step = 1.0
 select_all_on_focus = true
 
-[node name="seperator_margin_0" type="MarginContainer" parent="HSplitContainer/TabContainer/Noise"]
+[node name="seperator_margin_0" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 15
 
-[node name="seperator" type="HSeparator" parent="HSplitContainer/TabContainer/Noise/seperator_margin_0"]
+[node name="seperator" type="HSeparator" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/seperator_margin_0"]
 layout_mode = 2
 
-[node name="margin_noise_options" type="MarginContainer" parent="HSplitContainer/TabContainer/Noise"]
+[node name="margin_noise_options" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 15
@@ -307,26 +336,26 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="tabs_noise_options" type="TabContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options"]
+[node name="tabs_noise_options" type="TabContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options"]
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
 
-[node name="Basic" type="VBoxContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options"]
+[node name="Basic" type="VBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options"]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="content_noise_opt_type" type="PanelContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic"]
+[node name="content_noise_opt_type" type="PanelContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_25i26")
 
-[node name="margin_noise_opt_type" type="MarginContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_type"]
+[node name="margin_noise_opt_type" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_type"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 
-[node name="noise_opt_type" type="OptionButton" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_type/margin_noise_opt_type"]
+[node name="noise_opt_type" type="OptionButton" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_type/margin_noise_opt_type"]
 layout_mode = 2
 selected = 3
 item_count = 6
@@ -343,180 +372,243 @@ popup/item_4/id = 5
 popup/item_5/text = "Value Cubic"
 popup/item_5/id = 4
 
-[node name="content_noise_opt_frequency" type="PanelContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic"]
+[node name="content_noise_opt_frequency" type="PanelContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_tg0g2")
 
-[node name="margin_noise_opt_frequency" type="MarginContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_frequency"]
+[node name="margin_noise_opt_frequency" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_frequency"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 15
 
-[node name="container_noise_opt_frequency" type="HBoxContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_frequency/margin_noise_opt_frequency"]
+[node name="container_noise_opt_frequency" type="HBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_frequency/margin_noise_opt_frequency"]
 layout_mode = 2
 
-[node name="label_noise_opt_frequency" type="Label" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_frequency/margin_noise_opt_frequency/container_noise_opt_frequency"]
+[node name="label_noise_opt_frequency" type="Label" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_frequency/margin_noise_opt_frequency/container_noise_opt_frequency"]
 layout_mode = 2
 text = "Frequency"
 
-[node name="slider_noise_opt_frequency" type="HSlider" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_frequency/margin_noise_opt_frequency/container_noise_opt_frequency"]
+[node name="slider_noise_opt_frequency" type="HSlider" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_frequency/margin_noise_opt_frequency/container_noise_opt_frequency"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 1.0
 
-[node name="content_noise_opt_invert" type="PanelContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic"]
+[node name="label_value_noise_opt_frequency" type="Label" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_frequency/margin_noise_opt_frequency/container_noise_opt_frequency"]
+layout_mode = 2
+text = "0.00000"
+
+[node name="content_noise_opt_invert" type="PanelContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_tg0g2")
 
-[node name="margin_noise_opt_invert" type="MarginContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_invert"]
+[node name="margin_noise_opt_invert" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_invert"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 15
 
-[node name="noise_opt_invert" type="CheckButton" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_invert/margin_noise_opt_invert"]
+[node name="noise_opt_invert" type="CheckButton" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_invert/margin_noise_opt_invert"]
 layout_mode = 2
 text = "Invert"
 
-[node name="content_noise_opt_seemless" type="PanelContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic"]
+[node name="content_noise_opt_seemless" type="PanelContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_tg0g2")
 
-[node name="margin_noise_opt_seemless" type="MarginContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_seemless"]
+[node name="margin_noise_opt_seemless" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_seemless"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 15
 
-[node name="noise_opt_seemless" type="CheckButton" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_seemless/margin_noise_opt_seemless"]
+[node name="noise_opt_seemless" type="CheckButton" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_seemless/margin_noise_opt_seemless"]
 layout_mode = 2
 text = "Seemless"
 
-[node name="content_noise_opt_normalize" type="PanelContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic"]
+[node name="content_noise_opt_normalize" type="PanelContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_tg0g2")
 
-[node name="margin_noise_opt_normalize" type="MarginContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_normalize"]
+[node name="margin_noise_opt_normalize" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_normalize"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 15
 
-[node name="noise_opt_normalize" type="CheckButton" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_normalize/margin_noise_opt_normalize"]
+[node name="noise_opt_normalize" type="CheckButton" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_normalize/margin_noise_opt_normalize"]
 layout_mode = 2
 button_pressed = true
 text = "Normalize"
 
-[node name="content_noise_opt_offset" type="PanelContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic" node_paths=PackedStringArray("root", "spin_x", "spin_y", "spin_z", "reset_button")]
+[node name="content_noise_opt_offset" type="PanelContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic" node_paths=PackedStringArray("root", "spin_x", "spin_y", "spin_z", "reset_button")]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_tg0g2")
 script = ExtResource("8_tg0g2")
-root = NodePath("../../../../../../..")
+root = NodePath("../../../../../../../../..")
 spin_x = NodePath("margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_x/container_noise_offset_x/input_noise_offset_x")
 spin_y = NodePath("margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_y/container_noise_offset_y/input_noise_offset_y")
 spin_z = NodePath("margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_z/container_noise_offset_z/input_noise_offset_z")
 reset_button = NodePath("margin_noise_opt_offset/container_noise_offset/container_noise_offset_label/button_reset_noise_offset")
 
-[node name="margin_noise_opt_offset" type="MarginContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset"]
+[node name="margin_noise_opt_offset" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 15
 
-[node name="container_noise_offset" type="VBoxContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset"]
+[node name="container_noise_offset" type="VBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset"]
 layout_mode = 2
 
-[node name="container_noise_offset_label" type="HBoxContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset"]
+[node name="container_noise_offset_label" type="HBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset"]
 layout_mode = 2
 
-[node name="label_noise_offset" type="Label" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_offset_label"]
+[node name="label_noise_offset" type="Label" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_offset_label"]
 layout_mode = 2
 text = "Offset"
 
-[node name="button_reset_noise_offset" type="Button" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_offset_label"]
+[node name="button_reset_noise_offset" type="Button" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_offset_label"]
 layout_mode = 2
 disabled = true
 icon = ExtResource("3_ulaw8")
 flat = true
 
-[node name="container_noise_opt_offset" type="HBoxContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset"]
+[node name="container_noise_opt_offset" type="HBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="background_label_noise_offset_x" type="PanelContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset"]
+[node name="background_label_noise_offset_x" type="PanelContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("8_25i26")
 
-[node name="container_noise_offset_x" type="HBoxContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_x"]
+[node name="container_noise_offset_x" type="HBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_x"]
 layout_mode = 2
 
-[node name="margin_label_noise_offset_x" type="MarginContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_x/container_noise_offset_x"]
+[node name="margin_label_noise_offset_x" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_x/container_noise_offset_x"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 
-[node name="label_noise_offset_x" type="Label" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_x/container_noise_offset_x/margin_label_noise_offset_x"]
+[node name="label_noise_offset_x" type="Label" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_x/container_noise_offset_x/margin_label_noise_offset_x"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "X"
 
-[node name="input_noise_offset_x" type="SpinBox" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_x/container_noise_offset_x"]
+[node name="input_noise_offset_x" type="SpinBox" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_x/container_noise_offset_x"]
 layout_mode = 2
 step = 0.1
 
-[node name="background_label_noise_offset_y" type="PanelContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset"]
+[node name="background_label_noise_offset_y" type="PanelContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("8_25i26")
 
-[node name="container_noise_offset_y" type="HBoxContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_y"]
+[node name="container_noise_offset_y" type="HBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_y"]
 layout_mode = 2
 
-[node name="margin_label_noise_offset_y" type="MarginContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_y/container_noise_offset_y"]
+[node name="margin_label_noise_offset_y" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_y/container_noise_offset_y"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 
-[node name="label_noise_offset_y" type="Label" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_y/container_noise_offset_y/margin_label_noise_offset_y"]
+[node name="label_noise_offset_y" type="Label" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_y/container_noise_offset_y/margin_label_noise_offset_y"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "Y"
 
-[node name="input_noise_offset_y" type="SpinBox" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_y/container_noise_offset_y"]
+[node name="input_noise_offset_y" type="SpinBox" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_y/container_noise_offset_y"]
 layout_mode = 2
 step = 0.1
 
-[node name="background_label_noise_offset_z" type="PanelContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset"]
+[node name="background_label_noise_offset_z" type="PanelContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("8_25i26")
 
-[node name="container_noise_offset_z" type="HBoxContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_z"]
+[node name="container_noise_offset_z" type="HBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_z"]
 layout_mode = 2
 
-[node name="margin_label_noise_offset_z" type="MarginContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_z/container_noise_offset_z"]
+[node name="margin_label_noise_offset_z" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_z/container_noise_offset_z"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 
-[node name="label_noise_offset_z" type="Label" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_z/container_noise_offset_z/margin_label_noise_offset_z"]
+[node name="label_noise_offset_z" type="Label" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_z/container_noise_offset_z/margin_label_noise_offset_z"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.521569, 0, 0.960784, 1)
 text = "Z"
 
-[node name="input_noise_offset_z" type="SpinBox" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_z/container_noise_offset_z"]
+[node name="input_noise_offset_z" type="SpinBox" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_z/container_noise_offset_z"]
 layout_mode = 2
 step = 0.1
 
-[node name="Warp" type="VBoxContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options"]
+[node name="Warp" type="VBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Fractal" type="VBoxContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options"]
+[node name="input_warp_enabled" type="CheckBox" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Warp"]
+layout_mode = 2
+
+[node name="input_warp_type" type="OptionButton" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Warp"]
+layout_mode = 2
+
+[node name="input_warp_amplitude" type="LineEdit" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Warp"]
+layout_mode = 2
+
+[node name="input_warp_frequency" type="LineEdit" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Warp"]
+layout_mode = 2
+
+[node name="input_warp_fractal_type" type="OptionButton" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Warp"]
+layout_mode = 2
+
+[node name="input_warp_fractal_octaves" type="SpinBox" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Warp"]
+layout_mode = 2
+
+[node name="input_warp_fractal_lacunarity" type="LineEdit" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Warp"]
+layout_mode = 2
+
+[node name="input_warp_fractal_gain" type="LineEdit" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Warp"]
+layout_mode = 2
+
+[node name="Fractal" type="VBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Cellular" type="VBoxContainer" parent="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options"]
+[node name="input_fractal_type" type="OptionButton" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Fractal"]
+layout_mode = 2
+
+[node name="input_fractal_octaves" type="SpinBox" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Fractal"]
+layout_mode = 2
+
+[node name="input_fractal_lacunarity" type="LineEdit" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Fractal"]
+layout_mode = 2
+
+[node name="input_fractal_gain" type="LineEdit" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Fractal"]
+layout_mode = 2
+
+[node name="input_fractal_weigted_strength" type="HSlider" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Fractal"]
+layout_mode = 2
+
+[node name="Cellular" type="VBoxContainer" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3
+
+[node name="input_cellular_distance_function" type="OptionButton" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Cellular"]
+layout_mode = 2
+
+[node name="input_cellular_jitter" type="LineEdit" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Cellular"]
+layout_mode = 2
+
+[node name="input_cellular_return_type" type="OptionButton" parent="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Cellular"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="button_generate_terrain" type="Button" parent="HSplitContainer/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Generate Terrain"
 
 [node name="mesh_preview_margin" type="MarginContainer" parent="HSplitContainer"]
 layout_mode = 2
@@ -531,75 +623,6 @@ handle_input_locally = false
 size = Vector2i(602, 545)
 render_target_update_mode = 4
 
-[node name="viewport_ui" type="Control" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="viewport_wireframe" type="CheckBox" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/viewport_ui"]
-layout_mode = 0
-offset_right = 111.0
-offset_bottom = 31.0
-text = "Wireframe"
-
-[node name="button_auto_rotate" type="CheckButton" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/viewport_ui"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -141.0
-offset_top = -31.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "Auto Rotate"
-
-[node name="container_rotate_button" type="HBoxContainer" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/viewport_ui"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="button_rotate_left" type="Button" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/viewport_ui/container_rotate_button"]
-layout_mode = 2
-icon = ExtResource("9_7tp4l")
-
-[node name="button_rotate_right" type="Button" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/viewport_ui/container_rotate_button"]
-layout_mode = 2
-icon = ExtResource("10_o0uq3")
-
-[node name="container_zoom_button" type="HBoxContainer" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/viewport_ui"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-
-[node name="Button" type="Button" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/viewport_ui/container_zoom_button"]
-layout_mode = 2
-icon = ExtResource("11_ksrko")
-
-[node name="Label" type="Label" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/viewport_ui/container_zoom_button"]
-layout_mode = 2
-text = "100%"
-
-[node name="Button2" type="Button" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/viewport_ui/container_zoom_button"]
-layout_mode = 2
-icon = ExtResource("12_25i26")
-
 [node name="camera" type="Camera3D" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport"]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 51.3322, 45.8052, 51.3322)
 
@@ -613,19 +636,84 @@ metadata/_custom_type_script = "uid://bu018wn2rpfvf"
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport"]
 transform = Transform3D(1, 0, 0, 0, -0.154486, 0.987995, 0, -0.987995, -0.154486, 0, 2.96104, 0)
 
+[node name="viewport_ui" type="Control" parent="HSplitContainer/mesh_preview_margin"]
+layout_mode = 2
+
+[node name="viewport_wireframe" type="CheckBox" parent="HSplitContainer/mesh_preview_margin/viewport_ui"]
+layout_mode = 0
+offset_right = 111.0
+offset_bottom = 31.0
+text = "Wireframe"
+
+[node name="button_auto_rotate" type="CheckButton" parent="HSplitContainer/mesh_preview_margin/viewport_ui"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -141.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Auto Rotate"
+
+[node name="container_rotate_button" type="HBoxContainer" parent="HSplitContainer/mesh_preview_margin/viewport_ui"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="button_rotate_left" type="Button" parent="HSplitContainer/mesh_preview_margin/viewport_ui/container_rotate_button"]
+layout_mode = 2
+icon = ExtResource("9_7tp4l")
+
+[node name="button_rotate_right" type="Button" parent="HSplitContainer/mesh_preview_margin/viewport_ui/container_rotate_button"]
+layout_mode = 2
+icon = ExtResource("10_o0uq3")
+
+[node name="container_zoom_button" type="HBoxContainer" parent="HSplitContainer/mesh_preview_margin/viewport_ui"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Button" type="Button" parent="HSplitContainer/mesh_preview_margin/viewport_ui/container_zoom_button"]
+layout_mode = 2
+icon = ExtResource("11_ksrko")
+
+[node name="Label" type="Label" parent="HSplitContainer/mesh_preview_margin/viewport_ui/container_zoom_button"]
+layout_mode = 2
+text = "100%"
+
+[node name="Button2" type="Button" parent="HSplitContainer/mesh_preview_margin/viewport_ui/container_zoom_button"]
+layout_mode = 2
+icon = ExtResource("12_25i26")
+
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
-[connection signal="value_modified" from="HSplitContainer/TabContainer/Mesh/content_mesh_size" to="HSplitContainer/TabContainer/Mesh/content_mesh_size" method="_on_value_modified"]
-[connection signal="value_modified" from="HSplitContainer/TabContainer/Mesh/content_mesh_size" to="HSplitContainer/TabContainer/Noise/content_noise_preview" method="_on_content_mesh_size_value_modified"]
-[connection signal="pressed" from="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x/button_reset_mesh_size_x" to="HSplitContainer/TabContainer/Mesh/content_mesh_size" method="_on_button_reset_mesh_size_x_pressed"]
-[connection signal="editing_toggled" from="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x/input_mesh_size_x" to="HSplitContainer/TabContainer/Mesh/content_mesh_size" method="_on_input_mesh_size_x_editing_toggled"]
-[connection signal="pressed" from="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y/button_reset_mesh_size_y" to="HSplitContainer/TabContainer/Mesh/content_mesh_size" method="_on_button_reset_mesh_size_y_pressed"]
-[connection signal="editing_toggled" from="HSplitContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y/input_mesh_size_y" to="HSplitContainer/TabContainer/Mesh/content_mesh_size" method="_on_input_mesh_size_y_editing_toggled"]
-[connection signal="value_modified" from="HSplitContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview/noise_preview/content_noise_opt_seed" to="HSplitContainer/TabContainer/Noise/content_noise_preview" method="_on_content_noise_opt_seed_value_modified"]
-[connection signal="value_changed" from="HSplitContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview/noise_preview/content_noise_opt_seed/container_noise_opt_seed/input_noise_opt_seed" to="HSplitContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview/noise_preview/content_noise_opt_seed" method="_on_noise_seed_value_changed"]
-[connection signal="value_modified" from="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset" to="HSplitContainer/TabContainer/Noise/content_noise_preview" method="_on_content_noise_opt_offset_value_modified"]
-[connection signal="value_modified" from="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset" to="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset" method="_on_value_modified"]
-[connection signal="pressed" from="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_offset_label/button_reset_noise_offset" to="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset" method="_on_button_reset_noise_offset_pressed"]
-[connection signal="value_changed" from="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_x/container_noise_offset_x/input_noise_offset_x" to="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset" method="_on_input_noise_offset_x_value_changed"]
-[connection signal="value_changed" from="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_y/container_noise_offset_y/input_noise_offset_y" to="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset" method="_on_input_noise_offset_y_value_changed"]
-[connection signal="value_changed" from="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_z/container_noise_offset_z/input_noise_offset_z" to="HSplitContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset" method="_on_input_noise_offset_z_value_changed"]
-[connection signal="toggled" from="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/viewport_ui/viewport_wireframe" to="." method="_on_viewport_wireframe_toggled"]
+[connection signal="value_modified" from="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size" to="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size" method="_on_value_modified"]
+[connection signal="value_modified" from="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size" to="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/content_noise_preview" method="_on_content_mesh_size_value_modified"]
+[connection signal="pressed" from="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x/button_reset_mesh_size_x" to="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size" method="_on_button_reset_mesh_size_x_pressed"]
+[connection signal="editing_toggled" from="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x/input_mesh_size_x" to="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size" method="_on_input_mesh_size_x_editing_toggled"]
+[connection signal="pressed" from="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y/button_reset_mesh_size_y" to="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size" method="_on_button_reset_mesh_size_y_pressed"]
+[connection signal="editing_toggled" from="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y/input_mesh_size_y" to="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Mesh/content_mesh_size" method="_on_input_mesh_size_y_editing_toggled"]
+[connection signal="value_modified" from="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview/noise_preview/content_noise_opt_seed" to="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/content_noise_preview" method="_on_content_noise_opt_seed_value_modified"]
+[connection signal="value_changed" from="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview/noise_preview/content_noise_opt_seed/container_noise_opt_seed/input_noise_opt_seed" to="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/content_noise_preview/margin_noise_preview/noise_preview/content_noise_opt_seed" method="_on_noise_seed_value_changed"]
+[connection signal="value_modified" from="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset" to="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/content_noise_preview" method="_on_content_noise_opt_offset_value_modified"]
+[connection signal="value_modified" from="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset" to="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset" method="_on_value_modified"]
+[connection signal="pressed" from="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_offset_label/button_reset_noise_offset" to="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset" method="_on_button_reset_noise_offset_pressed"]
+[connection signal="value_changed" from="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_x/container_noise_offset_x/input_noise_offset_x" to="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset" method="_on_input_noise_offset_x_value_changed"]
+[connection signal="value_changed" from="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_y/container_noise_offset_y/input_noise_offset_y" to="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset" method="_on_input_noise_offset_y_value_changed"]
+[connection signal="value_changed" from="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset/margin_noise_opt_offset/container_noise_offset/container_noise_opt_offset/background_label_noise_offset_z/container_noise_offset_z/input_noise_offset_z" to="HSplitContainer/PanelContainer/VBoxContainer/TabContainer/Noise/margin_noise_options/tabs_noise_options/Basic/content_noise_opt_offset" method="_on_input_noise_offset_z_value_changed"]
+[connection signal="pressed" from="HSplitContainer/PanelContainer/VBoxContainer/MarginContainer/button_generate_terrain" to="." method="_on_button_generate_terrain_pressed"]
+[connection signal="toggled" from="HSplitContainer/mesh_preview_margin/viewport_ui/viewport_wireframe" to="." method="_on_viewport_wireframe_toggled"]

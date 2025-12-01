@@ -18,3 +18,7 @@ func _on_viewport_wireframe_toggled(toggled_on: bool) -> void:
 		viewport.debug_draw = SubViewport.DEBUG_DRAW_WIREFRAME
 	else:
 		viewport.debug_draw = SubViewport.DEBUG_DRAW_DISABLED
+
+
+func _on_button_generate_terrain_pressed() -> void:
+	mesh.generate_array_mesh(noise.texture.get_size())

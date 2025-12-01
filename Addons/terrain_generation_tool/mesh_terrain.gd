@@ -10,10 +10,14 @@ func _ready() -> void:
 
 @export_tool_button("Generate Flat") var action_generate_flat: Callable = _generate_flat
 func _generate_flat() -> void:
-	generate_flat_array_mesh(default_size)
+	generate_array_mesh(default_size)
+
+@export_tool_button("Clear") var action_clear: Callable = _clear
+func _clear() -> void:
+	mesh = ArrayMesh.new()
 
 
-func generate_flat_array_mesh(size: Vector2) -> void:
+func generate_array_mesh(size: Vector2) -> void:
 	# Create new array mesh.
 	var a_mesh: ArrayMesh = ArrayMesh.new()
 	
