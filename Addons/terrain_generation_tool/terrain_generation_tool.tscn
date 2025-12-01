@@ -1,0 +1,364 @@
+[gd_scene load_steps=16 format=4 uid="uid://d1mwu2smjfmno"]
+
+[ext_resource type="Script" uid="uid://cs2u1kixjdp8m" path="res://Addons/terrain_generation_tool/terrain_tool.gd" id="1_3odgh"]
+[ext_resource type="StyleBox" uid="uid://dnimbqv1jin75" path="res://Addons/terrain_generation_tool/panels/cord_style_box_label.tres" id="2_6dkx5"]
+[ext_resource type="Script" uid="uid://uqwfxrgxkh3v" path="res://Addons/terrain_generation_tool/controller_mesh_size.gd" id="2_m3ci2"]
+[ext_resource type="StyleBox" uid="uid://b42jdki816drw" path="res://Addons/terrain_generation_tool/panels/cord_style_box_value_focus.tres" id="3_aafoj"]
+[ext_resource type="Texture2D" uid="uid://i7n8waon73r3" path="res://Addons/terrain_generation_tool/icons/ReloadSmall.svg" id="3_ulaw8"]
+[ext_resource type="StyleBox" uid="uid://dayvyd31yl7qp" path="res://Addons/terrain_generation_tool/panels/cord_style_box_value_readonly.tres" id="4_m3ci2"]
+[ext_resource type="StyleBox" uid="uid://bqphwfob3n548" path="res://Addons/terrain_generation_tool/panels/cord_style_box_value_normal.tres" id="5_ulaw8"]
+[ext_resource type="Script" uid="uid://bu018wn2rpfvf" path="res://Addons/terrain_generation_tool/mesh_terrain.gd" id="8_ulaw8"]
+[ext_resource type="Texture2D" uid="uid://bdpsi00yn8wan" path="res://Addons/greybox_editor/icons/RotateLeft.svg" id="9_7tp4l"]
+[ext_resource type="Texture2D" uid="uid://xxd4sgmwvnfs" path="res://Addons/greybox_editor/icons/RotateRight.svg" id="10_o0uq3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xs8tf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ulaw8"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3odgh"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_unrxn"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_3odgh")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ulaw8"]
+_surfaces = [{
+"aabb": AABB(-4.5, 0.0199079, -4.5, 9, 0.962747, 9),
+"format": 34359742465,
+"index_count": 972,
+"index_data": PackedByteArray("AAABAAoAAAAKAAEAAQACAAsAAQALAAIAAgADAAwAAgAMAAMAAwAEAA0AAwANAAQABAAFAA4ABAAOAAUABQAGAA8ABQAPAAYABgAHABAABgAQAAcABwAIABEABwARAAgACAAJABIACAASAAkACgALABQACgAUAAsACwAMABUACwAVAAwACwAKAAEACwABAAoADAANABYADAAWAA0ADAALAAIADAACAAsADQAOABcADQAXAA4ADQAMAAMADQADAAwADgAPABgADgAYAA8ADgANAAQADgAEAA0ADwAQABkADwAZABAADwAOAAUADwAFAA4AEAARABoAEAAaABEAEAAPAAYAEAAGAA8AEQASABsAEQAbABIAEQAQAAcAEQAHABAAEgATABwAEgAcABMAEgARAAgAEgAIABEAEwASAAkAEwAJABIAFAAVAB4AFAAeABUAFQAWAB8AFQAfABYAFQAUAAsAFQALABQAFgAXACAAFgAgABcAFgAVAAwAFgAMABUAFwAYACEAFwAhABgAFwAWAA0AFwANABYAGAAZACIAGAAiABkAGAAXAA4AGAAOABcAGQAaACMAGQAjABoAGQAYAA8AGQAPABgAGgAbACQAGgAkABsAGgAZABAAGgAQABkAGwAcACUAGwAlABwAGwAaABEAGwARABoAHAAdACYAHAAmAB0AHAAbABIAHAASABsAHQAcABMAHQATABwAHgAfACgAHgAoAB8AHwAgACkAHwApACAAHwAeABUAHwAVAB4AIAAhACoAIAAqACEAIAAfABYAIAAWAB8AIQAiACsAIQArACIAIQAgABcAIQAXACAAIgAjACwAIgAsACMAIgAhABgAIgAYACEAIwAkAC0AIwAtACQAIwAiABkAIwAZACIAJAAlAC4AJAAuACUAJAAjABoAJAAaACMAJQAmAC8AJQAvACYAJQAkABsAJQAbACQAJgAnADAAJgAwACcAJgAlABwAJgAcACUAJwAmAB0AJwAdACYAKAApADIAKAAyACkAKQAqADMAKQAzACoAKQAoAB8AKQAfACgAKgArADQAKgA0ACsAKgApACAAKgAgACkAKwAsADUAKwA1ACwAKwAqACEAKwAhACoALAAtADYALAA2AC0ALAArACIALAAiACsALQAuADcALQA3AC4ALQAsACMALQAjACwALgAvADgALgA4AC8ALgAtACQALgAkAC0ALwAwADkALwA5ADAALwAuACUALwAlAC4AMAAxADoAMAA6ADEAMAAvACYAMAAmAC8AMQAwACcAMQAnADAAMgAzADwAMgA8ADMAMwA0AD0AMwA9ADQAMwAyACkAMwApADIANAA1AD4ANAA+ADUANAAzACoANAAqADMANQA2AD8ANQA/ADYANQA0ACsANQArADQANgA3AEAANgBAADcANgA1ACwANgAsADUANwA4AEEANwBBADgANwA2AC0ANwAtADYAOAA5AEIAOABCADkAOAA3AC4AOAAuADcAOQA6AEMAOQBDADoAOQA4AC8AOQAvADgAOgA7AEQAOgBEADsAOgA5ADAAOgAwADkAOwA6ADEAOwAxADoAPAA9AEYAPABGAD0APQA+AEcAPQBHAD4APQA8ADMAPQAzADwAPgA/AEgAPgBIAD8APgA9ADQAPgA0AD0APwBAAEkAPwBJAEAAPwA+ADUAPwA1AD4AQABBAEoAQABKAEEAQAA/ADYAQAA2AD8AQQBCAEsAQQBLAEIAQQBAADcAQQA3AEAAQgBDAEwAQgBMAEMAQgBBADgAQgA4AEEAQwBEAE0AQwBNAEQAQwBCADkAQwA5AEIARABFAE4ARABOAEUARABDADoARAA6AEMARQBEADsARQA7AEQARgBHAFAARgBQAEcARwBIAFEARwBRAEgARwBGAD0ARwA9AEYASABJAFIASABSAEkASABHAD4ASAA+AEcASQBKAFMASQBTAEoASQBIAD8ASQA/AEgASgBLAFQASgBUAEsASgBJAEAASgBAAEkASwBMAFUASwBVAEwASwBKAEEASwBBAEoATABNAFYATABWAE0ATABLAEIATABCAEsATQBOAFcATQBXAE4ATQBMAEMATQBDAEwATgBPAFgATgBYAE8ATgBNAEQATgBEAE0ATwBOAEUATwBFAE4AUABRAFoAUABaAFEAUQBSAFsAUQBbAFIAUQBQAEcAUQBHAFAAUgBTAFwAUgBcAFMAUgBRAEgAUgBIAFEAUwBUAF0AUwBdAFQAUwBSAEkAUwBJAFIAVABVAF4AVABeAFUAVABTAEoAVABKAFMAVQBWAF8AVQBfAFYAVQBUAEsAVQBLAFQAVgBXAGAAVgBgAFcAVgBVAEwAVgBMAFUAVwBYAGEAVwBhAFgAVwBWAE0AVwBNAFYAWABZAGIAWABiAFkAWABXAE4AWABOAFcAWQBYAE8AWQBPAFgAWwBaAFEAWwBRAFoAXABbAFIAXABSAFsAXQBcAFMAXQBTAFwAXgBdAFQAXgBUAF0AXwBeAFUAXwBVAF4AYABfAFYAYABWAF8AYQBgAFcAYQBXAGAAYgBhAFgAYgBYAGEAYwBiAFkAYwBZAGIA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 100,
+"vertex_data": PackedByteArray("AACQwEqjpz0AAJDAAABgwJ8ZKT8AAJDAAAAgwEZpuj4AAJDAAADAvwvUHz0AAJDAAAAAv3IYaD8AAJDAAAAAP1FaGj8AAJDAAADAP+alTT8AAJDAAAAgQBJ7Pz8AAJDAAABgQNfgSj4AAJDAAACQQEOPez8AAJDAAACQwB09Cj8AAGDAAABgwPVxrj4AAGDAAAAgwCHnGz8AAGDAAADAv6063D4AAGDAAAAAv7Uugz4AAGDAAAAAPzEeBT8AAGDAAADAP5wHYD4AAGDAAAAgQEJ8rT4AAGDAAABgQNUmQj8AAGDAAACQQPf0Dj8AAGDAAACQwOrOFD8AACDAAABgwJQi+T0AACDAAAAgwFXAPT8AACDAAADAv97EsD4AACDAAAAAv03XGT0AACDAAAAAP/TG0D0AACDAAADAP929Dz8AACDAAAAgQMJLIz8AACDAAABgQJKbHT8AACDAAACQQJkkkD4AACDAAACQwJ+32j4AAMC/AABgwHy/Nj8AAMC/AAAgwI0kmT4AAMC/AADAvxB6kT4AAMC/AAAAv3CjEj8AAMC/AAAAP48tKD8AAMC/AADAP1oPPT0AAMC/AAAgQGTbAT8AAMC/AABgQEzcoT0AAMC/AACQQMVgcj8AAMC/AACQwLaVqD4AAAC/AABgwHpWKD8AAAC/AAAgwLjHQz8AAAC/AADAv1lCKD0AAAC/AAAAv6kbWT4AAAC/AAAAP7idcz4AAAC/AADAP4cEzT4AAAC/AAAgQIoHxDwAAAC/AABgQNSrXD8AAAC/AACQQCZ8jz4AAAC/AACQwP139j4AAAA/AABgwCjHZz8AAAA/AAAgwOq8+T4AAAA/AADAv37l+j0AAAA/AAAAv8rfUj8AAAA/AAAAP75IqT4AAAA/AADAPy5E9j4AAAA/AAAgQKvQfz4AAAA/AABgQEUUJz8AAAA/AACQQG4EpT4AAAA/AACQwGBa5T4AAMA/AABgwMtcXD8AAMA/AAAgwErLPT8AAMA/AADAv+R+Bj8AAMA/AAAAvznBQz8AAMA/AAAAP2L8wT4AAMA/AADAP9u/RD8AAMA/AAAgQCVNGD8AAMA/AABgQHlBaz8AAMA/AACQQJvqZz8AAMA/AACQwO12az8AACBAAABgwCKSwz4AACBAAAAgwLD+ZD8AACBAAADAv87Rzz4AACBAAAAAv34SZz8AACBAAAAAPxOGXT8AACBAAADAP77AIz8AACBAAAAgQMdU3T4AACBAAABgQLcAUD4AACBAAACQQNTQST4AACBAAACQwMSa0D4AAGBAAABgwPpSAT4AAGBAAAAgwCrPCz4AAGBAAADAvzqjcz4AAGBAAAAAvxV63D4AAGBAAAAAP/sPIT8AAGBAAADAP0XdKz8AAGBAAAAgQMA1/D4AAGBAAABgQPEVozwAAGBAAACQQDq3ZD4AAGBAAACQwEeuhT0AAJBAAABgwIiPHT8AAJBAAAAgwECnLT8AAJBAAADAv9ghBD8AAJBAAAAAv/IdVz0AAJBAAAAAP6LlKD0AAJBAAADAPxjl0z4AAJBAAAAgQMqxZj4AAJBAAABgQAufUT8AAJBAAACQQJzt8j4AAJBA")
+}]
+
+[node name="terrain_generation_tool" type="Window" node_paths=PackedStringArray("mesh", "camera", "viewport")]
+title = "Terrain Generation Tool"
+position = Vector2i(0, 36)
+size = Vector2i(1014, 545)
+script = ExtResource("1_3odgh")
+mesh = NodePath("HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/terrain_generator")
+camera = NodePath("HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/camera")
+viewport = NodePath("HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="HSplitContainer"]
+layout_mode = 2
+current_tab = 0
+
+[node name="mesh" type="VBoxContainer" parent="HSplitContainer/TabContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="content_mesh_size" type="PanelContainer" parent="HSplitContainer/TabContainer/mesh" node_paths=PackedStringArray("input_mesh_size_x", "input_mesh_size_y")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xs8tf")
+script = ExtResource("2_m3ci2")
+input_mesh_size_x = NodePath("outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x/input_mesh_size_x")
+input_mesh_size_y = NodePath("outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y/input_mesh_size_y")
+
+[node name="outer_margin_container_mesh_size" type="MarginContainer" parent="HSplitContainer/TabContainer/mesh/content_mesh_size"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="outer_container_mesh_size" type="VBoxContainer" parent="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="label_mesh_size" type="Label" parent="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size"]
+layout_mode = 2
+text = "Size"
+
+[node name="inner_margin_container_mesh_size" type="MarginContainer" parent="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 5
+
+[node name="inner_container_mesh_size" type="VBoxContainer" parent="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="container_mesh_size_x" type="HBoxContainer" parent="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="button_reset_mesh_size_x" type="Button" parent="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x"]
+layout_mode = 2
+disabled = true
+icon = ExtResource("3_ulaw8")
+flat = true
+
+[node name="background_label_mesh_size_x" type="PanelContainer" parent="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_6dkx5")
+
+[node name="margin_label_mesh_size_x" type="MarginContainer" parent="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x/background_label_mesh_size_x"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="label_mesh_size_x" type="Label" parent="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x/background_label_mesh_size_x/margin_label_mesh_size_x"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "X"
+
+[node name="input_mesh_size_x" type="LineEdit" parent="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = ExtResource("3_aafoj")
+theme_override_styles/read_only = ExtResource("4_m3ci2")
+theme_override_styles/normal = ExtResource("5_ulaw8")
+text = "10"
+alignment = 2
+
+[node name="container_mesh_size_y" type="HBoxContainer" parent="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="button_reset_mesh_size_y" type="Button" parent="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y"]
+layout_mode = 2
+disabled = true
+icon = ExtResource("3_ulaw8")
+flat = true
+
+[node name="background_label_mesh_size_y" type="PanelContainer" parent="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_6dkx5")
+
+[node name="margin_label_mesh_size_y" type="MarginContainer" parent="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y/background_label_mesh_size_y"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="label_mesh_size_y" type="Label" parent="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y/background_label_mesh_size_y/margin_label_mesh_size_y"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+text = "Y"
+
+[node name="input_mesh_size_y" type="LineEdit" parent="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = ExtResource("3_aafoj")
+theme_override_styles/read_only = ExtResource("4_m3ci2")
+theme_override_styles/normal = ExtResource("5_ulaw8")
+text = "10"
+alignment = 2
+
+[node name="seperator_margin_0" type="MarginContainer" parent="HSplitContainer/TabContainer/mesh"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="seperator" type="HSeparator" parent="HSplitContainer/TabContainer/mesh/seperator_margin_0"]
+layout_mode = 2
+
+[node name="content_terrain_height" type="PanelContainer" parent="HSplitContainer/TabContainer/mesh"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ulaw8")
+
+[node name="outer_margin_container_terrain_height" type="MarginContainer" parent="HSplitContainer/TabContainer/mesh/content_terrain_height"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="outer_container_terrain_height" type="VBoxContainer" parent="HSplitContainer/TabContainer/mesh/content_terrain_height/outer_margin_container_terrain_height"]
+layout_mode = 2
+
+[node name="label_terrain_height" type="Label" parent="HSplitContainer/TabContainer/mesh/content_terrain_height/outer_margin_container_terrain_height/outer_container_terrain_height"]
+layout_mode = 2
+text = "Height"
+
+[node name="inner_container_terrain_height" type="HBoxContainer" parent="HSplitContainer/TabContainer/mesh/content_terrain_height/outer_margin_container_terrain_height/outer_container_terrain_height"]
+layout_mode = 2
+
+[node name="button_reset_terrain_height" type="Button" parent="HSplitContainer/TabContainer/mesh/content_terrain_height/outer_margin_container_terrain_height/outer_container_terrain_height/inner_container_terrain_height"]
+layout_mode = 2
+disabled = true
+icon = ExtResource("3_ulaw8")
+flat = true
+
+[node name="input_terrain_height" type="HSlider" parent="HSplitContainer/TabContainer/mesh/content_terrain_height/outer_margin_container_terrain_height/outer_container_terrain_height/inner_container_terrain_height"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="label_terrain_height_value" type="Label" parent="HSplitContainer/TabContainer/mesh/content_terrain_height/outer_margin_container_terrain_height/outer_container_terrain_height/inner_container_terrain_height"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="seperator_margin_1" type="MarginContainer" parent="HSplitContainer/TabContainer/mesh"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="seperator" type="HSeparator" parent="HSplitContainer/TabContainer/mesh/seperator_margin_1"]
+layout_mode = 2
+
+[node name="noise" type="VBoxContainer" parent="HSplitContainer/TabContainer"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="noise_preview_margin" type="MarginContainer" parent="HSplitContainer/TabContainer/noise"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="noise_preview" type="TextureRect" parent="HSplitContainer/TabContainer/noise/noise_preview_margin"]
+layout_mode = 2
+texture = SubResource("NoiseTexture2D_unrxn")
+
+[node name="noise_seed" type="SpinBox" parent="HSplitContainer/TabContainer/noise/noise_preview_margin/noise_preview"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -86.5625
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="HSeparator" type="HSeparator" parent="HSplitContainer/TabContainer/noise"]
+layout_mode = 2
+
+[node name="noise_opt_invert" type="CheckButton" parent="HSplitContainer/TabContainer/noise"]
+layout_mode = 2
+text = "Invert"
+
+[node name="noise_opt_3d" type="CheckButton" parent="HSplitContainer/TabContainer/noise"]
+layout_mode = 2
+text = "3D"
+
+[node name="noise_opt_generate_mipmaps" type="CheckButton" parent="HSplitContainer/TabContainer/noise"]
+layout_mode = 2
+text = "Generate Mipmaps"
+
+[node name="noise_opt_seemless" type="CheckButton" parent="HSplitContainer/TabContainer/noise"]
+layout_mode = 2
+text = "Seemless"
+
+[node name="noise_opt_as_normal_map" type="CheckButton" parent="HSplitContainer/TabContainer/noise"]
+layout_mode = 2
+text = "As Normal Map"
+
+[node name="noise_opt_normalize" type="CheckButton" parent="HSplitContainer/TabContainer/noise"]
+layout_mode = 2
+text = "Normalize"
+
+[node name="frequency" type="HBoxContainer" parent="HSplitContainer/TabContainer/noise"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/TabContainer/noise/frequency"]
+layout_mode = 2
+text = "Frequency"
+
+[node name="HSlider" type="HSlider" parent="HSplitContainer/TabContainer/noise/frequency"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="offset" type="HBoxContainer" parent="HSplitContainer/TabContainer/noise"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="HSplitContainer/TabContainer/noise/offset"]
+layout_mode = 2
+
+[node name="SpinBox2" type="SpinBox" parent="HSplitContainer/TabContainer/noise/offset"]
+layout_mode = 2
+
+[node name="SpinBox3" type="SpinBox" parent="HSplitContainer/TabContainer/noise/offset"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HSplitContainer/TabContainer/noise"]
+layout_mode = 2
+text = "Generate Terrain"
+
+[node name="camera" type="VBoxContainer" parent="HSplitContainer/TabContainer"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="mesh_preview_margin" type="MarginContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="mesh_preview_subviewport" type="SubViewportContainer" parent="HSplitContainer/mesh_preview_margin"]
+layout_mode = 2
+stretch = true
+
+[node name="mesh_preview_viewport" type="SubViewport" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport"]
+handle_input_locally = false
+size = Vector2i(802, 545)
+render_target_update_mode = 4
+
+[node name="camera" type="Camera3D" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport"]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 5, 3, 5)
+
+[node name="terrain_generator" type="MeshInstance3D" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport"]
+mesh = SubResource("ArrayMesh_ulaw8")
+script = ExtResource("8_ulaw8")
+metadata/_custom_type_script = "uid://bu018wn2rpfvf"
+
+[node name="viewport_ui" type="Control" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="viewport_wireframe" type="CheckBox" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/viewport_ui"]
+offset_right = 111.0
+offset_bottom = 31.0
+text = "Wireframe"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/viewport_ui"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/viewport_ui/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("9_7tp4l")
+
+[node name="Button2" type="Button" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/viewport_ui/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("10_o0uq3")
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="value_modified" from="HSplitContainer/TabContainer/mesh/content_mesh_size" to="." method="_on_content_mesh_size_value_modified"]
+[connection signal="value_modified" from="HSplitContainer/TabContainer/mesh/content_mesh_size" to="HSplitContainer/TabContainer/mesh/content_mesh_size" method="_on_value_modified"]
+[connection signal="pressed" from="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x/button_reset_mesh_size_x" to="HSplitContainer/TabContainer/mesh/content_mesh_size" method="_on_button_reset_mesh_size_x_pressed"]
+[connection signal="editing_toggled" from="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_x/input_mesh_size_x" to="HSplitContainer/TabContainer/mesh/content_mesh_size" method="_on_input_mesh_size_x_editing_toggled"]
+[connection signal="pressed" from="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y/button_reset_mesh_size_y" to="HSplitContainer/TabContainer/mesh/content_mesh_size" method="_on_button_reset_mesh_size_y_pressed"]
+[connection signal="editing_toggled" from="HSplitContainer/TabContainer/mesh/content_mesh_size/outer_margin_container_mesh_size/outer_container_mesh_size/inner_margin_container_mesh_size/inner_container_mesh_size/container_mesh_size_y/input_mesh_size_y" to="HSplitContainer/TabContainer/mesh/content_mesh_size" method="_on_input_mesh_size_y_editing_toggled"]
+[connection signal="toggled" from="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport/viewport_ui/viewport_wireframe" to="." method="_on_viewport_wireframe_toggled"]
