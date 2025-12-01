@@ -35,7 +35,7 @@ window/size/viewport_height=720
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/example_plugin/plugin.cfg", "res://addons/greybox_editor/plugin.cfg", "res://addons/terrain_generation_tool/plugin.cfg")
+enabled=PackedStringArray("res://addons/example_plugin/plugin.cfg", "res://addons/flow_graph/plugin.cfg")
 
 [input]
 
