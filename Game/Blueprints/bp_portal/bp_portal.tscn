@@ -1,0 +1,163 @@
+[gd_scene load_steps=13 format=3 uid="uid://6pye18wwdmyf"]
+
+[ext_resource type="QuadMesh" uid="uid://8uo3m3ia3gd6" path="res://Game/Blueprints/bp_portal/portal_mesh.tres" id="1_cl0xl"]
+[ext_resource type="Shader" uid="uid://vct5arnhgelk" path="res://Game/Blueprints/bp_portal/portal_shader.tres" id="1_jlpxk"]
+[ext_resource type="Environment" uid="uid://b1yrd2jv054wh" path="res://Game/Blueprints/bp_portal/portal_env.tres" id="3_lwkxr"]
+[ext_resource type="Environment" uid="uid://cve0i4mdx8kgm" path="res://Game/Blueprints/bp_portal/portal_base_env.tres" id="4_xw8qe"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xw8qe"]
+viewport_path = NodePath("mesh_a/normal_viewport_a")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jlpxk"]
+viewport_path = NodePath("mesh_a/viewport_a")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cl0xl"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_jlpxk")
+shader_parameter/viewport_texture = SubResource("ViewportTexture_jlpxk")
+shader_parameter/normal_map = SubResource("ViewportTexture_xw8qe")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lwkxr"]
+viewport_path = NodePath("mesh_b/normal_viewport_b")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cl0xl"]
+viewport_path = NodePath("mesh_b/viewport_b")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lwkxr"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_jlpxk")
+shader_parameter/viewport_texture = SubResource("ViewportTexture_cl0xl")
+shader_parameter/normal_map = SubResource("ViewportTexture_lwkxr")
+
+[sub_resource type="SphereMesh" id="SphereMesh_lwkxr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwkxr"]
+albedo_color = Color(0, 1, 1, 1)
+
+[node name="bp_portal" type="Node3D"]
+
+[node name="mesh_a" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.191804, 0, -6.68482)
+material_override = SubResource("ShaderMaterial_cl0xl")
+transparency = 1.0
+mesh = ExtResource("1_cl0xl")
+skeleton = NodePath("../mesh_b")
+
+[node name="viewport_a" type="SubViewport" parent="mesh_a"]
+size = Vector2i(2048, 4096)
+
+[node name="camera_origin_a" type="Node3D" parent="mesh_a/viewport_a"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.96355, 0.0927255, 1.82313)
+
+[node name="camera_pivot_a" type="Node3D" parent="mesh_a/viewport_a/camera_origin_a"]
+transform = Transform3D(0.964504, -0.00702821, 0.263929, -0.00616009, 0.998749, 0.0490947, -0.263988, -0.0489837, 0.963142, 0, 0, 0)
+
+[node name="camera_a" type="Camera3D" parent="mesh_a/viewport_a/camera_origin_a/camera_pivot_a"]
+environment = ExtResource("3_lwkxr")
+current = true
+fov = 90.0
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="mesh_a/viewport_a/camera_origin_a/camera_pivot_a/camera_a"]
+remote_path = NodePath("../../../../../normal_viewport_a/normal_camera_a")
+
+[node name="normal_viewport_a" type="SubViewport" parent="mesh_a"]
+debug_draw = 5
+size = Vector2i(2048, 4096)
+render_target_update_mode = 4
+
+[node name="normal_camera_a" type="Camera3D" parent="mesh_a/normal_viewport_a"]
+transform = Transform3D(0.964506, -0.00702839, 0.263967, -0.00616011, 0.998775, 0.0491017, -0.263989, -0.048985, 0.963281, 1.96355, 0.0927255, 1.82313)
+environment = ExtResource("3_lwkxr")
+fov = 90.0
+
+[node name="remote_transform_camera_a" type="RemoteTransform3D" parent="mesh_a"]
+remote_path = NodePath("../../mesh_b/viewport_b/camera_origin_b")
+
+[node name="on_screen_notifier_a" type="VisibleOnScreenNotifier3D" parent="mesh_a"]
+
+[node name="area_a" type="Area3D" parent="mesh_a"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="sky_camera" type="Camera3D" parent="mesh_a"]
+cull_mask = 0
+
+[node name="mesh_b" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.96355, 0.0927255, 1.82313)
+material_override = SubResource("ShaderMaterial_lwkxr")
+transparency = 1.0
+cast_shadow = 0
+mesh = ExtResource("1_cl0xl")
+
+[node name="viewport_b" type="SubViewport" parent="mesh_b"]
+size = Vector2i(2048, 4096)
+render_target_update_mode = 4
+
+[node name="camera_origin_b" type="Node3D" parent="mesh_b/viewport_b"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.191804, 0, -6.68482)
+
+[node name="camera_pivot_b" type="Node3D" parent="mesh_b/viewport_b/camera_origin_b"]
+transform = Transform3D(0.964504, -0.00702821, 0.263929, -0.00616009, 0.998749, 0.0490947, -0.263988, -0.0489837, 0.963142, 0, 0, 0)
+
+[node name="camera_b" type="Camera3D" parent="mesh_b/viewport_b/camera_origin_b/camera_pivot_b"]
+environment = ExtResource("3_lwkxr")
+current = true
+fov = 90.0
+size = 8.738
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="mesh_b/viewport_b/camera_origin_b/camera_pivot_b/camera_b"]
+remote_path = NodePath("../../../../../normal_viewport_b/normal_camera_b")
+
+[node name="normal_viewport_b" type="SubViewport" parent="mesh_b"]
+debug_draw = 5
+size = Vector2i(2048, 4096)
+render_target_update_mode = 4
+
+[node name="normal_camera_b" type="Camera3D" parent="mesh_b/normal_viewport_b"]
+transform = Transform3D(0.964506, -0.00702839, 0.263967, -0.00616011, 0.998775, 0.0491017, -0.263989, -0.048985, 0.963281, 0.191804, 0, -6.68482)
+environment = ExtResource("3_lwkxr")
+fov = 90.0
+
+[node name="sky_camera" type="Camera3D" parent="mesh_b"]
+cull_mask = 0
+
+[node name="remote_transform_camera_b" type="RemoteTransform3D" parent="mesh_b"]
+remote_path = NodePath("../../mesh_a/viewport_a/camera_origin_a")
+
+[node name="on_screen_notifier_b" type="VisibleOnScreenNotifier3D" parent="mesh_b"]
+
+[node name="area_b" type="Area3D" parent="mesh_b"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="temp" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0363078, 0, -3.22896)
+mesh = SubResource("SphereMesh_lwkxr")
+
+[node name="debug_camera" type="Camera3D" parent="."]
+transform = Transform3D(0.964506, -0.00702839, 0.263967, -0.00616011, 0.998775, 0.0491017, -0.263989, -0.048985, 0.963281, -0.667221, 0.348091, -3.69423)
+environment = ExtResource("4_xw8qe")
+current = true
+fov = 90.0
+size = 0.405
+
+[node name="remote_transform_a" type="RemoteTransform3D" parent="debug_camera"]
+remote_path = NodePath("../../mesh_a/viewport_a/camera_origin_a/camera_pivot_a")
+update_position = false
+update_scale = false
+
+[node name="remote_transform_b" type="RemoteTransform3D" parent="debug_camera"]
+remote_path = NodePath("../../mesh_b/viewport_b/camera_origin_b/camera_pivot_b")
+update_position = false
+update_scale = false
+
+[node name="temp2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18396, 0, -2.48876)
+material_override = SubResource("StandardMaterial3D_lwkxr")
+mesh = SubResource("SphereMesh_lwkxr")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("4_xw8qe")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.409461, 0.912327, 0, -0.912327, 0.409461, 0, 3.08404, 0)

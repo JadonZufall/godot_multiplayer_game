@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b03v3no6up4mm"]
+
+[ext_resource type="Environment" uid="uid://cyi38yg7k4uoq" path="res://Game/Scenes/scene_environment/environment.tres" id="1_qug5o"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qug5o"]
+size = Vector2(20, 20)
+
+[node name="scene_environment" type="Node3D"]
+
+[node name="world_environment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_qug5o")
+
+[node name="directional_light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.425369, 0.90502, 0, -0.90502, -0.425369, 0, 0, 0)
+
+[node name="preview_camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_qug5o")

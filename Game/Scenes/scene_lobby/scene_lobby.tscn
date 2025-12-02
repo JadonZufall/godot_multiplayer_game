@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://1jksajf357bh"]
+
+[ext_resource type="Script" uid="uid://d1fob3mhw14gh" path="res://Game/Scenes/scene_lobby/multiplayer_spawner.gd" id="1_3rl8h"]
+[ext_resource type="Material" uid="uid://5voyev4wrurl" path="res://Game/Materials/Shaders/material_debug_grid/material_debug_grid.tres" id="3_xgy1p"]
+[ext_resource type="PackedScene" uid="uid://dxefxdp2heyf1" path="res://Game/Blueprints/bp_camera/bp_camera.tscn" id="4_mqeuo"]
+
+[sub_resource type="Resource" id="Resource_mcrve"]
+metadata/__load_path__ = "res://Game/Blueprints/bp_entity/bp_entity.tscn"
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mqeuo"]
+size = Vector2(20, 20)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_lgycb"]
+
+[node name="scene_lobby" type="Node3D"]
+
+[node name="player_spawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")
+script = ExtResource("1_3rl8h")
+network_player = SubResource("Resource_mcrve")
+
+[node name="floor" type="StaticBody3D" parent="."]
+
+[node name="model" type="MeshInstance3D" parent="floor"]
+material_override = ExtResource("3_xgy1p")
+mesh = SubResource("PlaneMesh_mqeuo")
+skeleton = NodePath("../..")
+
+[node name="collider" type="CollisionShape3D" parent="floor"]
+shape = SubResource("WorldBoundaryShape3D_lgycb")
+
+[node name="bp_camera" parent="." instance=ExtResource("4_mqeuo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="level_data" type="Node3D" parent="."]

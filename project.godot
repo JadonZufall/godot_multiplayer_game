@@ -16,17 +16,9 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]
 
-InputHandler="*res://Scripts/Globals/InputHandler.gd"
-MouseHandler="*res://Scripts/Globals/MouseHandler.gd"
-DebugHandler="*res://Scripts/Globals/DebugHandler.gd"
-CameraHandler="*res://Scripts/Globals/CameraHandler.gd"
-PlayerHandler="*res://Scripts/Globals/PlayerHandler.gd"
-NetworkHandler="*res://Scripts/Globals/Networking/NetworkHandler.gd"
-PartyHandler="*res://Scripts/Globals/Networking/PartyHandler.gd"
-ConnectionManager="*res://Libraries/Networking/ConnectionManager.gd"
-ServerManager="*res://Libraries/Networking/Server/ServerManager.gd"
-ClientManager="*res://Libraries/Networking/Client/ClientManager.gd"
-DebugConsole="*res://Scripts/Globals/DebugConsole.gd"
+Network="*res://Libraries/Networking/Network.gd"
+Server="res://Libraries/Networking/Server.gd"
+Client="res://Libraries/Networking/Client.gd"
 
 [display]
 
@@ -35,7 +27,7 @@ window/size/viewport_height=720
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/example_plugin/plugin.cfg", "res://addons/flow_graph/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 

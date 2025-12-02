@@ -1,1 +1,0 @@
-class_name ImprovedCamera3DPath extends Node3D

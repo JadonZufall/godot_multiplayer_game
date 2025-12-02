@@ -1,6 +1,0 @@
-[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dm27nmchm27uu"]
-
-[ext_resource type="FontFile" uid="uid://dpm05pg6mxj7l" path="res://Editor/Fonts/Ubuntu/UbuntuMono-R.ttf" id="1_ea07m"]
-
-[resource]
-font = ExtResource("1_ea07m")
