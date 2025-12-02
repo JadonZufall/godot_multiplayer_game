@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://1jksajf357bh"]
+[gd_scene load_steps=7 format=3 uid="uid://1jksajf357bh"]
 
 [ext_resource type="Script" uid="uid://d1fob3mhw14gh" path="res://Game/Scenes/scene_lobby/multiplayer_spawner.gd" id="1_3rl8h"]
 [ext_resource type="Material" uid="uid://5voyev4wrurl" path="res://Game/Materials/Shaders/material_debug_grid/material_debug_grid.tres" id="3_xgy1p"]
 [ext_resource type="PackedScene" uid="uid://dxefxdp2heyf1" path="res://Game/Blueprints/bp_camera/bp_camera.tscn" id="4_mqeuo"]
-[ext_resource type="PackedScene" path="res://Blueprints/bp_prop/bp_prop.tscn" id="5_egost"]
-[ext_resource type="PackedScene" uid="uid://bp4nu3w7csdxj" path="res://Game/Blueprints/bp_entity/bp_entity.tscn" id="5_lgycb"]
-[ext_resource type="PackedScene" uid="uid://rlavvta0cosq" path="res://Game/Blueprints/bp_entity/prefabs/bp_entity_humanoid/bp_entity_humanoid.tscn" id="6_egost"]
+
+[sub_resource type="Resource" id="Resource_mcrve"]
+metadata/__load_path__ = "res://Game/Blueprints/bp_entity/bp_entity.tscn"
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mqeuo"]
 size = Vector2(20, 20)
@@ -15,10 +15,9 @@ size = Vector2(20, 20)
 [node name="scene_lobby" type="Node3D"]
 
 [node name="player_spawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://bp4nu3w7csdxj")
 spawn_path = NodePath("..")
 script = ExtResource("1_3rl8h")
-network_player = ExtResource("5_lgycb")
+network_player = SubResource("Resource_mcrve")
 
 [node name="floor" type="StaticBody3D" parent="."]
 
@@ -32,14 +31,5 @@ shape = SubResource("WorldBoundaryShape3D_lgycb")
 
 [node name="bp_camera" parent="." instance=ExtResource("4_mqeuo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
-
-[node name="bp_entity_ik" parent="." instance=ExtResource("6_egost")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.84655, 0.00561795, -3.0529)
-collision_layer = 513
-_init_possessed = true
-_auto_set_authority = false
-
-[node name="bp_prop" parent="." instance=ExtResource("5_egost")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2.75316)
 
 [node name="level_data" type="Node3D" parent="."]

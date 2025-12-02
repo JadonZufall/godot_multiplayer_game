@@ -1,0 +1,111 @@
+[gd_scene load_steps=4 format=3 uid="uid://csjgwwrf1jdbb"]
+
+[ext_resource type="Texture2D" uid="uid://bth17qq6j74jt" path="res://Game/Scenes/scene_start/elements/bp_username_prompt/keyboard_enter_outline.png" id="1_1rrw1"]
+[ext_resource type="StyleBox" uid="uid://cnabs8nt1akwl" path="res://Game/Scenes/scene_start/elements/bp_username_prompt/prompt_button_normal.tres" id="1_sra0w"]
+[ext_resource type="Texture2D" uid="uid://cvqopd2h3cxb" path="res://Game/Scenes/scene_start/elements/bp_username_prompt/keyboard_numpad_enter_outline.png" id="2_sra0w"]
+
+[node name="UsernamePrompt" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/Content"]
+layout_mode = 2
+text = "Set Username"
+
+[node name="LineEdit" type="LineEdit" parent="Container/Content"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "username"
+max_length = 20
+expand_to_text_length = true
+
+[node name="Label" type="Label" parent="Container/Content/LineEdit"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "0/20"
+
+[node name="WarningsContainer" type="VBoxContainer" parent="Container/Content"]
+layout_mode = 2
+
+[node name="WarningLabel0" type="Label" parent="Container/Content/WarningsContainer"]
+layout_mode = 2
+text = "* Warning 1"
+
+[node name="WarningLabel1" type="Label" parent="Container/Content/WarningsContainer"]
+layout_mode = 2
+text = "* Warning  2"
+
+[node name="WarningLabel2" type="Label" parent="Container/Content/WarningsContainer"]
+layout_mode = 2
+text = "* Warning  3"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/Content"]
+layout_mode = 2
+
+[node name="ConfirmButton" type="Button" parent="Container/Content/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("1_sra0w")
+text = "Confirm"
+
+[node name="TextureRect" type="TextureRect" parent="Container/Content/HBoxContainer/ConfirmButton"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_right = 25.0
+offset_bottom = 12.5
+grow_vertical = 2
+texture = ExtResource("1_1rrw1")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="BackButton" type="Button" parent="Container/Content/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("1_sra0w")
+text = "Back"
+
+[node name="TextureRect" type="TextureRect" parent="Container/Content/HBoxContainer/BackButton"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_right = 25.0
+offset_bottom = 12.5
+grow_vertical = 2
+texture = ExtResource("2_sra0w")
+expand_mode = 2
+stretch_mode = 5

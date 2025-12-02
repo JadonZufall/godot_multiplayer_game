@@ -16,17 +16,9 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]
 
-InputHandler="*res://Game/Scripts/Globals/InputHandler.gd"
-MouseHandler="*res://Game/Scripts/Globals/MouseHandler.gd"
-DebugHandler="*res://Game/Scripts/Globals/DebugHandler.gd"
-CameraHandler="*res://Game/Scripts/Globals/CameraHandler.gd"
-PlayerHandler="*res://Game/Scripts/Globals/PlayerHandler.gd"
-NetworkHandler="*res://Game/Scripts/Globals/Networking/NetworkHandler.gd"
-PartyHandler="*res://Game/Scripts/Globals/Networking/PartyHandler.gd"
-ConnectionManager="*res://Libraries/Networking/ConnectionManager.gd"
-ServerManager="*res://Libraries/Networking/Server/ServerManager.gd"
-ClientManager="*res://Libraries/Networking/Client/ClientManager.gd"
-DebugConsole="*res://Game/Scripts/Globals/DebugConsole.gd"
+Network="*res://Libraries/Networking/Network.gd"
+Server="res://Libraries/Networking/Server.gd"
+Client="res://Libraries/Networking/Client.gd"
 
 [display]
 

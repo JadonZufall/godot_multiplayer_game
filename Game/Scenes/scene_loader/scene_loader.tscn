@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cnq8hw8ju1peb"]
+[gd_scene load_steps=13 format=3 uid="uid://cnq8hw8ju1peb"]
 
 [ext_resource type="Script" uid="uid://b86qwa5ilqq4e" path="res://Game/Scenes/scene_loader/scripts/scene_loader.gd" id="1_v0a6k"]
+[ext_resource type="PackedScene" uid="uid://ct0r8dicbwxeb" path="res://Game/Blueprints/bp_player_spawner/bp_player_spawner.tscn" id="2_fdpe2"]
 [ext_resource type="Script" uid="uid://depk8r3yb8gr0" path="res://Game/Scripts/Nodes/ECS/Entity.gd" id="5_ffi27"]
 [ext_resource type="Script" uid="uid://clqamxfpyg5tx" path="res://Game/Scenes/scene_loader/world_2d.gd" id="5_hre3c"]
 [ext_resource type="Script" uid="uid://dux1bal0bjydf" path="res://Game/Scenes/scene_loader/ui_loader.gd" id="6_isywg"]
@@ -27,6 +28,7 @@ properties/2/replication_mode = 1
 
 [node name="SceneLoader" type="Node"]
 script = ExtResource("1_v0a6k")
+autoload_3d = Array[PackedScene]([ExtResource("2_fdpe2")])
 
 [node name="UI Loader" type="Control" parent="."]
 layout_mode = 3
@@ -58,8 +60,6 @@ metadata/_custom_type_script = "uid://depk8r3yb8gr0"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="3D World/Entity"]
 replication_config = SubResource("SceneReplicationConfig_ffi27")
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="3D World/Entity"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="3D World/Entity"]
 shape = SubResource("CapsuleShape3D_opks1")
