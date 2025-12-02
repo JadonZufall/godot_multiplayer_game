@@ -1,0 +1,32 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://bm1x6740a6bht"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj2ta"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adt3a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5xb0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6f52"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbag1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jn2e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orxvn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kt7k"]
+
+[resource]
+Button/constants/h_separation = 0
+Button/styles/disabled = SubResource("StyleBoxFlat_uj2ta")
+Button/styles/focus = SubResource("StyleBoxFlat_adt3a")
+Button/styles/hover = SubResource("StyleBoxFlat_f5xb0")
+Button/styles/normal = SubResource("StyleBoxFlat_f6f52")
+Button/styles/pressed = SubResource("StyleBoxFlat_cbag1")
+HBoxContainer/constants/separation = 0
+HSeparator/constants/separation = 1
+LineEdit/styles/focus = SubResource("StyleBoxFlat_6jn2e")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_orxvn")
+LineEdit/styles/read_only = SubResource("StyleBoxFlat_0kt7k")
+VBoxContainer/constants/separation = 0
+VSeparator/constants/separation = 1
