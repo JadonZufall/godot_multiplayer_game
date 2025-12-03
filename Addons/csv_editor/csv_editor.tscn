@@ -1,0 +1,197 @@
+[gd_scene load_steps=6 format=3 uid="uid://djq7t31375dv"]
+
+[ext_resource type="Script" uid="uid://crrg7oa581f2" path="res://Addons/csv_editor/csv_editor.gd" id="1_2bghs"]
+[ext_resource type="Theme" uid="uid://bm1x6740a6bht" path="res://Addons/csv_editor/csv_theme.tres" id="1_n1hyp"]
+[ext_resource type="Texture2D" uid="uid://dir6gogrldjx0" path="res://Addons/csv_editor/icons/Add.svg" id="2_rbela"]
+[ext_resource type="Texture2D" uid="uid://dshf7talhvy00" path="res://Addons/csv_editor/icons/Remove.svg" id="3_n1hyp"]
+[ext_resource type="Texture2D" uid="uid://dftlc1iskh4r0" path="res://Addons/csv_editor/icons/CodeHighlighter.svg" id="5_lxl8m"]
+
+[node name="CSV Editor Window" type="Window"]
+title = "CSV Editor"
+initial_position = 1
+size = Vector2i(800, 500)
+theme = ExtResource("1_n1hyp")
+script = ExtResource("1_2bghs")
+
+[node name="Background" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background"]
+layout_mode = 2
+
+[node name="MenuBar" type="MenuBar" parent="Background/VBoxContainer"]
+layout_mode = 2
+
+[node name="File" type="PopupMenu" parent="Background/VBoxContainer/MenuBar"]
+
+[node name="Edit" type="PopupMenu" parent="Background/VBoxContainer/MenuBar"]
+
+[node name="View" type="PopupMenu" parent="Background/VBoxContainer/MenuBar"]
+
+[node name="HSeparator4" type="HSeparator" parent="Background/VBoxContainer"]
+layout_mode = 2
+
+[node name="Header" type="PanelContainer" parent="Background/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/VBoxContainer/Header"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="VSeparator10" type="VSeparator" parent="Background/VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Background/VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator4" type="VSeparator" parent="Background/VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit2" type="LineEdit" parent="Background/VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator5" type="VSeparator" parent="Background/VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit3" type="LineEdit" parent="Background/VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator6" type="VSeparator" parent="Background/VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit4" type="LineEdit" parent="Background/VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Background/VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Background/VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("2_rbela")
+
+[node name="HSeparator" type="HSeparator" parent="Background/VBoxContainer"]
+layout_mode = 2
+
+[node name="Row1" type="PanelContainer" parent="Background/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/VBoxContainer/Row1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/Row1/HBoxContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="VSeparator10" type="VSeparator" parent="Background/VBoxContainer/Row1/HBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Background/VBoxContainer/Row1/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator4" type="VSeparator" parent="Background/VBoxContainer/Row1/HBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit2" type="LineEdit" parent="Background/VBoxContainer/Row1/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator3" type="VSeparator" parent="Background/VBoxContainer/Row1/HBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit3" type="LineEdit" parent="Background/VBoxContainer/Row1/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator2" type="VSeparator" parent="Background/VBoxContainer/Row1/HBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit4" type="LineEdit" parent="Background/VBoxContainer/Row1/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Background/VBoxContainer/Row1/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Background/VBoxContainer/Row1/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("3_n1hyp")
+
+[node name="HSeparator2" type="HSeparator" parent="Background/VBoxContainer"]
+layout_mode = 2
+
+[node name="Row2" type="PanelContainer" parent="Background/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/VBoxContainer/Row2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/Row2/HBoxContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="VSeparator10" type="VSeparator" parent="Background/VBoxContainer/Row2/HBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Background/VBoxContainer/Row2/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator7" type="VSeparator" parent="Background/VBoxContainer/Row2/HBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit2" type="LineEdit" parent="Background/VBoxContainer/Row2/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator8" type="VSeparator" parent="Background/VBoxContainer/Row2/HBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit3" type="LineEdit" parent="Background/VBoxContainer/Row2/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator9" type="VSeparator" parent="Background/VBoxContainer/Row2/HBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit4" type="LineEdit" parent="Background/VBoxContainer/Row2/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Background/VBoxContainer/Row2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Background/VBoxContainer/Row2/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("3_n1hyp")
+
+[node name="HSeparator3" type="HSeparator" parent="Background/VBoxContainer"]
+layout_mode = 2
+
+[node name="Footer" type="PanelContainer" parent="Background/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/VBoxContainer/Footer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Background/VBoxContainer/Footer/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("2_rbela")
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+ok_button_text = "Open"
+file_mode = 0
+
+[node name="SaveDialog" type="FileDialog" parent="."]
+
+[node name="QuitDialog" type="ConfirmationDialog" parent="."]
+
+[node name="StatusIndicator" type="StatusIndicator" parent="."]
+tooltip = "CSV Editor"
+icon = ExtResource("5_lxl8m")
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]

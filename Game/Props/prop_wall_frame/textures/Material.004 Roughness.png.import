@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0scbe8vfgqpn"
-path.s3tc="res://.godot/imported/Material.004 Roughness.png-15e80edd72a908ff31591fedbfd156b5.s3tc.ctex"
+uid="uid://bswlbgoxkjc6a"
+path.s3tc="res://.godot/imported/Material.004 Roughness.png-44fb562712cc54cc2fc55758fd2aa00c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Game/Assets/Models/textures/Material.004 Roughness.png"
-dest_files=["res://.godot/imported/Material.004 Roughness.png-15e80edd72a908ff31591fedbfd156b5.s3tc.ctex"]
+source_file="res://Game/Props/prop_wall_frame/textures/Material.004 Roughness.png"
+dest_files=["res://.godot/imported/Material.004 Roughness.png-44fb562712cc54cc2fc55758fd2aa00c.s3tc.ctex"]
 
 [params]
 

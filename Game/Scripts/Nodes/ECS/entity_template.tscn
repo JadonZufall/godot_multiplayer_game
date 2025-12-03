@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbidkar7xyh6d"]
+
+[ext_resource type="Script" uid="uid://depk8r3yb8gr0" path="res://Game/Scripts/Nodes/ECS/Entity.gd" id="1_whxxd"]
+[ext_resource type="Script" uid="uid://cxvoji0fkyh1f" path="res://Game/Scripts/Nodes/ECS/Model.gd" id="2_a5ch7"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ffi27"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:scale")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="entity_template" type="CharacterBody3D"]
+script = ExtResource("1_whxxd")
+metadata/_custom_type_script = "uid://depk8r3yb8gr0"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ffi27")
+
+[node name="agent" type="NavigationAgent3D" parent="."]
+
+[node name="collider" type="CollisionShape3D" parent="."]
+
+[node name="model" type="Node3D" parent="."]
+script = ExtResource("2_a5ch7")
+metadata/_custom_type_script = "uid://cxvoji0fkyh1f"
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

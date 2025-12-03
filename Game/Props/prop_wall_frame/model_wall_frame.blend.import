@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dddyg00070ehu"
-path="res://.godot/imported/construction_props.blend-8f673591508a5e851248dcf69d8f8950.scn"
+uid="uid://dk4aae8tcsh88"
+path="res://.godot/imported/model_wall_frame.blend-568b484d55757133816fe0cc4c3d1d81.scn"
 
 [deps]
 
-source_file="res://Game/Assets/Models/construction_props.blend"
-dest_files=["res://.godot/imported/construction_props.blend-8f673591508a5e851248dcf69d8f8950.scn"]
+source_file="res://Game/Props/prop_wall_frame/model_wall_frame.blend"
+dest_files=["res://.godot/imported/model_wall_frame.blend-568b484d55757133816fe0cc4c3d1d81.scn"]
 
 [params]
 
-nodes/root_type=""
-nodes/root_name=""
+nodes/root_type="Model"
+nodes/root_name="model"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
@@ -32,7 +32,14 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"Material.004": {
+"use_external/enabled": true,
+"use_external/path": "uid://bu1o4d13c4x1a"
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
