@@ -1,6 +1,11 @@
 # Project Overview
 
 
+# Environment
+I am running godot and blender and for version control I am using git.  It is important that before
+running any git commands you close godot, otherwise you might have some issues with random file changes
+and things of that sort.
+
 # Project Structure
 res://Addons/
 res://Assets/
