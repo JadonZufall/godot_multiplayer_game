@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://caa3u7mmk83nb"]
+[gd_scene load_steps=2 format=3 uid="uid://dowj4p40qt51m"]
 
 [ext_resource type="PackedScene" uid="uid://dk4aae8tcsh88" path="res://Game/Props/prop_wall_frame/model_wall_frame.blend" id="1_vdiue"]
 
