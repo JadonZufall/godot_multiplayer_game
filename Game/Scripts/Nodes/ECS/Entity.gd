@@ -6,9 +6,9 @@ signal component_deleted(node: Component)
 signal component_renamed(node: Component)
 
 @onready var synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
-@onready var collider: CollisionShape3D = $CollisionShape3D
-@onready var model: Model = $Model
-@onready var agent: NavigationAgent3D = $NavigationAgent3D
+@onready var collider: CollisionShape3D = $collider
+@onready var model: Model = $model
+@onready var agent: NavigationAgent3D = $agent
 
 var components: Dictionary[String, Component] = {}
 

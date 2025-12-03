@@ -21,11 +21,11 @@ metadata/_custom_type_script = "uid://depk8r3yb8gr0"
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_ffi27")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+[node name="agent" type="NavigationAgent3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="collider" type="CollisionShape3D" parent="."]
 
-[node name="Model" type="Node3D" parent="."]
+[node name="model" type="Node3D" parent="."]
 script = ExtResource("2_a5ch7")
 metadata/_custom_type_script = "uid://cxvoji0fkyh1f"
 

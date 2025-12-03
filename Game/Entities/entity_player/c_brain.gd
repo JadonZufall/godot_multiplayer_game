@@ -5,8 +5,10 @@ extends Component
 
 func _ready() -> void:
 	super._ready()
-	call_deferred("entity.agent.target_reached.connect", _on_target_reached)
+	_connect.call_deferred()
 
+func _connect() -> void:
+	entity.agent.target_reached.connect(_on_target_reached)
 
 func _on_target_reached() -> void:
 	if not is_enabled:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://beps6ibnngka7"]
+[gd_scene load_steps=8 format=3 uid="uid://beps6ibnngka7"]
 
 [ext_resource type="PackedScene" uid="uid://dbidkar7xyh6d" path="res://Game/Scripts/Nodes/ECS/entity_template.tscn" id="1_b5dal"]
 [ext_resource type="Script" uid="uid://ts6vryfw7wlq" path="res://Game/Entities/entity_player/entity_player.gd" id="2_ox5tx"]
@@ -7,8 +7,6 @@
 [ext_resource type="Script" uid="uid://b2txufyn20uwu" path="res://Game/Entities/entity_player/c_gravity.gd" id="4_mm46h"]
 [ext_resource type="Script" uid="uid://dt8dcuspb7xbs" path="res://Game/Entities/entity_player/c_brain.gd" id="4_qil7c"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b5dal"]
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ox5tx"]
 
 [node name="entity_player" instance=ExtResource("1_b5dal")]
@@ -16,24 +14,22 @@ collision_layer = 513
 collision_mask = 513
 script = ExtResource("2_ox5tx")
 
-[node name="CollisionShape3D" parent="." index="2"]
-shape = SubResource("CapsuleShape3D_b5dal")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Model" index="0"]
+[node name="mesh" type="MeshInstance3D" parent="model" index="0"]
 mesh = SubResource("CapsuleMesh_ox5tx")
+skeleton = NodePath("../..")
 
-[node name="Input" type="Node" parent="." index="4"]
-script = ExtResource("3_i8cvu")
+[node name="Health" type="Node" parent="." index="4"]
+script = ExtResource("3_eobcx")
 metadata/_custom_type_script = "uid://ddjodn5ankma5"
 
-[node name="Brain" type="Node" parent="." index="5"]
-script = ExtResource("4_qil7c")
-metadata/_custom_type_script = "uid://ddjodn5ankma5"
-
-[node name="Gravity" type="Node" parent="." index="6"]
+[node name="Gravity" type="Node" parent="." index="5"]
 script = ExtResource("4_mm46h")
 metadata/_custom_type_script = "uid://ddjodn5ankma5"
 
-[node name="Health" type="Node" parent="." index="7"]
-script = ExtResource("3_eobcx")
+[node name="Brain" type="Node" parent="." index="6"]
+script = ExtResource("4_qil7c")
+metadata/_custom_type_script = "uid://ddjodn5ankma5"
+
+[node name="Input" type="Node" parent="." index="7"]
+script = ExtResource("3_i8cvu")
 metadata/_custom_type_script = "uid://ddjodn5ankma5"
