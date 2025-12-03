@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://ba28txai7j70m"]
+[gd_scene load_steps=2 format=3 uid="uid://cqjt7deo0tv8n"]
 
 [ext_resource type="PackedScene" uid="uid://ctojmt3yr2pwf" path="res://Game/Props/prop_wall_frame/model_fracture_wall_frame.blend" id="1_hbk42"]
 

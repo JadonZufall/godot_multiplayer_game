@@ -1,8 +1,8 @@
-[gd_scene load_steps=21 format=4 uid="uid://b475q3nlehmpu"]
+[gd_scene load_steps=21 format=4 uid="uid://b2shrx32adscl"]
 
 [ext_resource type="PackedScene" uid="uid://ct7a5npp7q61j" path="res://Game/Scripts/Nodes/prop_template.tscn" id="1_d4tgr"]
 [ext_resource type="Script" uid="uid://cxvoji0fkyh1f" path="res://Game/Scripts/Nodes/ECS/Model.gd" id="2_ahuxg"]
-[ext_resource type="Material" uid="uid://bu1o4d13c4x1a" path="res://Game/Props/prop_wall_frame/wood_material.tres" id="3_eflcg"]
+[ext_resource type="Material" path="res://Game/Props/prop_wall_frame/wood_material.tres" id="3_eflcg"]
 [ext_resource type="Texture2D" uid="uid://be0pucrjyqjo3" path="res://Game/Props/prop_wall_frame/textures/Material.004 Roughness.001.png" id="4_d3amw"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5avyl"]

@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://5voyev4wrurl" path="res://Game/Materials/Shaders/material_debug_grid/material_debug_grid.tres" id="3_xgy1p"]
 [ext_resource type="PackedScene" uid="uid://beps6ibnngka7" path="res://Game/Entities/entity_player/entity_player.tscn" id="4_vlcur"]
 [ext_resource type="PackedScene" uid="uid://i4uj0l3v0go8" path="res://Libraries/Utils/util_debug_camera.tscn" id="5_wncuo"]
-[ext_resource type="PackedScene" uid="uid://djbroxedlop03" path="res://Game/Props/prop_wall_frame/prop_wall_frame.tscn" id="6_gsxtw"]
+[ext_resource type="PackedScene" uid="uid://cnycv0cykpwt1" path="res://Game/Props/prop_wall_frame/prop_wall_frame.tscn" id="6_gsxtw"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wncuo"]
 vertices = PackedVector3Array(-9.5, 0.5, -7.25, -8, 0.5, -7.25, -7.75, 0.5, -8.25, -9.5, 0.5, -9.5, -1, 0.5, -8.25, -0.750005, 0.5, -7, 4, 0.5, -6.5, 4.75, 0.5, -6.5, 9.5, 0.5, -9.5, -1.25, 0.5, -6.75, 2.5, 0.5, -4.75, 6.5, 0.5, -4.25, 9.5, 0.5, -4.25, -7.75, 0.5, -6.75, 2.5, 0.5, -3.75, 5, 0.5, -2.5, 9.5, 0.5, 9.5, 3.75, 0.5, -2.5, -9.5, 0.5, 9.5, 3.5, 2.5, -4.5, 4.25, 2.5, -3.5, 5.25, 2.5, -4.25, 4.5, 2.5, -5.25, 4, 0.5, -4.5, 4.25, 0.5, -4, 4.75, 0.5, -4.25, 4.5, 0.5, -4.75)
