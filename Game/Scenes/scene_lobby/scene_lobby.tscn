@@ -1,35 +1,66 @@
-[gd_scene load_steps=7 format=3 uid="uid://1jksajf357bh"]
+[gd_scene load_steps=10 format=3 uid="uid://1jksajf357bh"]
 
-[ext_resource type="Script" uid="uid://d1fob3mhw14gh" path="res://Game/Scenes/scene_lobby/multiplayer_spawner.gd" id="1_3rl8h"]
+[ext_resource type="Script" uid="uid://cxvoji0fkyh1f" path="res://Game/Scripts/Nodes/ECS/Model.gd" id="3_wncuo"]
 [ext_resource type="Material" uid="uid://5voyev4wrurl" path="res://Game/Materials/Shaders/material_debug_grid/material_debug_grid.tres" id="3_xgy1p"]
-[ext_resource type="PackedScene" uid="uid://dxefxdp2heyf1" path="res://Game/Blueprints/bp_camera/bp_camera.tscn" id="4_mqeuo"]
+[ext_resource type="PackedScene" uid="uid://beps6ibnngka7" path="res://Game/Entities/entity_player/entity_player.tscn" id="4_vlcur"]
+[ext_resource type="PackedScene" uid="uid://djbroxedlop03" path="res://Game/Props/prop_wall_frame/prop_wall_frame.tscn" id="6_gsxtw"]
 
-[sub_resource type="Resource" id="Resource_mcrve"]
-metadata/__load_path__ = "res://Game/Blueprints/bp_entity/bp_entity.tscn"
+[sub_resource type="NavigationMesh" id="NavigationMesh_wncuo"]
+vertices = PackedVector3Array(9.5, 0.5, -4.25, 6.5, 0.5, -4.25, 5, 0.5, -2.5, 9.5, 0.5, 9.5, 2.5, 0.5, -5, 4.25, 0.5, -6.5, 4.25, 0.5, -9.5, -9.5, 0.5, -9.5, 3.75, 0.5, -2.5, 2.5, 0.5, -3.75, -9.5, 0.5, 9.5, 4.75, 0.5, -6.5, 9.5, 0.5, -9.5, 3.5, 2.5, -4.5, 4.25, 2.5, -3.5, 5.25, 2.5, -4.25, 4.5, 2.5, -5.25, 4, 0.5, -4.5, 4.25, 0.5, -4, 4.75, 0.5, -4.25, 4.5, 0.5, -4.75)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(8, 2, 3), PackedInt32Array(8, 3, 9), PackedInt32Array(9, 3, 10), PackedInt32Array(9, 10, 7), PackedInt32Array(7, 4, 9), PackedInt32Array(11, 5, 6), PackedInt32Array(1, 11, 0), PackedInt32Array(0, 11, 6), PackedInt32Array(0, 6, 12), PackedInt32Array(16, 15, 13), PackedInt32Array(13, 15, 14), PackedInt32Array(20, 19, 17), PackedInt32Array(17, 19, 18)]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mqeuo"]
 size = Vector2(20, 20)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_lgycb"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_vlcur"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wncuo"]
+size = Vector3(2, 2, 2)
+
 [node name="scene_lobby" type="Node3D"]
 
-[node name="player_spawner" type="MultiplayerSpawner" parent="."]
-spawn_path = NodePath("..")
-script = ExtResource("1_3rl8h")
-network_player = SubResource("Resource_mcrve")
+[node name="level_data" type="Node3D" parent="."]
 
-[node name="floor" type="StaticBody3D" parent="."]
+[node name="region_0" type="NavigationRegion3D" parent="level_data"]
+navigation_mesh = SubResource("NavigationMesh_wncuo")
 
-[node name="model" type="MeshInstance3D" parent="floor"]
+[node name="floor" type="StaticBody3D" parent="level_data/region_0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76837e-06, 0, 4.76837e-06)
+
+[node name="model" type="Node3D" parent="level_data/region_0/floor"]
+script = ExtResource("3_wncuo")
+metadata/_custom_type_script = "uid://cxvoji0fkyh1f"
+
+[node name="mesh" type="MeshInstance3D" parent="level_data/region_0/floor/model"]
 material_override = ExtResource("3_xgy1p")
 mesh = SubResource("PlaneMesh_mqeuo")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../../../..")
 
-[node name="collider" type="CollisionShape3D" parent="floor"]
+[node name="collider" type="CollisionShape3D" parent="level_data/region_0/floor"]
 shape = SubResource("WorldBoundaryShape3D_lgycb")
 
-[node name="bp_camera" parent="." instance=ExtResource("4_mqeuo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+[node name="crate" type="StaticBody3D" parent="level_data/region_0"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 4.41421, 1, -4.41421)
 
-[node name="level_data" type="Node3D" parent="."]
+[node name="model" type="Node3D" parent="level_data/region_0/crate"]
+script = ExtResource("3_wncuo")
+metadata/_custom_type_script = "uid://cxvoji0fkyh1f"
+
+[node name="mesh" type="MeshInstance3D" parent="level_data/region_0/crate/model"]
+mesh = SubResource("BoxMesh_vlcur")
+skeleton = NodePath("../..")
+
+[node name="collider" type="CollisionShape3D" parent="level_data/region_0/crate"]
+shape = SubResource("BoxShape3D_wncuo")
+
+[node name="entity_player" parent="." instance=ExtResource("4_vlcur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.147988, 1, 0.024456)
+
+[node name="prop_wall_frame" parent="." instance=ExtResource("6_gsxtw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.37448, 0.0227607, -3.31206)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3.00474)

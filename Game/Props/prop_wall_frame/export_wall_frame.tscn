@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://caa3u7mmk83nb"]
+
+[ext_resource type="PackedScene" uid="uid://dk4aae8tcsh88" path="res://Game/Props/prop_wall_frame/model_wall_frame.blend" id="1_vdiue"]
+
+[node name="model" instance=ExtResource("1_vdiue")]
+
+[node name="frame" parent="." index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="frame_001" parent="." index="1"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.952, 1.592, 0)
+
+[node name="frame_002" parent="." index="2"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.25, 1.592, 0)
+
+[node name="frame_003" parent="." index="3"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1.5, 1.592, 0)
+
+[node name="frame_004" parent="." index="4"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.75, 1.592, 0)
+
+[node name="frame_005" parent="." index="5"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.592, 0)
+
+[node name="frame_006" parent="." index="6"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.748, 1.592, 0)
+
+[node name="frame_007" parent="." index="7"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.5, 1.592, 0)
+
+[node name="frame_008" parent="." index="8"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2.25, 1.592, 0)
+
+[node name="frame_009" parent="." index="9"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2.954, 1.592, 0)
+
+[node name="frame_bottom" parent="." index="10"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.000143952, 0.0227629, 0)
+
+[node name="frame_top" parent="." index="11"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 3.136, 0)

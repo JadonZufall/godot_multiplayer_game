@@ -8,6 +8,7 @@ signal component_renamed(node: Component)
 @onready var synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
 @onready var collider: CollisionShape3D = $CollisionShape3D
 @onready var model: Model = $Model
+@onready var agent: NavigationAgent3D = $NavigationAgent3D
 
 var components: Dictionary[String, Component] = {}
 
@@ -54,6 +55,7 @@ func _physics_process(delta: float) -> void:
 		component._physics_update(delta)
 		if is_multiplayer_authority():
 			component._physics_update_authority(delta)
+	move_and_slide()
 
 func _on_child_entered_tree(child: Node) -> void:
 	if child is Component:
