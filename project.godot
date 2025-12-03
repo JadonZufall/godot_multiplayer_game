@@ -77,6 +77,10 @@ debug_toggle_show_layer={
 3d_physics/layer_1="World"
 3d_physics/layer_10="Players"
 
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
 [rendering]
 
 anti_aliasing/quality/msaa_2d=3
