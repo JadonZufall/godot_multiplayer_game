@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://1jksajf357bh"]
+[gd_scene load_steps=10 format=3 uid="uid://1jksajf357bh"]
 
 [ext_resource type="Script" uid="uid://cxvoji0fkyh1f" path="res://Game/Scripts/Nodes/ECS/Model.gd" id="3_wncuo"]
 [ext_resource type="Material" uid="uid://5voyev4wrurl" path="res://Game/Materials/Shaders/material_debug_grid/material_debug_grid.tres" id="3_xgy1p"]
 [ext_resource type="PackedScene" uid="uid://beps6ibnngka7" path="res://Game/Entities/entity_player/entity_player.tscn" id="4_vlcur"]
-[ext_resource type="PackedScene" uid="uid://i4uj0l3v0go8" path="res://Libraries/Utils/util_debug_camera.tscn" id="5_wncuo"]
 [ext_resource type="PackedScene" uid="uid://djbroxedlop03" path="res://Game/Props/prop_wall_frame/prop_wall_frame.tscn" id="6_gsxtw"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wncuo"]
@@ -61,6 +60,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.37448, 0.0227607, -7.41671
 
 [node name="entity_player" parent="." instance=ExtResource("4_vlcur")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.147988, 1, 0.024456)
-
-[node name="util_debug_camera" parent="." instance=ExtResource("5_wncuo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.60484, 1.83048, 0)
