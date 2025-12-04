@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ct7a5npp7q61j"]
-
-[ext_resource type="Script" uid="uid://bnt4qmnwlylci" path="res://Game/Scripts/Nodes/Prop/Prop.gd" id="1_1gbwc"]
-
-[node name="prop_template" type="Node3D"]
-script = ExtResource("1_1gbwc")
-metadata/_custom_type_script = "uid://bnt4qmnwlylci"
