@@ -39,7 +39,7 @@ func _cl_session_join() -> void: _session_type = SESSION_TYPE_CLIENT
 func _cl_session_exit() -> void: _session_type = SESSION_TYPE_NONE
 
 func cout(message: String) -> void:
-	print("[%s] %s" % message)
+	print("[%s] %s" % [_session_type, message])
 
 func sv_open() -> void:
 	# Being hosting as the server.
