@@ -148,6 +148,12 @@ func sv_get_player_data(pid: int) -> Dictionary:
 func network_set_username(username: String) -> void:
 	sv_set_username.rpc_id(1, username)
 
+func validate_client_data_username(username: String) -> bool:
+	if username.length() < MIN_USERNAME_LENGTH or username.length() > MAX_USERNAME_LENGTH:
+		return false
+	
+	return true
+
 # Only the server can execute this remotely
 @rpc("any_peer", "call_remote", "reliable", 0)
 func sv_set_username(username: String) -> void:
@@ -157,8 +163,8 @@ func sv_set_username(username: String) -> void:
 	var pid: int = multiplayer.get_remote_sender_id()
 	
 	# TODO: Validate username
-	if username.length() < MIN_USERNAME_LENGTH or username.length() > MAX_USERNAME_LENGTH:
-		pass
+	if validate_client_data_username(username):
+		return
 	
 	# Update player data
 	var player_data: Dictionary = _session_data[pid]
