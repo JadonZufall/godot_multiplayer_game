@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://bhvaeq8mefbls"]
+[gd_scene load_steps=3 format=3 uid="uid://bhvaeq8mefbls"]
+
+[ext_resource type="Script" uid="uid://csaixbf0ur0is" path="res://Game/Scenes/scene_server/tree_data.gd" id="1_fvk3o"]
+[ext_resource type="PackedScene" uid="uid://dp3bx41cm5hqa" path="res://Game/Scenes/scene_server/tree_item.tscn" id="2_a02pd"]
 
 [node name="scene_server" type="Control"]
 layout_mode = 3
@@ -8,8 +11,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00063, 1.00495)
+drag_area_highlight_in_editor = true
+
+[node name="Label" type="Label" parent="HSplitContainer"]
+layout_mode = 2
 text = "Server"
+
+[node name="TabContainer" type="TabContainer" parent="HSplitContainer"]
+layout_mode = 2
+current_tab = 0
+
+[node name="Tree" type="VBoxContainer" parent="HSplitContainer/TabContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+script = ExtResource("1_fvk3o")
+tree_item = ExtResource("2_a02pd")
+metadata/_tab_index = 0
