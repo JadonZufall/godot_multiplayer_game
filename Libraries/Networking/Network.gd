@@ -66,6 +66,8 @@ func sv_quit() -> void:
 		push_error("No permission to call sv_quit from the client.")
 		return
 	multiplayer.multiplayer_peer.close.call_deferred()
+	multiplayer.peer_connected.disconnect(_sv_on_peer_connected)
+	multiplayer.peer_disconnected.disconnect(_sv_on_peer_disconnected)
 	multiplayer.multiplayer_peer = null
 	sv_exit.emit()
 	cout("Closed.")
@@ -83,6 +85,8 @@ func cl_open(ip_address: String) -> void:
 			push_error("Failed to join server UNKNOWN")
 	
 	multiplayer.multiplayer_peer = peer
+	multiplayer.peer_connected.connect(_cl_on_peer_connected)
+	multiplayer.peer_disconnected.connect(_cl_on_peer_disconnected)
 	cl_join.emit()
 	cout("Connected to server.")
 
@@ -91,6 +95,8 @@ func cl_quit() -> void:
 		push_error("No permission to call cl_quit from the server.")
 		return
 	multiplayer.multiplayer_peer.close.call_deferred()
+	multiplayer.peer_connected.disconnect(_cl_on_peer_connected)
+	multiplayer.peer_disconnected.disconnect(_cl_on_peer_disconnected)
 	multiplayer.multiplayer_peer = null
 	cl_exit.emit()
 	cout("Closed.")
@@ -107,6 +113,7 @@ func _cl_on_peer_connected(pid: int) -> void:
 	if multiplayer.is_server():
 		push_error("No permission to call _cl_on_peer_connected from the server.")
 		return
+	cl_peer_connected.emit(pid)
 
 func _sv_on_peer_disconnected(pid: int) -> void:
 	if not multiplayer.is_server():
@@ -119,6 +126,7 @@ func _cl_on_peer_disconnected(pid: int) -> void:
 	if multiplayer.is_server():
 		push_error("No permission to call _cl_on_peer_disconnected from the server.")
 		return
+	cl_peer_disconnected.emit(pid)
 
 # REMOTE PROCEDURE CALL
 @rpc("any_peer", "call_remote", "reliable", 0)
