@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://4p74vn0eyxiw"]
+[gd_scene load_steps=3 format=3 uid="uid://4p74vn0eyxiw"]
 
 [ext_resource type="Script" uid="uid://bq133lj1kgeac" path="res://Game/Scenes/scene_debugger_client/connection_label.gd" id="1_2lhdh"]
+[ext_resource type="Script" uid="uid://b3md0i6bhb7mn" path="res://Game/Scenes/scene_debugger_client/username_entry.gd" id="2_vypds"]
 
 [node name="scene_client" type="Control"]
 layout_mode = 3
@@ -10,9 +11,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="connection_label" type="Label" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 23.0
+offset_bottom = 40.0
+
+[node name="connection_label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 text = "No Connection"
 script = ExtResource("1_2lhdh")
+
+[node name="username_entry" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+script = ExtResource("2_vypds")
+
+[node name="username_input" type="LineEdit" parent="VBoxContainer/username_entry"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "username"
+
+[node name="username_submit" type="Button" parent="VBoxContainer/username_entry"]
+layout_mode = 2
+text = "Submit"
+
+[connection signal="text_submitted" from="VBoxContainer/username_entry/username_input" to="VBoxContainer/username_entry" method="_on_username_input_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/username_entry/username_submit" to="VBoxContainer/username_entry" method="_on_username_submit_pressed"]
