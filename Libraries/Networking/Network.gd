@@ -2,6 +2,8 @@ extends Node
 
 signal sv_host()
 signal sv_exit()
+signal sv_peer_connected(pid: int)
+signal sv_peer_disconnected(pid: int)
 
 signal cl_join()
 signal cl_exit()
@@ -78,6 +80,7 @@ func _sv_on_peer_connected(pid: int) -> void:
 		push_error("No permission to call _sv_on_peer_connected from the client.")
 		return
 	sv_new_player_data(pid)
+	sv_peer_connected.emit(pid)
 
 func _cl_on_peer_connected(pid: int) -> void:
 	if multiplayer.is_server():
@@ -89,6 +92,7 @@ func _sv_on_peer_disconnected(pid: int) -> void:
 		push_error("No permission to call _sv_on_peer_disconnected from the client.")
 		return
 	sv_del_player_data(pid)
+	sv_peer_disconnected.emit(pid)
 
 func _cl_on_peer_disconnected(pid: int) -> void:
 	if multiplayer.is_server():
