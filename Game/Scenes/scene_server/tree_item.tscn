@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://dp3bx41cm5hqa"]
+
+[ext_resource type="Script" uid="uid://di7je0n8rjdn7" path="res://Game/Scenes/scene_server/tree_item.gd" id="1_yldnx"]
+[ext_resource type="Texture2D" uid="uid://dsswbontg5jjc" path="res://Game/Scenes/scene_server/icons/GuiArrowUp.svg" id="2_fxlnw"]
+[ext_resource type="Texture2D" uid="uid://6gl8ojieokre" path="res://Editor/Icons/NodeDisabled.svg" id="2_u44uq"]
+[ext_resource type="Texture2D" uid="uid://b6uk8vcxlwq81" path="res://Game/Scenes/scene_server/icons/GuiDropdown.svg" id="3_nbgso"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxlnw"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+
+[node name="tree_item" type="VBoxContainer"]
+theme_override_constants/separation = 0
+script = ExtResource("1_yldnx")
+
+[node name="item_content" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fxlnw")
+
+[node name="content_margin" type="MarginContainer" parent="item_content"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+
+[node name="item_description" type="HBoxContainer" parent="item_content/content_margin"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="item_icon" type="TextureRect" parent="item_content/content_margin/item_description"]
+layout_mode = 2
+texture = ExtResource("2_u44uq")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="item_name" type="Label" parent="item_content/content_margin/item_description"]
+layout_mode = 2
+text = "{item_name}"
+
+[node name="expand_btn" type="CheckButton" parent="item_content"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_icons/checked = ExtResource("3_nbgso")
+theme_override_icons/unchecked = ExtResource("2_fxlnw")
+
+[node name="item_children_margin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+
+[node name="item_children" type="VBoxContainer" parent="item_children_margin"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[connection signal="toggled" from="item_content/expand_btn" to="." method="_on_expand_btn_toggled"]
+[connection signal="child_entered_tree" from="item_children_margin/item_children" to="." method="_on_item_children_child_entered_tree"]
+[connection signal="child_exiting_tree" from="item_children_margin/item_children" to="." method="_on_item_children_child_exiting_tree"]

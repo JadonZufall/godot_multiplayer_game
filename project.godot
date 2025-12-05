@@ -13,6 +13,9 @@ config_version=5
 config/name="Multiplayer"
 run/main_scene="uid://cnq8hw8ju1peb"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 
 [autoload]
 
@@ -25,7 +28,7 @@ window/size/viewport_height=720
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/csv_editor/plugin.cfg")
+enabled=PackedStringArray("res://addons/csv_editor/plugin.cfg", "res://addons/terrain_generation_tool/plugin.cfg")
 
 [input]
 

@@ -1,0 +1,297 @@
+[gd_scene load_steps=16 format=3 uid="uid://d3aq4x22dthew"]
+
+[ext_resource type="Texture2D" uid="uid://dv42x88vljcsg" path="res://Game/Scenes/scene_menu/icons/Add.svg" id="1_gkfpk"]
+[ext_resource type="Texture2D" uid="uid://6n7w2bi2yd4k" path="res://Game/Scenes/scene_menu/icons/Progress1.svg" id="1_jq7mu"]
+[ext_resource type="Texture2D" uid="uid://dv7rpql1lvlyh" path="res://Game/Scenes/scene_menu/icons/Play.svg" id="2_5avmj"]
+[ext_resource type="Texture2D" uid="uid://bhrysjh6bx0n0" path="res://Game/Scenes/scene_menu/icons/Close.svg" id="3_c245h"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gkfpk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e1giq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36rs4"]
+corner_radius_top_left = 99
+corner_radius_top_right = 99
+corner_radius_bottom_right = 99
+corner_radius_bottom_left = 99
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jq7mu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fumot"]
+bg_color = Color(0.137255, 0.137255, 0.137255, 0.803922)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3e4c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2kput"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgse6"]
+bg_color = Color(0.137255, 0.137255, 0.137255, 0.803922)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wo5yx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chcny"]
+bg_color = Color(0.137255, 0.137255, 0.137255, 0.803922)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p6yjy"]
+
+[node name="scene_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.937245, 0, -0.34867, 0, 1, 0, 0.34867, 0, 0.937245, 0, 0, -2)
+mesh = SubResource("BoxMesh_gkfpk")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "HUB"
+
+[node name="Button2" type="Button" parent="MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "LOADOUT"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer6" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_e1giq")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer6"]
+clip_children = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_36rs4")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer6/PanelContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_jq7mu")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer6/PanelContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fumot")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer6/PanelContainer/TextureRect/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("1_jq7mu")
+stretch_mode = 3
+
+[node name="PanelContainer8" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_x3e4c")
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer8"]
+clip_children = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_36rs4")
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer8/PanelContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_jq7mu")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer8/PanelContainer2/TextureRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fumot")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer8/PanelContainer2/TextureRect2/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("1_jq7mu")
+stretch_mode = 3
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer8"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("3_c245h")
+
+[node name="PanelContainer9" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2kput")
+
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer9"]
+clip_children = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_36rs4")
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer9/PanelContainer3"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_jq7mu")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer9/PanelContainer3/TextureRect3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wgse6")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer9/PanelContainer3/TextureRect3/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("1_jq7mu")
+stretch_mode = 3
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer9"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("3_c245h")
+
+[node name="PanelContainer10" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_wo5yx")
+
+[node name="PanelContainer4" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer10"]
+clip_children = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_36rs4")
+
+[node name="TextureRect4" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer10/PanelContainer4"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_jq7mu")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer10/PanelContainer4/TextureRect4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_chcny")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer10/PanelContainer4/TextureRect4/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("1_jq7mu")
+stretch_mode = 3
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer10"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("3_c245h")
+
+[node name="PanelContainer7" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_p6yjy")
+
+[node name="PanelContainer5" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer7"]
+clip_children = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_36rs4")
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer7/PanelContainer5"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture_normal = ExtResource("1_gkfpk")
+stretch_mode = 0
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fill Squad"
+
+[node name="Button" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Play"
+icon = ExtResource("2_5avmj")
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Crossplay: On"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="Button2" type="Button" parent="MarginContainer/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Settings"

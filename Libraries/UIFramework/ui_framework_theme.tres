@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=21 format=3 uid="uid://dpu2uk3xm64jc"]
+[gd_resource type="Theme" load_steps=25 format=3 uid="uid://dpu2uk3xm64jc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wffrv"]
 content_margin_left = 4.0
@@ -282,6 +282,19 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6rl6s"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bejox"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3e76q"]
+bg_color = Color(0.202844, 0.590558, 1, 1)
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvvq6"]
+border_color = Color(0, 0, 0, 1)
+
 [resource]
 Button/styles/disabled = SubResource("StyleBoxFlat_wffrv")
 Button/styles/focus = SubResource("StyleBoxFlat_im4ct")
@@ -308,5 +321,18 @@ ButtonTerminate/styles/focus = SubResource("StyleBoxFlat_rii40")
 ButtonTerminate/styles/hover = SubResource("StyleBoxFlat_r7olu")
 ButtonTerminate/styles/normal = SubResource("StyleBoxFlat_jxqnu")
 ButtonTerminate/styles/pressed = SubResource("StyleBoxFlat_80ut7")
+HBoxContainer/constants/separation = 0
 LabelWarn/base_type = &"Label"
 LabelWarn/colors/font_color = Color(1, 0.260006, 0.200835, 1)
+VBoxContainer/constants/separation = 0
+window_document/base_type = &"PanelContainer"
+window_document/styles/panel = SubResource("StyleBoxFlat_6rl6s")
+window_document_background/base_type = &"PanelContainer"
+window_document_background/styles/panel = SubResource("StyleBoxFlat_bejox")
+window_header/base_type = &"PanelContainer"
+window_header/styles/panel = SubResource("StyleBoxFlat_3e76q")
+window_header_button/base_type = &"Button"
+window_header_button/styles/normal = SubResource("StyleBoxFlat_bvvq6")
+window_header_close/base_type = &"window_header_button"
+window_header_maximize/base_type = &"window_header_button"
+window_header_minimize/base_type = &"window_header_button"
