@@ -4,9 +4,11 @@ signal sv_host()
 signal sv_exit()
 signal sv_peer_connected(pid: int)
 signal sv_peer_disconnected(pid: int)
+signal sv_peer_set_username(pid: int, username: String)
 
 signal cl_join()
 signal cl_exit()
+signal cl_peer_set_username(pid: int, username: String)
 
 signal user_connected(pid: int)
 signal user_disconnected(pid: int)
@@ -167,7 +169,14 @@ func sv_set_username(username: String) -> void:
 	
 	# Call function on all peers
 	network_relay_set_username.rpc(pid, username)
+	sv_peer_set_username.emit(pid, username)
 
 @rpc("any_peer", "call_remote", "reliable", 0)
-func network_relay_set_username() -> void:
-	pass
+func network_relay_set_username(pid: int, username: String) -> void:
+	var player_data: Dictionary = _session_data.get(pid)
+	if not player_data:
+		player_data = {}
+		_session_data.set(pid, player_data)
+	player_data.set("username", username)
+	cl_peer_set_username.emit(pid, username)
+	
