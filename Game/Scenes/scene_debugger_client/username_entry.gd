@@ -5,6 +5,9 @@ extends HBoxContainer
 
 func _assign_username() -> void:
 	print("Assigning username")
+	var username: String = username_input.text.to_lower()
+	if not Network.validate_client_data_username(username):
+		return
 	Network.network_set_username(username_input.text)
 	username_input.editable = false
 	username_submit.disabled = true
