@@ -117,9 +117,8 @@ func _sv_on_peer_disconnected(pid: int) -> void:
 
 func _cl_on_peer_disconnected(pid: int) -> void:
 	if multiplayer.is_server():
-		if multiplayer.is_server():
-			push_error("No permission to call _cl_on_peer_disconnected from the server.")
-			return
+		push_error("No permission to call _cl_on_peer_disconnected from the server.")
+		return
 
 # REMOTE PROCEDURE CALL
 @rpc("any_peer", "call_remote", "reliable", 0)
