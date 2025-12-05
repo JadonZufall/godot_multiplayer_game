@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bhvaeq8mefbls"]
 
-[ext_resource type="Script" uid="uid://csaixbf0ur0is" path="res://Game/Scenes/scene_server/tree_data.gd" id="1_fvk3o"]
-[ext_resource type="PackedScene" uid="uid://dp3bx41cm5hqa" path="res://Game/Scenes/scene_server/tree_item.tscn" id="2_a02pd"]
+[ext_resource type="Script" uid="uid://csaixbf0ur0is" path="res://Game/Scenes/scene_debugger_server/tree_data.gd" id="1_fvk3o"]
+[ext_resource type="PackedScene" uid="uid://dp3bx41cm5hqa" path="res://Game/Scenes/scene_debugger_server/tree_item.tscn" id="2_a02pd"]
 
 [node name="scene_server" type="Control"]
 layout_mode = 3

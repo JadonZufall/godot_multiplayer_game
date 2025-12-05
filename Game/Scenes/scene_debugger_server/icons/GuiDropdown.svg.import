@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6uk8vcxlwq81"
-path="res://.godot/imported/GuiDropdown.svg-6b7366e900f366436aeca080662e6a18.ctex"
+path="res://.godot/imported/GuiDropdown.svg-f43ed1f4288040e4fc264e77afaabe69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Scenes/scene_server/icons/GuiDropdown.svg"
-dest_files=["res://.godot/imported/GuiDropdown.svg-6b7366e900f366436aeca080662e6a18.ctex"]
+source_file="res://Game/Scenes/scene_debugger_server/icons/GuiDropdown.svg"
+dest_files=["res://.godot/imported/GuiDropdown.svg-f43ed1f4288040e4fc264e77afaabe69.ctex"]
 
 [params]
 

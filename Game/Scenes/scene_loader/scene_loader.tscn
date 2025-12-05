@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cnq8hw8ju1peb"]
+[gd_scene load_steps=9 format=3 uid="uid://cnq8hw8ju1peb"]
 
 [ext_resource type="Script" uid="uid://b86qwa5ilqq4e" path="res://Game/Scenes/scene_loader/scripts/scene_loader.gd" id="1_v0a6k"]
-[ext_resource type="PackedScene" uid="uid://bhvaeq8mefbls" path="res://Game/Scenes/scene_server/scene_server.tscn" id="2_ffi27"]
+[ext_resource type="PackedScene" uid="uid://bhvaeq8mefbls" path="res://Game/Scenes/scene_debugger_server/scene_server.tscn" id="2_ffi27"]
+[ext_resource type="PackedScene" uid="uid://4p74vn0eyxiw" path="res://Game/Scenes/scene_debugger_client/scene_client.tscn" id="3_o3d5o"]
 [ext_resource type="PackedScene" uid="uid://1jksajf357bh" path="res://Game/Scenes/scene_lobby/scene_lobby.tscn" id="3_opks1"]
 [ext_resource type="Script" uid="uid://clqamxfpyg5tx" path="res://Game/Scenes/scene_loader/world_2d.gd" id="5_hre3c"]
 [ext_resource type="Script" uid="uid://dux1bal0bjydf" path="res://Game/Scenes/scene_loader/ui_loader.gd" id="6_isywg"]
@@ -12,6 +13,7 @@
 [node name="SceneLoader" type="Node"]
 script = ExtResource("1_v0a6k")
 server_debugger = ExtResource("2_ffi27")
+client_debugger = ExtResource("3_o3d5o")
 autoload_3d = Array[PackedScene]([ExtResource("3_opks1")])
 
 [node name="UI Loader" type="Control" parent="."]
