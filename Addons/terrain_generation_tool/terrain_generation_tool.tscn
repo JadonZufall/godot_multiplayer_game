@@ -619,7 +619,7 @@ stretch = true
 [node name="mesh_preview_viewport" type="SubViewport" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport"]
 own_world_3d = true
 handle_input_locally = false
-size = Vector2i(602, 545)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="camera" type="Camera3D" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport"]
