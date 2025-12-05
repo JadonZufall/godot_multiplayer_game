@@ -8,10 +8,11 @@ signal sv_peer_set_username(pid: int, username: String)
 
 signal cl_join()
 signal cl_exit()
+signal cl_peer_connected(pid: int)
+signal cl_peer_disconnected(pid: int)
 signal cl_peer_set_username(pid: int, username: String)
 
-signal user_connected(pid: int)
-signal user_disconnected(pid: int)
+
 
 const PORT: int = 25565                                                                             # Any number 0 - 65535 (Ports < 1024 are priviledged and require elevated permissions)
 const ADDR: String = "localhost"
@@ -170,7 +171,6 @@ func validate_client_data_username(username: String) -> bool:
 	if username.length() < MIN_USERNAME_LENGTH or username.length() > MAX_USERNAME_LENGTH:
 		cout("Invalid username length %d" % username.length())
 		return false
-	
 	return true
 
 # Only the server can execute this remotely
