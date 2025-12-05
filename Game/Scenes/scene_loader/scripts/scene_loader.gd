@@ -22,3 +22,9 @@ func _ready() -> void:
 	
 	for scene in autoload_ui:
 		ui_loader.add_child(scene.instantiate())
+	
+	for scene in autoload_2d:
+		world_2d.add_child(scene.instantiate())
+	
+	for scene in autoload_3d:
+		world_3d.add_child(scene.instantiate())

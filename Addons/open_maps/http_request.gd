@@ -15,4 +15,5 @@ func _on_request_completed(result: int, response_code: int, headers: PackedStrin
 
 
 func _on_request_pressed() -> void:
+	# bbox is the size and position of the bounds of the data that is being requested.
 	request("https://www.openstreetmap.org/api/0.6/map?bbox=-85.68926%2C42.73221%2C-85.62296%2C42.74186")
