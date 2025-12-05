@@ -6,6 +6,7 @@ extends Node
 
 
 @export var server_debugger: PackedScene
+@export var client_debugger: PackedScene
 @export var autoload_ui: Array[PackedScene] = []
 @export var autoload_2d: Array[PackedScene] = []
 @export var autoload_3d: Array[PackedScene] = []
@@ -16,9 +17,13 @@ func _ready() -> void:
 	
 	# If the flags contain -s run as server
 	if args.has("-s"):
-		ui_loader.add_child(server_debugger.instantiate())
+		if server_debugger:
+			ui_loader.add_child(server_debugger.instantiate())
 		Network.sv_open()
-	
+	else:
+		if client_debugger:
+			ui_loader.add_child(client_debugger.instantiate())
+		Network.cl_open(Network.ADDR)
 	
 	for scene in autoload_ui:
 		ui_loader.add_child(scene.instantiate())

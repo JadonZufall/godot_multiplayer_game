@@ -10,6 +10,7 @@ signal user_connected(pid: int)
 signal user_disconnected(pid: int)
 
 const PORT: int = 25565                                                                             # Any number 0 - 65535 (Ports < 1024 are priviledged and require elevated permissions)
+const ADDR: String = "localhost"
 const MAX_CLIENTS: int = 32                                                                         # Any number up to 4095 may be used
 
 const MIN_USERNAME_LENGTH: int = 3
