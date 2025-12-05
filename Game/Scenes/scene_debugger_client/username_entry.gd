@@ -4,6 +4,7 @@ extends HBoxContainer
 @onready var username_submit: Button = $username_submit
 
 func _assign_username() -> void:
+	print("Assigning username")
 	Network.network_set_username(username_input.text)
 	username_input.editable = false
 	username_submit.disabled = true

@@ -146,9 +146,6 @@ func sv_get_player_data(pid: int) -> Dictionary:
 	return _session_data[pid]
 
 func network_set_username(username: String) -> void:
-	if not multiplayer.is_server():
-		push_error("No permission to call cl_set_username from the server.")
-		return
 	sv_set_username.rpc_id(1, username)
 
 # Only the server can execute this remotely
@@ -173,10 +170,9 @@ func sv_set_username(username: String) -> void:
 
 @rpc("any_peer", "call_remote", "reliable", 0)
 func network_relay_set_username(pid: int, username: String) -> void:
-	var player_data: Dictionary = _session_data.get(pid)
-	if not player_data:
-		player_data = {}
-		_session_data.set(pid, player_data)
+	if not _session_data.has(pid):
+		_session_data.set(pid, {})
+	var player_data: Dictionary = _session_data[pid]
 	player_data.set("username", username)
 	cl_peer_set_username.emit(pid, username)
 	
