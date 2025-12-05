@@ -20,8 +20,26 @@ const MAX_CLIENTS: int = 32                                                     
 const MIN_USERNAME_LENGTH: int = 3
 const MAX_USERNAME_LENGTH: int = 20
 
+const SESSION_TYPE_NONE: String = "NO"
+const SESSION_TYPE_SERVER: String = "SV"
+const SESSION_TYPE_CLIENT: String = "CL"
 
+var _session_type: String = SESSION_TYPE_NONE
 var _session_data: Dictionary[int, Dictionary] = {}
+
+func _ready() -> void:
+	sv_host.connect(_sv_session_host)
+	sv_exit.connect(_sv_session_exit)
+	cl_join.connect(_cl_session_join)
+	cl_exit.connect(_cl_session_exit)
+
+func _sv_session_host() -> void: _session_type = SESSION_TYPE_SERVER
+func _sv_session_exit() -> void: _session_type = SESSION_TYPE_NONE
+func _cl_session_join() -> void: _session_type = SESSION_TYPE_CLIENT
+func _cl_session_exit() -> void: _session_type = SESSION_TYPE_NONE
+
+func cout(message: String) -> void:
+	print("[%s] %s" % message)
 
 func sv_open() -> void:
 	# Being hosting as the server.
@@ -39,8 +57,8 @@ func sv_open() -> void:
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(_sv_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_sv_on_peer_disconnected)
-	print("[SV] Hosting to port %d." % PORT)
 	sv_host.emit()
+	cout("Hosting to port %d." % PORT)
 
 func sv_quit() -> void:
 	if not multiplayer.is_server():
@@ -48,8 +66,8 @@ func sv_quit() -> void:
 		return
 	multiplayer.multiplayer_peer.close.call_deferred()
 	multiplayer.multiplayer_peer = null
-	print("[SV] Closed.")
 	sv_exit.emit()
+	cout("Closed.")
 
 func cl_open(ip_address: String) -> void:
 	# Join an exsisting server as the client.
@@ -64,8 +82,8 @@ func cl_open(ip_address: String) -> void:
 			push_error("Failed to join server UNKNOWN")
 	
 	multiplayer.multiplayer_peer = peer
-	print("[CL] Connected to server.")
 	cl_join.emit()
+	cout("Connected to server.")
 
 func cl_quit() -> void:
 	if multiplayer.is_server():
@@ -73,8 +91,8 @@ func cl_quit() -> void:
 		return
 	multiplayer.multiplayer_peer.close.call_deferred()
 	multiplayer.multiplayer_peer = null
-	print("[CL] Closed.")
 	cl_exit.emit()
+	cout("Closed.")
 
 # EVENT LISTENERS
 func _sv_on_peer_connected(pid: int) -> void:
@@ -164,6 +182,7 @@ func sv_set_username(username: String) -> void:
 	
 	# TODO: Validate username
 	if validate_client_data_username(username):
+		cout("Invalid username %s" % username)
 		return
 	
 	# Update player data
