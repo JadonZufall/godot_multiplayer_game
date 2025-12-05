@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://4p74vn0eyxiw"]
+[gd_scene load_steps=2 format=3 uid="uid://4p74vn0eyxiw"]
+
+[ext_resource type="Script" uid="uid://bq133lj1kgeac" path="res://Game/Scenes/scene_debugger_client/connection_label.gd" id="1_2lhdh"]
 
 [node name="scene_client" type="Control"]
 layout_mode = 3
@@ -7,3 +9,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="connection_label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "No Connection"
+script = ExtResource("1_2lhdh")
