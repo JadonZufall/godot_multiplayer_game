@@ -4,7 +4,7 @@ extends HBoxContainer
 @onready var username_submit: Button = $username_submit
 
 func _assign_username() -> void:
-	print("Assigning username")
+	Network.cout("Assigning username")
 	var username: String = username_input.text.to_lower()
 	if not Network.validate_client_data_username(username):
 		return
