@@ -168,6 +168,7 @@ func network_set_username(username: String) -> void:
 
 func validate_client_data_username(username: String) -> bool:
 	if username.length() < MIN_USERNAME_LENGTH or username.length() > MAX_USERNAME_LENGTH:
+		cout("Invalid username length %d" % username.length())
 		return false
 	
 	return true
@@ -181,7 +182,7 @@ func sv_set_username(username: String) -> void:
 	var pid: int = multiplayer.get_remote_sender_id()
 	
 	# TODO: Validate username
-	if validate_client_data_username(username):
+	if not validate_client_data_username(username):
 		cout("Invalid username %s" % username)
 		return
 	
