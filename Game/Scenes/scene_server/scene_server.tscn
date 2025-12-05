@@ -29,9 +29,12 @@ text = "Server"
 layout_mode = 2
 current_tab = 0
 
-[node name="Tree" type="VBoxContainer" parent="HSplitContainer/TabContainer"]
+[node name="Tree" type="ScrollContainer" parent="HSplitContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="tree_data" type="VBoxContainer" parent="HSplitContainer/TabContainer/Tree"]
 layout_mode = 2
 theme_override_constants/separation = 0
 script = ExtResource("1_fvk3o")
 tree_item = ExtResource("2_a02pd")
-metadata/_tab_index = 0
