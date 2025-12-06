@@ -20,10 +20,27 @@ func _ready() -> void:
 	Network.cl_join.connect(_cl_session_join)
 	Network.cl_exit.connect(_cl_session_exit)
 
-func _sv_session_host() -> void: _type = SESSION_TYPE_SERVER
-func _sv_session_exit() -> void: _type = SESSION_TYPE_NONE
-func _cl_session_join() -> void: _type = SESSION_TYPE_CLIENT
-func _cl_session_exit() -> void: _type = SESSION_TYPE_NONE
+@rpc("authority", "call_remote", "reliable")
+func _cl_propagate_pdata(pid: int, pdata: Dictionary) -> void:
+	Network.cout("Updated pdata for %d" % pid)
+	pdata_set(pid, pdata)
+
+func _sv_on_pdata_modified(pid: int, pdata: Dictionary) -> void:
+	_cl_propagate_pdata.rpc(pid, pdata)
+
+func _sv_session_host() -> void: 
+	pdata_modified.connect(_sv_on_pdata_modified)
+	_type = SESSION_TYPE_SERVER
+
+func _sv_session_exit() -> void: 
+	pdata_modified.disconnect(_sv_on_pdata_modified)
+	_type = SESSION_TYPE_NONE
+
+func _cl_session_join() -> void: 
+	_type = SESSION_TYPE_CLIENT
+
+func _cl_session_exit() -> void: 
+	_type = SESSION_TYPE_NONE
 
 func pdata_get(pid: int, default=null) -> Dictionary:
 	return _data.get(pid, default)
@@ -46,3 +63,12 @@ func pdata_update(pid: int, data: Dictionary) -> void:
 		return
 	_data[pid].assign(data)
 	pdata_modified.emit(pid, _data[pid])
+
+@rpc("authority", "call_remote", "reliable")
+func _cl_propagate_set_username_signal(pid: int, username: String) -> void:
+	Network.cl_peer_set_username.emit(pid, username)
+
+func sv_set_username(pid: int, username: String) -> void:
+	pdata_update(pid, {"username": username})
+	Network.sv_peer_set_username.emit(pid, username)
+	_cl_propagate_set_username_signal.rpc(pid, username)

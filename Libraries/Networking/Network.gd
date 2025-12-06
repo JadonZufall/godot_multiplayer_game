@@ -174,18 +174,4 @@ func sv_set_username(username: String) -> void:
 		return
 	
 	# Update player data
-	var player_data: Dictionary = Session._data[pid]
-	player_data.set("username", username)
-	
-	# Call function on all peers
-	network_relay_set_username.rpc(pid, username)
-	sv_peer_set_username.emit(pid, username)
-
-@rpc("any_peer", "call_remote", "reliable", 0)
-func network_relay_set_username(pid: int, username: String) -> void:
-	if not Session.pdata_has(pid):
-		Session._data.set(pid, {})
-	var player_data: Dictionary = Session.pdata_get(pid)
-	player_data.set("username", username)
-	cl_peer_set_username.emit(pid, username)
-	
+	Session.sv_set_username(pid, username)
