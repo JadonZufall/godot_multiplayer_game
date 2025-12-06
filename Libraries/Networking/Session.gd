@@ -6,6 +6,7 @@ const SESSION_TYPE_SERVER: String = "SV"
 const SESSION_TYPE_CLIENT: String = "CL"
 
 signal pdata_modified(pid: int, player_data: Dictionary[int, Dictionary])
+signal pdata_removed(pid: int)
 
 var _type: String = SESSION_TYPE_NONE
 var type: String : get = _get_session_type
@@ -29,12 +30,14 @@ func pdata_get(pid: int, default=null) -> Dictionary:
 
 func pdata_erase(pid: int) -> void:
 	_data.erase(pid)
+	pdata_removed.emit(pid)
 
 func pdata_has(pid: int) -> bool:
 	return _data.has(pid)
 
 func pdata_set(pid: int, data: Dictionary) -> void:
 	_data.set(pid, data)
+	pdata_modified.emit(pid, _data[pid])
 
 func pdata_update(pid: int, data: Dictionary) -> void:
 	if not _data.has(pid):
@@ -42,3 +45,4 @@ func pdata_update(pid: int, data: Dictionary) -> void:
 		push_error("No player data for %d" % pid)
 		return
 	_data[pid].assign(data)
+	pdata_modified.emit(pid, _data[pid])
