@@ -21,26 +21,8 @@ const MAX_CLIENTS: int = 32                                                     
 const MIN_USERNAME_LENGTH: int = 3
 const MAX_USERNAME_LENGTH: int = 20
 
-const SESSION_TYPE_NONE: String = "NO"
-const SESSION_TYPE_SERVER: String = "SV"
-const SESSION_TYPE_CLIENT: String = "CL"
-
-var _session_type: String = SESSION_TYPE_NONE
-var _session_data: Dictionary[int, Dictionary] = {}
-
-func _ready() -> void:
-	sv_host.connect(_sv_session_host)
-	sv_exit.connect(_sv_session_exit)
-	cl_join.connect(_cl_session_join)
-	cl_exit.connect(_cl_session_exit)
-
-func _sv_session_host() -> void: _session_type = SESSION_TYPE_SERVER
-func _sv_session_exit() -> void: _session_type = SESSION_TYPE_NONE
-func _cl_session_join() -> void: _session_type = SESSION_TYPE_CLIENT
-func _cl_session_exit() -> void: _session_type = SESSION_TYPE_NONE
-
 func cout(message: String) -> void:
-	print("[%s] %s" % [_session_type, message])
+	print("[%s] %s" % [Session._type, message])
 
 func sv_open() -> void:
 	# Being hosting as the server.
@@ -132,26 +114,26 @@ func _cl_on_peer_disconnected(pid: int) -> void:
 @rpc("any_peer", "call_remote", "reliable", 0)
 func network_free_player_data(pid: int) -> void:
 	# Clear the player data.
-	_session_data.erase(pid)
+	Session._data.erase(pid)
 
 @rpc("any_peer", "call_remote", "reliable", 0)
 func network_assign_player_data(pid: int, data: Dictionary) -> void:
 	# Override exsisting player data.
-	_session_data[pid] = data
+	Session._data[pid] = data
 
 @rpc("any_peer", "call_remote", "reliable", 0)
 func network_update_player_data(pid: int, data: Dictionary) -> void:
 	# Only update included values.
-	_session_data[pid].assign(data)
+	Session._data[pid].assign(data)
 
 func sv_new_player_data(pid: int) -> void:
 	if not multiplayer.is_server():
 		push_error("No permission to call sv_new_player_data from the client.")
 		return
-	if _session_data.has(pid):
+	if Session._data.has(pid):
 		push_error("new_player_data(pid=%d) duplicate playerIDs" % [pid])
 		return
-	_session_data.set(pid, { 
+	Session._data.set(pid, { 
 		"pid": pid,
 		"ip": -1,
 		"username": "",
@@ -161,15 +143,15 @@ func sv_del_player_data(pid: int) -> void:
 	if not multiplayer.is_server():
 		push_error("No permission to call sv_del_player_data from the client.")
 		return
-	_session_data.erase(pid)
+	Session._data.erase(pid)
 
 func sv_get_player_data(pid: int) -> Dictionary:
 	if not multiplayer.is_server():
 		push_error("No permission to call sv_get_player_data from the client.")
 		return {}
-	if not _session_data.has(pid):
+	if not Session._data.has(pid):
 		sv_new_player_data(pid)
-	return _session_data[pid]
+	return Session._data[pid]
 
 func network_set_username(username: String) -> void:
 	sv_set_username.rpc_id(1, username)
@@ -194,7 +176,7 @@ func sv_set_username(username: String) -> void:
 		return
 	
 	# Update player data
-	var player_data: Dictionary = _session_data[pid]
+	var player_data: Dictionary = Session._data[pid]
 	player_data.set("username", username)
 	
 	# Call function on all peers
@@ -203,9 +185,9 @@ func sv_set_username(username: String) -> void:
 
 @rpc("any_peer", "call_remote", "reliable", 0)
 func network_relay_set_username(pid: int, username: String) -> void:
-	if not _session_data.has(pid):
-		_session_data.set(pid, {})
-	var player_data: Dictionary = _session_data[pid]
+	if not Session._data.has(pid):
+		Session._data.set(pid, {})
+	var player_data: Dictionary = Session._data[pid]
 	player_data.set("username", username)
 	cl_peer_set_username.emit(pid, username)
 	

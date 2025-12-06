@@ -20,6 +20,7 @@ boot_splash/use_filter=false
 [autoload]
 
 Network="*res://Libraries/Networking/Network.gd"
+Session="*res://Libraries/Networking/Session.gd"
 
 [display]
 

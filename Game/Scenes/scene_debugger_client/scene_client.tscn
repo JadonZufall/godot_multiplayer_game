@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://4p74vn0eyxiw"]
+[gd_scene load_steps=4 format=3 uid="uid://4p74vn0eyxiw"]
 
 [ext_resource type="Script" uid="uid://bq133lj1kgeac" path="res://Game/Scenes/scene_debugger_client/connection_label.gd" id="1_2lhdh"]
 [ext_resource type="Script" uid="uid://b3md0i6bhb7mn" path="res://Game/Scenes/scene_debugger_client/username_entry.gd" id="2_vypds"]
+[ext_resource type="Script" uid="uid://gpv2h8ts5yf2" path="res://Game/Scenes/scene_debugger_client/peer_list.gd" id="3_l1daa"]
 
 [node name="scene_client" type="Control"]
 layout_mode = 3
@@ -34,6 +35,10 @@ placeholder_text = "username"
 [node name="username_submit" type="Button" parent="VBoxContainer/username_entry"]
 layout_mode = 2
 text = "Submit"
+
+[node name="peer_list" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+script = ExtResource("3_l1daa")
 
 [connection signal="text_submitted" from="VBoxContainer/username_entry/username_input" to="VBoxContainer/username_entry" method="_on_username_input_text_submitted"]
 [connection signal="pressed" from="VBoxContainer/username_entry/username_submit" to="VBoxContainer/username_entry" method="_on_username_submit_pressed"]
