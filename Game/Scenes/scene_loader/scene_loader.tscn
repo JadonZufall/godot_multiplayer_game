@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cnq8hw8ju1peb"]
+[gd_scene load_steps=11 format=3 uid="uid://cnq8hw8ju1peb"]
 
 [ext_resource type="Script" uid="uid://b86qwa5ilqq4e" path="res://Game/Scenes/scene_loader/scripts/scene_loader.gd" id="1_v0a6k"]
 [ext_resource type="PackedScene" uid="uid://bhvaeq8mefbls" path="res://Game/Scenes/scene_debugger_server/scene_server.tscn" id="2_ffi27"]
@@ -7,8 +7,11 @@
 [ext_resource type="Script" uid="uid://clqamxfpyg5tx" path="res://Game/Scenes/scene_loader/world_2d.gd" id="5_hre3c"]
 [ext_resource type="Script" uid="uid://dux1bal0bjydf" path="res://Game/Scenes/scene_loader/ui_loader.gd" id="6_isywg"]
 [ext_resource type="Script" uid="uid://bh7tdqaioucsj" path="res://Game/Scenes/scene_loader/world_3d.gd" id="7_isywg"]
+[ext_resource type="Script" uid="uid://b8yysbr8dhi53" path="res://Game/Scripts/Nodes/Audio/in_audio.gd" id="8_fdpe2"]
 
 [sub_resource type="Environment" id="Environment_ft5o6"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_fdpe2"]
 
 [node name="SceneLoader" type="Node"]
 script = ExtResource("1_v0a6k")
@@ -39,3 +42,9 @@ environment = SubResource("Environment_ft5o6")
 
 [node name="Lighting" type="DirectionalLight3D" parent="3D World/3D Environment"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
+
+[node name="IN Audio" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamMicrophone_fdpe2")
+bus = &"Record"
+playback_type = 1
+script = ExtResource("8_fdpe2")
