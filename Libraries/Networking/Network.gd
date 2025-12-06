@@ -21,8 +21,14 @@ const MAX_CLIENTS: int = 32                                                     
 const MIN_USERNAME_LENGTH: int = 3
 const MAX_USERNAME_LENGTH: int = 20
 
+var local_pid: int : get = _get_local_pid
+func _get_local_pid() -> int:
+	return multiplayer.get_unique_id()
+
+
 func cout(message: String) -> void:
 	print("[%s] %s" % [Session._type, message])
+
 
 func sv_open() -> void:
 	# Being hosting as the server.
