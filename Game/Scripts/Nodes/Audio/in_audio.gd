@@ -11,6 +11,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if (effect.can_get_buffer(512) && playback.can_push_buffer(512)):
-		VOIP.transmit_audio.rpc(Network.local_pid, effect.get_buffer(512))
+		VOIP.transmit_data.rpc(Network.local_pid, effect.get_buffer(512))
 	effect.clear_buffer()
 	
