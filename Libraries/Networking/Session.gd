@@ -69,6 +69,9 @@ func _cl_propagate_set_username_signal(pid: int, username: String) -> void:
 	Network.cl_peer_set_username.emit(pid, username)
 
 func sv_set_username(pid: int, username: String) -> void:
+	if not multiplayer.is_server():
+		push_error("No permission to call sv_set_username on client.")
+		return
 	pdata_update(pid, {"username": username})
 	Network.sv_peer_set_username.emit(pid, username)
 	_cl_propagate_set_username_signal.rpc(pid, username)
