@@ -2,7 +2,11 @@ extends Node
 
 # var playback : AudioStreamGeneratorPlayback
 
+var _streams: Dictionary[int, AudioStreamGeneratorPlayback] = {}
 const BUFFER_SIZE: int = 512
+
+func register_stream(pid: int, stream: AudioStreamGeneratorPlayback) -> void:
+	_streams[pid] = stream
 
 
 @rpc("any_peer", "call_remote", "reliable")
