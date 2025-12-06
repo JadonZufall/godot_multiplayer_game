@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhvaeq8mefbls"]
+
+[ext_resource type="Script" uid="uid://csaixbf0ur0is" path="res://Game/Scenes/scene_debugger_server/tree_data.gd" id="1_fvk3o"]
+[ext_resource type="Script" uid="uid://bmnfjiircugks" path="res://Game/Scenes/scene_debugger_server/peer_list.gd" id="1_ktr5s"]
+[ext_resource type="PackedScene" uid="uid://dp3bx41cm5hqa" path="res://Game/Scenes/scene_debugger_server/tree_item.tscn" id="2_a02pd"]
+
+[node name="scene_server" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00063, 1.00495)
+drag_area_highlight_in_editor = true
+
+[node name="PanelContainer" type="PanelContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="peer_list" type="VBoxContainer" parent="HSplitContainer/PanelContainer"]
+layout_mode = 2
+script = ExtResource("1_ktr5s")
+
+[node name="TabContainer" type="TabContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+
+[node name="Tree" type="ScrollContainer" parent="HSplitContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="tree_data" type="VBoxContainer" parent="HSplitContainer/TabContainer/Tree"]
+layout_mode = 2
+theme_override_constants/separation = 0
+script = ExtResource("1_fvk3o")
+tree_item = ExtResource("2_a02pd")

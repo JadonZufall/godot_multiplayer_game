@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://dp3bx41cm5hqa"]
 
-[ext_resource type="Script" uid="uid://di7je0n8rjdn7" path="res://Game/Scenes/scene_server/tree_item.gd" id="1_yldnx"]
-[ext_resource type="Texture2D" uid="uid://dsswbontg5jjc" path="res://Game/Scenes/scene_server/icons/GuiArrowUp.svg" id="2_fxlnw"]
+[ext_resource type="Script" uid="uid://di7je0n8rjdn7" path="res://Game/Scenes/scene_debugger_server/tree_item.gd" id="1_yldnx"]
+[ext_resource type="Texture2D" uid="uid://dsswbontg5jjc" path="res://Game/Scenes/scene_debugger_server/icons/GuiArrowUp.svg" id="2_fxlnw"]
 [ext_resource type="Texture2D" uid="uid://6gl8ojieokre" path="res://Editor/Icons/NodeDisabled.svg" id="2_u44uq"]
-[ext_resource type="Texture2D" uid="uid://b6uk8vcxlwq81" path="res://Game/Scenes/scene_server/icons/GuiDropdown.svg" id="3_nbgso"]
+[ext_resource type="Texture2D" uid="uid://b6uk8vcxlwq81" path="res://Game/Scenes/scene_debugger_server/icons/GuiDropdown.svg" id="3_nbgso"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxlnw"]
 bg_color = Color(0.176471, 0.176471, 0.176471, 1)

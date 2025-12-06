@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d1mwu2smjfmno"]
+[gd_scene load_steps=24 format=3 uid="uid://d1mwu2smjfmno"]
 
 [ext_resource type="Script" uid="uid://cs2u1kixjdp8m" path="res://Addons/terrain_generation_tool/terrain_tool.gd" id="1_3odgh"]
 [ext_resource type="StyleBox" uid="uid://dnimbqv1jin75" path="res://Addons/terrain_generation_tool/panels/cord_style_box_label.tres" id="2_6dkx5"]
@@ -11,9 +11,7 @@
 [ext_resource type="Script" uid="uid://bmhfx7kd1cy1e" path="res://Addons/terrain_generation_tool/scripts/controller_noise.gd" id="8_kngew"]
 [ext_resource type="Script" uid="uid://fbhr1k0d5ewk" path="res://Addons/terrain_generation_tool/scripts/controller_noise_offset.gd" id="8_tg0g2"]
 [ext_resource type="Script" uid="uid://bu018wn2rpfvf" path="res://Addons/terrain_generation_tool/mesh_terrain.gd" id="8_ulaw8"]
-[ext_resource type="Texture2D" uid="uid://bdpsi00yn8wan" path="res://Addons/greybox_editor/icons/RotateLeft.svg" id="9_7tp4l"]
 [ext_resource type="Script" uid="uid://dmihelhjgoof3" path="res://Addons/terrain_generation_tool/scripts/controller_noise_seed.gd" id="9_l6itf"]
-[ext_resource type="Texture2D" uid="uid://xxd4sgmwvnfs" path="res://Addons/greybox_editor/icons/RotateRight.svg" id="10_o0uq3"]
 [ext_resource type="Texture2D" uid="uid://05q7fajibaby" path="res://Addons/terrain_generation_tool/icons/ZoomLess.svg" id="11_ksrko"]
 [ext_resource type="Texture2D" uid="uid://14y0gwb5f7jt" path="res://Addons/terrain_generation_tool/icons/ZoomMore.svg" id="12_25i26"]
 
@@ -39,7 +37,7 @@ noise = SubResource("FastNoiseLite_3odgh")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tg0g2"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_l6itf"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_tg0g2"]
 
 [node name="terrain_generation_tool" type="Window" node_paths=PackedStringArray("mesh", "camera", "viewport", "noise")]
 title = "Terrain Generation Tool"
@@ -619,15 +617,16 @@ layout_mode = 2
 stretch = true
 
 [node name="mesh_preview_viewport" type="SubViewport" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport"]
+own_world_3d = true
 handle_input_locally = false
-size = Vector2i(602, 545)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="camera" type="Camera3D" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport"]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 51.3322, 45.8052, 51.3322)
 
 [node name="terrain_generator" type="MeshInstance3D" parent="HSplitContainer/mesh_preview_margin/mesh_preview_subviewport/mesh_preview_viewport"]
-mesh = SubResource("ArrayMesh_l6itf")
+mesh = SubResource("ArrayMesh_tg0g2")
 script = ExtResource("8_ulaw8")
 noise = SubResource("NoiseTexture2D_unrxn")
 default_size = Vector2(100, 100)
@@ -673,11 +672,9 @@ grow_vertical = 0
 
 [node name="button_rotate_left" type="Button" parent="HSplitContainer/mesh_preview_margin/viewport_ui/container_rotate_button"]
 layout_mode = 2
-icon = ExtResource("9_7tp4l")
 
 [node name="button_rotate_right" type="Button" parent="HSplitContainer/mesh_preview_margin/viewport_ui/container_rotate_button"]
 layout_mode = 2
-icon = ExtResource("10_o0uq3")
 
 [node name="container_zoom_button" type="HBoxContainer" parent="HSplitContainer/mesh_preview_margin/viewport_ui"]
 layout_mode = 1

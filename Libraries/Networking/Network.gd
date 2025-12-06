@@ -2,21 +2,33 @@ extends Node
 
 signal sv_host()
 signal sv_exit()
+signal sv_peer_connected(pid: int)
+signal sv_peer_disconnected(pid: int)
+signal sv_peer_set_username(pid: int, username: String)
 
 signal cl_join()
 signal cl_exit()
+signal cl_peer_connected(pid: int)
+signal cl_peer_disconnected(pid: int)
+signal cl_peer_set_username(pid: int, username: String)
 
-signal user_connected(pid: int)
-signal user_disconnected(pid: int)
+
 
 const PORT: int = 25565                                                                             # Any number 0 - 65535 (Ports < 1024 are priviledged and require elevated permissions)
+const ADDR: String = "localhost"
 const MAX_CLIENTS: int = 32                                                                         # Any number up to 4095 may be used
 
 const MIN_USERNAME_LENGTH: int = 3
 const MAX_USERNAME_LENGTH: int = 20
 
+var local_pid: int : get = _get_local_pid
+func _get_local_pid() -> int:
+	return multiplayer.get_unique_id()
 
-var _session_data: Dictionary[int, Dictionary] = {}
+
+func cout(message: String) -> void:
+	print("[%s] %s" % [Session._type, message])
+
 
 func sv_open() -> void:
 	# Being hosting as the server.
@@ -34,17 +46,19 @@ func sv_open() -> void:
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(_sv_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_sv_on_peer_disconnected)
-	print("[SV] Hosting to port %d." % PORT)
 	sv_host.emit()
+	cout("Hosting to port %d." % PORT)
 
 func sv_quit() -> void:
 	if not multiplayer.is_server():
 		push_error("No permission to call sv_quit from the client.")
 		return
 	multiplayer.multiplayer_peer.close.call_deferred()
+	multiplayer.peer_connected.disconnect(_sv_on_peer_connected)
+	multiplayer.peer_disconnected.disconnect(_sv_on_peer_disconnected)
 	multiplayer.multiplayer_peer = null
-	print("[SV] Closed.")
 	sv_exit.emit()
+	cout("Closed.")
 
 func cl_open(ip_address: String) -> void:
 	# Join an exsisting server as the client.
@@ -59,17 +73,21 @@ func cl_open(ip_address: String) -> void:
 			push_error("Failed to join server UNKNOWN")
 	
 	multiplayer.multiplayer_peer = peer
-	print("[CL] Connected to server.")
+	multiplayer.peer_connected.connect(_cl_on_peer_connected)
+	multiplayer.peer_disconnected.connect(_cl_on_peer_disconnected)
 	cl_join.emit()
+	cout("Connected to server.")
 
 func cl_quit() -> void:
 	if multiplayer.is_server():
 		push_error("No permission to call cl_quit from the server.")
 		return
 	multiplayer.multiplayer_peer.close.call_deferred()
+	multiplayer.peer_connected.disconnect(_cl_on_peer_connected)
+	multiplayer.peer_disconnected.disconnect(_cl_on_peer_disconnected)
 	multiplayer.multiplayer_peer = null
-	print("[CL] Closed.")
 	cl_exit.emit()
+	cout("Closed.")
 
 # EVENT LISTENERS
 func _sv_on_peer_connected(pid: int) -> void:
@@ -77,48 +95,51 @@ func _sv_on_peer_connected(pid: int) -> void:
 		push_error("No permission to call _sv_on_peer_connected from the client.")
 		return
 	sv_new_player_data(pid)
+	sv_peer_connected.emit(pid)
 
 func _cl_on_peer_connected(pid: int) -> void:
 	if multiplayer.is_server():
 		push_error("No permission to call _cl_on_peer_connected from the server.")
 		return
+	cl_peer_connected.emit(pid)
 
 func _sv_on_peer_disconnected(pid: int) -> void:
 	if not multiplayer.is_server():
 		push_error("No permission to call _sv_on_peer_disconnected from the client.")
 		return
 	sv_del_player_data(pid)
+	sv_peer_disconnected.emit(pid)
 
 func _cl_on_peer_disconnected(pid: int) -> void:
 	if multiplayer.is_server():
-		if multiplayer.is_server():
-			push_error("No permission to call _cl_on_peer_disconnected from the server.")
-			return
+		push_error("No permission to call _cl_on_peer_disconnected from the server.")
+		return
+	cl_peer_disconnected.emit(pid)
 
 # REMOTE PROCEDURE CALL
 @rpc("any_peer", "call_remote", "reliable", 0)
 func network_free_player_data(pid: int) -> void:
 	# Clear the player data.
-	_session_data.erase(pid)
+	Session.pdata_erase(pid)
 
 @rpc("any_peer", "call_remote", "reliable", 0)
 func network_assign_player_data(pid: int, data: Dictionary) -> void:
 	# Override exsisting player data.
-	_session_data[pid] = data
+	Session.pdata_set(pid, data)
 
 @rpc("any_peer", "call_remote", "reliable", 0)
 func network_update_player_data(pid: int, data: Dictionary) -> void:
 	# Only update included values.
-	_session_data[pid].assign(data)
+	Session.pdata_update(pid, data)
 
 func sv_new_player_data(pid: int) -> void:
 	if not multiplayer.is_server():
 		push_error("No permission to call sv_new_player_data from the client.")
 		return
-	if _session_data.has(pid):
+	if Session.pdata_has(pid):
 		push_error("new_player_data(pid=%d) duplicate playerIDs" % [pid])
 		return
-	_session_data.set(pid, { 
+	Session.pdata_set(pid, { 
 		"pid": pid,
 		"ip": -1,
 		"username": "",
@@ -128,21 +149,16 @@ func sv_del_player_data(pid: int) -> void:
 	if not multiplayer.is_server():
 		push_error("No permission to call sv_del_player_data from the client.")
 		return
-	_session_data.erase(pid)
-
-func sv_get_player_data(pid: int) -> Dictionary:
-	if not multiplayer.is_server():
-		push_error("No permission to call sv_get_player_data from the client.")
-		return {}
-	if not _session_data.has(pid):
-		sv_new_player_data(pid)
-	return _session_data[pid]
+	Session.pdata_erase(pid)
 
 func network_set_username(username: String) -> void:
-	if not multiplayer.is_server():
-		push_error("No permission to call cl_set_username from the server.")
-		return
 	sv_set_username.rpc_id(1, username)
+
+func validate_client_data_username(username: String) -> bool:
+	if username.length() < MIN_USERNAME_LENGTH or username.length() > MAX_USERNAME_LENGTH:
+		cout("Invalid username length %d" % username.length())
+		return false
+	return true
 
 # Only the server can execute this remotely
 @rpc("any_peer", "call_remote", "reliable", 0)
@@ -153,16 +169,9 @@ func sv_set_username(username: String) -> void:
 	var pid: int = multiplayer.get_remote_sender_id()
 	
 	# TODO: Validate username
-	if username.length() < MIN_USERNAME_LENGTH or username.length() > MAX_USERNAME_LENGTH:
-		pass
+	if not validate_client_data_username(username):
+		cout("Invalid username %s" % username)
+		return
 	
 	# Update player data
-	var player_data: Dictionary = _session_data[pid]
-	player_data.set("username", username)
-	
-	# Call function on all peers
-	network_relay_set_username.rpc(pid, username)
-
-@rpc("any_peer", "call_remote", "reliable", 0)
-func network_relay_set_username() -> void:
-	pass
+	Session.sv_set_username(pid, username)
