@@ -120,26 +120,26 @@ func _cl_on_peer_disconnected(pid: int) -> void:
 @rpc("any_peer", "call_remote", "reliable", 0)
 func network_free_player_data(pid: int) -> void:
 	# Clear the player data.
-	Session._data.erase(pid)
+	Session.pdata_erase(pid)
 
 @rpc("any_peer", "call_remote", "reliable", 0)
 func network_assign_player_data(pid: int, data: Dictionary) -> void:
 	# Override exsisting player data.
-	Session._data[pid] = data
+	Session.pdata_set(pid, data)
 
 @rpc("any_peer", "call_remote", "reliable", 0)
 func network_update_player_data(pid: int, data: Dictionary) -> void:
 	# Only update included values.
-	Session._data[pid].assign(data)
+	Session.pdata_update(pid, data)
 
 func sv_new_player_data(pid: int) -> void:
 	if not multiplayer.is_server():
 		push_error("No permission to call sv_new_player_data from the client.")
 		return
-	if Session._data.has(pid):
+	if Session.pdata_has(pid):
 		push_error("new_player_data(pid=%d) duplicate playerIDs" % [pid])
 		return
-	Session._data.set(pid, { 
+	Session.pdata_set(pid, { 
 		"pid": pid,
 		"ip": -1,
 		"username": "",
@@ -149,15 +149,7 @@ func sv_del_player_data(pid: int) -> void:
 	if not multiplayer.is_server():
 		push_error("No permission to call sv_del_player_data from the client.")
 		return
-	Session._data.erase(pid)
-
-func sv_get_player_data(pid: int) -> Dictionary:
-	if not multiplayer.is_server():
-		push_error("No permission to call sv_get_player_data from the client.")
-		return {}
-	if not Session._data.has(pid):
-		sv_new_player_data(pid)
-	return Session._data[pid]
+	Session.pdata_erase(pid)
 
 func network_set_username(username: String) -> void:
 	sv_set_username.rpc_id(1, username)
@@ -191,9 +183,9 @@ func sv_set_username(username: String) -> void:
 
 @rpc("any_peer", "call_remote", "reliable", 0)
 func network_relay_set_username(pid: int, username: String) -> void:
-	if not Session._data.has(pid):
+	if not Session.pdata_has(pid):
 		Session._data.set(pid, {})
-	var player_data: Dictionary = Session._data[pid]
+	var player_data: Dictionary = Session.pdata_get(pid)
 	player_data.set("username", username)
 	cl_peer_set_username.emit(pid, username)
 	
