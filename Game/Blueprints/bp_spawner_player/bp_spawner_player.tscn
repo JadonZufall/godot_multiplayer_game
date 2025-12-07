@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://xtikfbdm6qji"]
+
+[ext_resource type="Script" uid="uid://dhx4h1o4jog6a" path="res://Game/Blueprints/bp_spawner_player/bp_spawner_player.gd" id="1_70ej2"]
+[ext_resource type="PackedScene" uid="uid://beps6ibnngka7" path="res://Game/Entities/entity_player/entity_player.tscn" id="2_qqt4o"]
+[ext_resource type="PackedScene" uid="uid://un5luv0vikxm" path="res://Game/Blueprints/bp_spawner_player/bp_await_sync.tscn" id="2_wbri4"]
+
+[node name="bp_spawner_player" type="MultiplayerSpawner"]
+_spawnable_scenes = PackedStringArray("uid://beps6ibnngka7")
+script = ExtResource("1_70ej2")
+bp_await_sync = ExtResource("2_wbri4")
+bp_entity_player = ExtResource("2_qqt4o")

@@ -9,6 +9,10 @@ func _ready() -> void:
 	_add_node(root)
 	_recursive_node_tree_build.call_deferred(root)
 
+func _clear_tree() -> void:
+	for child in get_children():
+		child.queue_free()
+
 func _recursive_node_tree_build(node: Node) -> void:
 	# Don't build a tree of the tree
 	if node == self or is_ancestor_of(node):
@@ -19,7 +23,7 @@ func _recursive_node_tree_build(node: Node) -> void:
 		_recursive_node_tree_build.call_deferred(child)
 
 func _setup_item(node: Node, item: Node) -> void:
-	item.get("item_name").text = node.name
+	item.get("item_name").text = "%s [%d]" % [node.name, node.get_multiplayer_authority()]
 	#item.get("item_icon").texture
 
 func _add_node(node: Node) -> void:
@@ -35,5 +39,10 @@ func _add_node(node: Node) -> void:
 		var parent_children: Node = parent_item.get("item_children")
 		parent_children.add_child(item)
 	
-	
-	
+
+func _on_button_reload_pressed() -> void:
+	_clear_tree()
+	Network.cout("Rebuilding tree")
+	var root: Window = get_tree().get_root()
+	_add_node(root)
+	_recursive_node_tree_build.call_deferred(root)

@@ -15,7 +15,7 @@ func _on_target_reached() -> void:
 		return
 
 
-func _process_update_authority(delta: float) -> void:
+func _process_update_authority(_delta: float) -> void:
 	if not is_enabled:
 		return
 	
