@@ -17,10 +17,17 @@ boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 
+[audio]
+
+buses/default_bus_layout="uid://dqs7olacpuiob"
+driver/driver="CoreAudio"
+driver/enable_input=true
+
 [autoload]
 
 Network="*res://Libraries/Networking/Network.gd"
 Session="*res://Libraries/Networking/Session.gd"
+VOIP="*res://Libraries/Networking/VOIP.gd"
 
 [display]
 

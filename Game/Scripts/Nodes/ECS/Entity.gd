@@ -4,12 +4,14 @@ class_name Entity extends CharacterBody3D
 signal component_added(node: Component)
 signal component_deleted(node: Component)
 signal component_renamed(node: Component)
+signal cl_auth_ready()
 
 @onready var synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
 @onready var collider: CollisionShape3D = $collider
 @onready var model: Model = $model
 @onready var agent: NavigationAgent3D = $agent
 
+var pid: int
 var components: Dictionary[String, Component] = {}
 
 func _on_component_renamed() -> void:
@@ -44,6 +46,11 @@ func _find_components() -> void:
 func _ready() -> void:
 	_find_components()
 
+func _enter_tree() -> void:
+	if multiplayer.is_server():
+		Network.cout("Assigning auth to %d" % pid)
+		set_multiplayer_authority(pid)
+
 func _process(delta: float) -> void:
 	for component in components.values():
 		component._process_update(delta)
@@ -64,3 +71,8 @@ func _on_child_entered_tree(child: Node) -> void:
 func _on_child_exiting_tree(child: Node) -> void:
 	if child is Component:
 		_del_component(child)
+
+@rpc("authority", "call_remote", "reliable")
+func _cl_auth_ready() -> void:
+	Network.cout("Auth assigned for entity %s" % name)
+	cl_auth_ready.emit()

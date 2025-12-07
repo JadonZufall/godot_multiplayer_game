@@ -5,7 +5,7 @@ extends Component
 var jump: bool = false
 var move: Vector2 = Vector2.ZERO
 
-func _process_update_authority(delta: float) -> void:
+func _process_update_authority(_delta: float) -> void:
 	if not is_enabled:
 		move = Vector2.ZERO
 		return

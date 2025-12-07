@@ -39,8 +39,29 @@ current_tab = 0
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="tree_data" type="VBoxContainer" parent="HSplitContainer/TabContainer/Tree"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/TabContainer/Tree"]
+layout_mode = 2
+
+[node name="button_reload" type="Button" parent="HSplitContainer/TabContainer/Tree/VBoxContainer"]
+layout_mode = 2
+text = "Reload"
+
+[node name="tree_data" type="VBoxContainer" parent="HSplitContainer/TabContainer/Tree/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 script = ExtResource("1_fvk3o")
 tree_item = ExtResource("2_a02pd")
+
+[node name="Camera" type="SubViewportContainer" parent="HSplitContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="SubViewport" type="SubViewport" parent="HSplitContainer/TabContainer/Camera"]
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="HSplitContainer/TabContainer/Camera/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 5, 7)
+
+[connection signal="pressed" from="HSplitContainer/TabContainer/Tree/VBoxContainer/button_reload" to="HSplitContainer/TabContainer/Tree/VBoxContainer/tree_data" method="_on_button_reload_pressed"]

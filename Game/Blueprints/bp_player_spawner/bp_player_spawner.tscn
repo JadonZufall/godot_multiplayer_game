@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ct0r8dicbwxeb"]
-
-[ext_resource type="Script" uid="uid://46t35he85wkm" path="res://Game/Blueprints/bp_player_spawner/PlayerSpawner.gd" id="1_hglyb"]
-
-[node name="PlayerSpawner" type="MultiplayerSpawner"]
-script = ExtResource("1_hglyb")

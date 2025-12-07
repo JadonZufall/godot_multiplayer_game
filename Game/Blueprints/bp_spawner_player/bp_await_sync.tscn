@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://un5luv0vikxm"]
+
+[ext_resource type="Script" uid="uid://dj8wagtjhgv5k" path="res://Game/Blueprints/bp_spawner_player/bp_await_sync.gd" id="1_5dv6o"]
+
+[node name="bp_await_sync" type="Node"]
+script = ExtResource("1_5dv6o")
