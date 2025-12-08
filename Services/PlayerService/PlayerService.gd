@@ -1,4 +1,4 @@
-extends Node
+extends Service
 
 
 func _ready() -> void:

@@ -28,6 +28,7 @@ driver/enable_input=true
 Network="*res://Libraries/Networking/Network.gd"
 Session="*res://Libraries/Networking/Session.gd"
 VOIP="*res://Libraries/Networking/VOIP.gd"
+PlayerService="*res://Services/PlayerService/PlayerService.gd"
 
 [display]
 
