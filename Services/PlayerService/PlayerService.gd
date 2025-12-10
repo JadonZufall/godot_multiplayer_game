@@ -4,7 +4,7 @@ signal player_join(data: PlayerData)
 signal player_left(data: PlayerData)
 
 var _pdata: Dictionary[String, PlayerData] = {}
-var _Random: RandomNumberGenerator = RandomNumberGenerator()
+static var _Random: RandomNumberGenerator = RandomNumberGenerator.new()
 
 static func generate_hex(len: int) -> String:
 	var result: String = ""
@@ -28,9 +28,9 @@ func _ready() -> void:
 	Network.cl_join.connect(_on_client_join)
 	Network.cl_exit.connect(_on_client_exit)
 
-func _error_log(message: String) -> void:
+func _error_log(message: String) -> void: 
 	Network.cout("[ERROR] (PlayerService) %s" % message)
-
+	push_error("[ERROR] (PlayerService) %s" % message)
 func _error_listeners_already_connected() -> void: return _error_log("Unabled to bind listeners for, listeners already connected.")
 func _error_no_player_data(pid: int=-1) -> void: return _error_log("No player_data for %d" % pid)
 func _error_duplicate_player_data(pid: int=-1) -> void: return _error_log("Duplicate player_data for %d" % pid)
@@ -74,8 +74,8 @@ func _on_client_exit() -> void:
 
 func _on_player_join(pid: int) -> void:
 	var player_data: PlayerData
-	if _pdata.has(pid):
-		if _pdata[pid].is_connected: return _error_duplicate_player_data(pid)
+	# TODO: Need uuid to connect playerdata
+	
 	
 	player_data = PlayerData.new()
 	player_data.uuid = generate_uuid_v4()
@@ -89,10 +89,4 @@ func _on_player_join(pid: int) -> void:
 func _on_player_left(pid: int) -> void:
 	if not _pdata.has(pid): return _error_no_player_data(pid)
 	
-	var player_data: PlayerData = _pdata[pid]
-	if not player_data.is_connected: return _error_already_disconnected(pid)
-	
-	player_data.pid = -1
-	remove_child(player_data)
-	player_left.emit(player_data)
-	player_data.player_quit.emit(player_data)
+	# TODO: Get and update player_data
