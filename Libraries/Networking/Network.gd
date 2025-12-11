@@ -13,8 +13,10 @@ signal cl_peer_disconnected(pid: int)
 signal cl_peer_set_username(pid: int, username: String)
 
 enum ErrorCode {
-	OKAY,
-	NO_PERMISSION,
+	OKAY,                                 # Normal status code
+	INVALID_DESTINATION,                  # RPC sent to the wrong destination / peer
+	NO_PERMISSION,                        # Peer that made the request has no permission to make said request.
+	
 }
 
 

@@ -1,7 +1,7 @@
 class_name PlayerData extends Node
 
-signal player_join
-signal player_quit
+signal player_join(player_data: PlayerData)
+signal player_quit(player_data: PlayerData)
 
 var _pid: int = -1
 var _uuid: String
@@ -39,17 +39,34 @@ func _serialize() -> void:
 	if not multiplayer.is_server(): return PlayerService._error_log("PlayerData._serialize() failed, cannot be performed on client.")
 	# TODO
 
+
+signal listen_save(error_code: int)
 @rpc("any_peer", "call_remote", "reliable")
 func receive_save(sender_id: int, error_code: int) -> void:
-	pass
+	listen_save.emit(error_code)
+	if error_code != Network.ErrorCode.OKAY:
+		return PlayerService._error_log("PlayerData.receive_save() error_code=%d" % error_code)
+
+func request_save(receive: Callable? = null) -> void:
+	listen_save.connect(receive)
+	_request_save.rpc_id(1, Network.local_pid)
 
 @rpc("authority", "call_remote", "reliable")
-func request_save(sender_id: int) -> void:
-	if not multiplayer.is_server(): return PlayerService._error_log("PlayerData.request_save() failed, cannot be performed on client.")
+func _request_save(sender_id: int) -> void:
+	# Only the server should be executing this function.
+	if not multiplayer.is_server(): 
+		PlayerService._error_log("PlayerData.request_save() failed, cannot be performed on client.")
+		receive_save.rpc_id(sender_id, Network.local_pid, Network.ErrorCode.INVALID_DESTINATION)
+		return
+	
+	# Only the player that is represented by this data has permission to make this call.
 	if sender_id != pid:
 		PlayerService._error_log("PlayerData.request_save() failed, pid mismatch %d (requester) != %d (player)" % [sender_id, pid])
-		receive_save.rpc_id(sender_id, Network.ErrorCode.NO_PERMISSION)
-
+		receive_save.rpc_id(sender_id, Network.local_pid, Network.ErrorCode.NO_PERMISSION)
+		return
+	
+	
+	
 @rpc("authority", "call_remote", "reliable")
 func request_load(uuid: String) -> void:
 	if not multiplayer.is_server(): return PlayerService._error_log("PlayerData.request_load() failed, cannot be performed on client.")
