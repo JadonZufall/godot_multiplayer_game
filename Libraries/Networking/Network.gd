@@ -19,6 +19,7 @@ enum ErrorCode {
 	OKAY,                                 # Normal status code
 	INVALID_DESTINATION,                  # RPC sent to the wrong destination / peer
 	NO_PERMISSION,                        # Peer that made the request has no permission to make said request.
+	ALREADY_SENT,                         # This request was already sent, and currently awaiting a response.
 }
 
 
