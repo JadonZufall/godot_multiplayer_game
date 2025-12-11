@@ -12,11 +12,13 @@ signal cl_peer_connected(pid: int)
 signal cl_peer_disconnected(pid: int)
 signal cl_peer_set_username(pid: int, username: String)
 
+var NO_LISTENER: Callable = func() -> void: return
+var CLEAR_LISTENER: Callable = func(_signal: Signal, _listener: Callable) -> void: return _signal.disconnect(_listener)
+
 enum ErrorCode {
 	OKAY,                                 # Normal status code
 	INVALID_DESTINATION,                  # RPC sent to the wrong destination / peer
 	NO_PERMISSION,                        # Peer that made the request has no permission to make said request.
-	
 }
 
 

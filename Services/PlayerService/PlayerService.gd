@@ -6,9 +6,9 @@ signal player_left(data: PlayerData)
 var _pdata: Dictionary[int, PlayerData] = {}
 static var _Random: RandomNumberGenerator = RandomNumberGenerator.new()
 
-static func generate_hex(len: int) -> String:
+static func generate_hex(size: int) -> String:
 	var result: String = ""
-	for i in range(len):
+	for i in range(size):
 		if _Random.randf() < 0.5:
 			result += char(_Random.randi_range(48, 57))
 		else:
@@ -86,6 +86,7 @@ func _on_player_join(pid: int) -> void:
 func _on_player_left(pid: int) -> void:
 	if not _pdata.has(pid): return _error_no_player_data(pid)
 	var player_data: PlayerData = _pdata[pid]
+	player_left.emit(player_data)
 	player_data.player_quit.emit(player_data)
 	player_data.queue_free()
 	_pdata.erase(pid)
