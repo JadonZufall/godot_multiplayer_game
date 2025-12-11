@@ -1,7 +1,7 @@
 class_name PlayerData extends Node
 
-signal player_join(player_data: PlayerData)
-signal player_quit(player_data: PlayerData)
+@warning_ignore("unused_signal") signal player_join(player_data: PlayerData)
+@warning_ignore("unused_signal") signal player_quit(player_data: PlayerData)
 
 var _pid: int = -1
 var _uuid: String
@@ -28,28 +28,48 @@ var username: String :
 	get:
 		return _username
 
-var is_connected: bool:
+var is_online: bool:
 	set(new):
 		if new: return
 		pid = -1
 	get: 
 		return pid != -1
 
+func _ready() -> void:
+	_session["TimeJoin"] = Time.get_unix_time_from_system()
+
 func _serialize() -> void:
 	if not multiplayer.is_server(): return PlayerService._error_log("PlayerData._serialize() failed, cannot be performed on client.")
 	# TODO
 
 
-signal listen_save(error_code: int)
+signal _listen_save(error_code: Network.ErrorCode)
 @rpc("any_peer", "call_remote", "reliable")
-func receive_save(sender_id: int, error_code: int) -> void:
-	listen_save.emit(error_code)
+func receive_save(sender_id: int, error_code: Network.ErrorCode) -> void:
+	# Ignore invalid responses.
+	if sender_id != 1:
+		return PlayerService._error_log("PlayerData.receive_save() response from invalid sender=%d" % sender_id)
+	
+	# Trigger listener functions.
+	_listen_save.emit(error_code)
+	
+	# Disconnect all established connections.
+	for listener in _listen_save.get_connections():
+		_listen_save.disconnect(listener)
+	
+	# Default error handling.
 	if error_code != Network.ErrorCode.OKAY:
 		return PlayerService._error_log("PlayerData.receive_save() error_code=%d" % error_code)
 
-func request_save(receive: Callable? = null) -> void:
-	listen_save.connect(receive)
+func request_save(_listener: Callable=Network.NO_LISTENER) -> Network.ErrorCode:
+	if _listen_save.has_connections():
+		return Network.ErrorCode.ALREADY_SENT
+	
+	if _listener != Network.NO_LISTENER:
+		_listen_save.connect(_listener)
+	
 	_request_save.rpc_id(1, Network.local_pid)
+	return Network.ErrorCode.OKAY
 
 @rpc("authority", "call_remote", "reliable")
 func _request_save(sender_id: int) -> void:
@@ -64,16 +84,41 @@ func _request_save(sender_id: int) -> void:
 		PlayerService._error_log("PlayerData.request_save() failed, pid mismatch %d (requester) != %d (player)" % [sender_id, pid])
 		receive_save.rpc_id(sender_id, Network.local_pid, Network.ErrorCode.NO_PERMISSION)
 		return
+
+signal _listen_load(error_code: Network.ErrorCode)
+@rpc("any_peer", "call_remote", "reliable")
+func receive_load(sender_id: int, error_code: Network.ErrorCode) -> void:
+	# Ignore invalid responses
+	if sender_id != 1:
+		return PlayerService._error_log("PlayerData.receive_load() failed, recieved from invalid sender=%d" % sender_id)
 	
+	# Trigger response listener
+	_listen_load.emit(error_code)
+	for listener in _listen_load.get_connections():
+		_listen_load.disconnect(listener)
 	
+	# Default error handling
+	if error_code != Network.ErrorCode.OKAY:
+		return PlayerService._error_log("PlayerData.receive_load() error_code=%d" % error_code)
 	
-@rpc("authority", "call_remote", "reliable")
-func request_load(uuid: String) -> void:
-	if not multiplayer.is_server(): return PlayerService._error_log("PlayerData.request_load() failed, cannot be performed on client.")
-	# TODO
+
+func request_load(player_id: String, _listener: Callable=Network.NO_LISTENER) -> Network.ErrorCode:
+	# Ignore if a request has already been made.
+	if _listen_load.has_connections():
+		return Network.ErrorCode.ALREADY_SENT
+	
+	if _listener != Network.NO_LISTENER:
+		_listen_load.connect(_listener)
+	_request_load.rpc_id(1, Network.local_pid, player_id)
+	return Network.ErrorCode.OKAY
 
 @rpc("authority", "call_remote", "reliable")
-func request_set_username(username: String) -> void:
+func _request_load(sender_id: int, player_id: String) -> void:
+	if not multiplayer.is_server(): return PlayerService._error_log("PlayerData.request_load() failed, cannot be performed on client.")
+	
+
+@rpc("authority", "call_remote", "reliable")
+func request_set_username(value: String) -> void:
 	if not multiplayer.is_server(): return PlayerService._error_log("PlayerData.request_set_username() failed, cannot be performed on client.")
 	# TODO
 

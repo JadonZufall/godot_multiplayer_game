@@ -159,7 +159,7 @@ constant = 2.0
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx;
 
 uniform float frag_curve_strength : hint_range(0.0, 0.10000000149012) = 0.10000000149012;
 uniform float curve_strength : hint_range(0.0, 0.10000000149012) = 0.10000000149012;
