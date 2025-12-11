@@ -12,6 +12,13 @@ signal cl_peer_connected(pid: int)
 signal cl_peer_disconnected(pid: int)
 signal cl_peer_set_username(pid: int, username: String)
 
+enum ErrorCode {
+	OKAY,                                 # Normal status code
+	INVALID_DESTINATION,                  # RPC sent to the wrong destination / peer
+	NO_PERMISSION,                        # Peer that made the request has no permission to make said request.
+	
+}
+
 
 
 const PORT: int = 25565                                                                             # Any number 0 - 65535 (Ports < 1024 are priviledged and require elevated permissions)
@@ -21,14 +28,10 @@ const MAX_CLIENTS: int = 32                                                     
 const MIN_USERNAME_LENGTH: int = 3
 const MAX_USERNAME_LENGTH: int = 20
 
-var local_pid: int : get = _get_local_pid
-func _get_local_pid() -> int:
-	return multiplayer.get_unique_id()
+var local_pid: int : 
+	get: return multiplayer.get_unique_id()
 
-
-func cout(message: String) -> void:
-	print("[%s] %s" % [Session._type, message])
-
+func cout(message: String) -> void: print("[%s] %s" % [Session._type, message])
 
 func sv_open() -> void:
 	# Being hosting as the server.
