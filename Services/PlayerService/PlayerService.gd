@@ -3,7 +3,7 @@ extends Service
 signal player_join(data: PlayerData)
 signal player_left(data: PlayerData)
 
-var _pdata: Dictionary[String, PlayerData] = {}
+var _pdata: Dictionary[int, PlayerData] = {}
 static var _Random: RandomNumberGenerator = RandomNumberGenerator.new()
 
 static func generate_hex(len: int) -> String:
@@ -73,20 +73,19 @@ func _on_client_exit() -> void:
 	Network.cl_peer_disconnected.connect(_on_player_left)
 
 func _on_player_join(pid: int) -> void:
-	var player_data: PlayerData
-	# TODO: Need uuid to connect playerdata
-	
-	
-	player_data = PlayerData.new()
+	var player_data: PlayerData = PlayerData.new()
 	player_data.uuid = generate_uuid_v4()
-	_pdata[player_data.uuid] = player_data
-	
 	player_data.pid = pid
+	
+	_pdata[pid] = player_data
 	add_child(player_data)
+	
 	player_join.emit(player_data)
 	player_data.player_join.emit(player_data)
 
 func _on_player_left(pid: int) -> void:
 	if not _pdata.has(pid): return _error_no_player_data(pid)
-	
-	# TODO: Get and update player_data
+	var player_data: PlayerData = _pdata[pid]
+	player_data.player_quit.emit(player_data)
+	player_data.queue_free()
+	_pdata.erase(pid)

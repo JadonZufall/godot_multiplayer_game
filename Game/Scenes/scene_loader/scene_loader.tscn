@@ -47,7 +47,7 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 [node name="bp_spawner_player" parent="3D World" instance=ExtResource("8_4t6a0")]
 spawn_path = NodePath("..")
 
-[node name="Camera3D" type="Camera3D" parent="3D World"]
+[node name="camera" type="Camera3D" parent="3D World"]
 current = true
 
 [node name="IN Audio" type="AudioStreamPlayer" parent="."]

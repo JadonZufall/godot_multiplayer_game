@@ -12,6 +12,11 @@ signal cl_peer_connected(pid: int)
 signal cl_peer_disconnected(pid: int)
 signal cl_peer_set_username(pid: int, username: String)
 
+enum ErrorCode {
+	OKAY,
+	NO_PERMISSION,
+}
+
 
 
 const PORT: int = 25565                                                                             # Any number 0 - 65535 (Ports < 1024 are priviledged and require elevated permissions)
