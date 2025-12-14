@@ -14,7 +14,7 @@
 
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_qil7c"]
 
-[node name="entity_player" instance=ExtResource("1_b5dal")]
+[node name="entity_player" groups=["Players"] instance=ExtResource("1_b5dal")]
 collision_layer = 513
 collision_mask = 513
 script = ExtResource("2_ox5tx")

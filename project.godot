@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
+config/tags=PackedStringArray("game")
 
 [audio]
 
@@ -29,15 +30,17 @@ Network="*res://Libraries/Networking/Network.gd"
 Session="*res://Libraries/Networking/Session.gd"
 VOIP="*res://Libraries/Networking/VOIP.gd"
 PlayerService="*res://Services/PlayerService/PlayerService.gd"
+CameraService="*res://Services/CameraService/CameraService.gd"
+SpawnService="*res://Services/SpawnService/SpawnService.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
 
-[editor_plugins]
+[global_group]
 
-enabled=PackedStringArray("res://addons/csv_editor/plugin.cfg", "res://addons/terrain_generation_tool/plugin.cfg")
+Players=""
 
 [input]
 
