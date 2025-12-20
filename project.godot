@@ -11,12 +11,12 @@ config_version=5
 [application]
 
 config/name="Multiplayer"
+config/tags=PackedStringArray("game")
 run/main_scene="uid://cnq8hw8ju1peb"
 config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/tags=PackedStringArray("game")
 
 [audio]
 
